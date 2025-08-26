@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>circles.diy</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --text-light: #666666;
+            --border-color: #e5e5e5;
+            --accent-color: #000000;
+            --surface-color: #f9f9f9;
+            --success-color: #16a34a;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #000000;
+                --text-color: #ffffff;
+                --text-light: #a3a3a3;
+                --border-color: #262626;
+                --accent-color: #ffffff;
+                --surface-color: #0a0a0a;
+                --success-color: #22c55e;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            color: var(--accent-color);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin: 48px 0 24px 0;
+            color: var(--accent-color);
+        }
+
+        h3 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin: 32px 0 16px 0;
+            color: var(--text-color);
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        strong {
+            font-weight: 500;
+        }
+
+        ul,
+        ol {
+            margin: 20px 0;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        code {
+            background-color: var(--surface-color);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            border: 1px solid var(--border-color);
+        }
+
+        .manifesto {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 32px;
+            margin: 48px 0;
+        }
+
+        .feedback-section {
+            margin-top: 64px;
+            padding: 32px;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .feedback-section h2 {
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        .feedback-section p {
+            margin-bottom: 24px;
+            color: var(--text-light);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 15px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            resize: vertical;
+            transition: border-color 0.2s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        textarea::placeholder {
+            color: var(--text-light);
+        }
+
+        button {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            margin-top: 16px;
+            transition: opacity 0.2s ease;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .success {
+            color: var(--success-color);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>circles.diy</h1>
+    <h3>A community platform for creatives, makers and builders.</h3>
+
+    <p>circles.diy is born out of frustration with the current state of social networks. Mainstream platforms have
+        twisted creativity and community into raw material for profit, attention, and control. They exploit your data,
+        optimise for addiction and quietly erode communication with content-delivery algorithms. circles.diy rejects
+        this model of operation with burning passion. We believe in building digital spaces where creativity thrives on its own
+        terms, where people gather in circles that they shape, sustain and own as a collective.</p>
+
+    <h3>How can circles.diy be different if its just another social platform?</h3>
+    <p>The million dollar question, a question we think about a lot. The critical flaws of conventional platforms are
+        well known, and we have dared to propose an alternative approach.</p>
+
+    <h3>The Revenue Model</h3>
+    <p>Conventional social platforms are "free" because of the ad-based revenue model behind the curtain. This model
+        inherently creates a business incentive towards dark software patterns and engagement-hacking. To prevent it,
+        the money has to come from somewhere else.</p>
+
+    <p>We've looked to the past for wisdom, searched for methods that successfully funded communities and promoted
+        creativity and connection. In doing so, we landed on a unique combination of revenue streams for sustaining
+        circles.diy</p>
+
+    <ol>
+        <li><strong>Decentralise the networks</strong><br>
+            Every circle is its own unit; some self-hosted, some centrally hosted, some shared. Infrastructure costs
+            scale with real community activity rather than a top-down push for growth. This makes hosting transparent,
+            predictable, and collectively managed.</li>
+
+        <li><strong>Circle Tithes (Community Stewardship)</strong><br>
+            Just as villages pooled resources through tithes and communal reserves, circles can choose to contribute
+            predictable support; small dues, pooled funds, or even volunteered time. The platform never sells attention;
+            it survives on shared stewardship that flows directly into hosting, moderation, and maintenance.</li>
+
+        <li><strong>Skillshare as Currency</strong><br>
+            In a village, value doesn't just flow in goods or money, it flows in skills. A carpenter mends a roof, a
+            midwife ensures safe births, a blacksmith repairs tools. The exchange of knowledge keeps communities
+            resilient and binds people together.<br>
+            circles.diy carries this principle into the digital age. Members can contribute not only money, but also
+            skill. Sharing knowledge through workshops, tutorials, mentoring, or creative collaborations means that each
+            circle becomes inherently rich with creative value and worth being a part of.</li>
+    </ol>
+
+    <p>The common thread? Every revenue flow is anchored in real participation and creativity. Nothing comes from
+        extracting attention. Everything comes from what members freely put back into the commons.</p>
+
+    <h3>Architecture of Belonging</h3>
+    <p>A social network isn't just code, it's the shape of a community. We want circles.diy to embody the DIY ethos at
+        its core: flexible enough that anyone can host their own space, yet accessible enough for those who simply want
+        to join without software skills.</p>
+
+    <p>We envision three layers of participation:</p>
+    <ul>
+        <li><strong>DIY Mode (Self-Hosted Nodes):</strong> For hackers and builders, a simple deployment with
+            <code>docker compose up</code> gives full ownership of a circle. These nodes form the backbone of the
+            network, embodying independence.</li>
+        <li><strong>Managed Hosting (Middle Ground):</strong> For communities who want their own circle but not the
+            overhead, circles.diy offers hosted instances. Admins still govern, we simply provide the scaffolding.</li>
+        <li><strong>Commons Circles (Low Barrier):</strong> For those just arriving, shared public circles provide easy
+            entry. Over time, thriving communities can fork into their own nodes without losing history or identity.
+        </li>
+    </ul>
+
+    <p>To make this work, circles.diy treats portability as sacred. A circle, its content, and its members can migrate
+        between modes; self-hosted, managed, or commons; without loss. Protocol-level interoperability ensures circles
+        aren't silos, but threads in a larger woven fabric.</p>
+
+    <h3>Open Borders</h3>
+    <p>Creativity has no bounds, we know this and our users know this, so creating yet another private "walled-garden"
+        social network only adds to the problem. circles.diy firmly believes that the right to your content is yours,
+        and where content lives should be up to the author.</p>
+
+    <p>This is why we are building a social platform with interoperability at its core, paying close attention to
+        established and emerging social-networking protocols and ensuring users can not only distribute as much of their
+        content as possible between compatible networks, but also have the ability to easily migrate their content
+        to/from other platforms if they desire.</p>
+
+    <p>Why would we openly enable migration away from circles.diy? Because:</p>
+    <ul>
+        <li>We believe it solidifies our ethos against the destructive patterns of privitised social networks.</li>
+        <li>We believe if you build a good enough platform that provides <strong>real</strong> value to users, they
+            won't want to leave 🤷</li>
+        <li>We believe in the power of high-quality communities to <strong>attract</strong> fellow creatives and want to
+            make joining a circle as easy as possible 😇</li>
+    </ul>
+
+    <div class="manifesto">
+        <h2>The circles.diy Manifesto</h2>
+
+        <h3>1. Community, not Capital</h3>
+        <p>We will never treat people as commodities. circles.diy will not sell data, profile behaviour, or manipulate
+            attention for profit. Users are participants, not products. The platform exists to uplift creativity and
+            community.</p>
+
+        <h3>2. DIY Spirit</h3>
+        <p>The platform reflects the culture it serves. Open, hackable, extensible. Built for the tinkerers, the
+            creators, and the collaborators. You can fork it, self-host it, or build on it; because DIY means freedom.
+        </p>
+
+        <h3>3. Portability as a Right</h3>
+        <p>Your content and connections are yours. Migration, federation, and interoperability are not features, they
+            are guarantees. No circle, no platform, should ever hold your creativity hostage.</p>
+
+        <h3>4. Participation over Extraction</h3>
+        <p>Attention is not a resource to be strip-mined. Revenue flows only from what people willingly contribute;
+            through stewardship, skills, or small pooled support. The commons is built by those who share, not those who
+            exploit.</p>
+
+        <h3>5. Knowledge as Wealth</h3>
+        <p>In villages, survival depended on passing down knowledge; how to plant, mend, build, or heal. circles.diy
+            embraces this truth for the digital age. Sharing skills and teaching others is not secondary; it is the
+            heart of what makes a circle valuable.</p>
+
+        <h3>6. Small, High-Quality Spaces</h3>
+        <p>We do not chase "scale." We don't want the biggest network, we want the most meaningful ones. Circles are
+            built for intimacy, trust, and craft. A thousand strong communities matter more than a billion empty clicks.
+        </p>
+
+        <h3>7. Transparent Feeds, not Black Boxes</h3>
+        <p>We reject algorithmic trickery designed to hijack attention. Content feeds in circles.diy are built on
+            transparent, trusted methods: chronological order, explicit subscriptions, and community-driven curation. No
+            hidden levers, no invisible shaping of what you see; only clear and understandable flows of content.</p>
+
+        <h3>8. The Commons Comes First</h3>
+        <p>Infrastructure is sustained like the old village granary: collectively, openly, and for the good of all.
+            Transparency is mandatory, not optional. Everyone should know where resources come from and where they go.
+        </p>
+
+        <h3>9. Keep the Good, Leave the Rot</h3>
+        <p>Not everything in today’s social platforms is broken. circles.diy commits to carrying forward what works;
+            fast access across devices, secure communication where it matters, multimedia support, and interfaces that
+            feel intuitive and beautiful. What we leave behind are the manipulative patterns, the noise, and the
+            extractive incentives. We keep the tools that empower creativity and discard the rot that erodes community.
+        </p>
+
+        <h3>10. Uplift the Creatives</h3>
+        <p>
+            circles.diy is built by and for creatives. We believe every individual should be free to represent their
+            work and identity without compromise. Profiles can be living portfolios; spaces to showcase craft, connect
+            with collaborators, and grow sustainable practices. Tools for creative business, presentation, and exchange
+            are woven in by design, giving individuals the means to thrive without bending to the extractive models of
+            mainstream platforms.
+        </p>
+
+    </div>
+
+    <div class="feedback-section">
+        <h2>Help shape circles.diy</h2>
+        <p>We're building this platform for creators, makers and builders like you. Your insights matter, tell us what
+            features would be most valuable: what you love or hate about existing platforms, or share any ideas that
+            could make circles.diy better.</p>
+
+        {{if .Success}}
+        <div class="success">Thank you for your feedback! We appreciate your input.</div>
+        {{end}}
+
+        <form method="POST" action="/feedback">
+            <textarea name="feedback"
+                placeholder="Share your thoughts on features you'd like to see, pain points with current platforms, ideas for community building, or anything else that could help us create a better social platform for creatives..."></textarea>
+            <br>
+            <button type="submit">Send Feedback</button>
+        </form>
+    </div>
+</body>
+
+</html>
