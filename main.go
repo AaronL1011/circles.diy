@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
 
 type PageData struct {
@@ -26,13 +27,21 @@ func feedbackHandler(w http.ResponseWriter, r *http.Request) {
 
 	feedback := r.FormValue("feedback")
 	if feedback != "" {
-		// Log feedback to file
-		file, err := os.OpenFile("feedback.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		// Log feedback to file in data directory
+		feedbackPath := "/app/data/feedback.txt"
+
+		// Ensure data directory exists
+		if err := os.MkdirAll("/app/data", 0755); err != nil {
+			log.Printf("Error creating data directory: %v", err)
+		}
+
+		file, err := os.OpenFile(feedbackPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 		if err != nil {
 			log.Printf("Error opening feedback file: %v", err)
 		} else {
 			defer file.Close()
-			fmt.Fprintf(file, "=== Feedback received ===\n%s\n\n", feedback)
+			submissionTime := time.Now()
+			fmt.Fprintf(file, "=== Feedback received %s ===\n%s\n\n", submissionTime.Format("2006-01-02 15:04:05"), feedback)
 		}
 		log.Printf("Feedback received: %s", feedback)
 	}
