@@ -21,13 +21,20 @@ A community platform for creatives, makers and builders.
    ```bash
    ./init-letsencrypt.sh yourdomain.com your@email.com
    ```
-
-3. **Start all services:**
-   ```bash
-   docker compose up -d
-   ```
+   
+   This script will:
+   - Update nginx config with your domain
+   - Start nginx with a temporary certificate
+   - Request a real Let's Encrypt certificate
+   - Restart nginx with the real certificate
+   - **Start your circles.diy app**
 
 Your site will be available at `https://yourdomain.com`
+
+### Manual Startup (if needed)
+```bash
+docker compose up -d
+```
 
 ### Manual SSL Renewal
 ```bash

@@ -32,8 +32,8 @@ docker run --rm -v "$PWD/certbot/conf:/etc/letsencrypt" \
         -subj '/CN=localhost' && \
         mkdir -p /etc/letsencrypt/live/$DOMAIN"
 
-# Start services
-docker compose up -d nginx
+# Start all services  
+docker compose up -d
 
 echo "### Requesting Let's Encrypt certificate for $DOMAIN..."
 
