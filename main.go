@@ -152,6 +152,13 @@ func feedbackHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Honeypot validation - if these fields are filled, it's likely a bot
+	if r.FormValue("website") != "" || r.FormValue("email_address") != "" {
+		log.Printf("Bot detected from %s: honeypot fields filled", r.RemoteAddr)
+		http.Error(w, "Invalid request", http.StatusBadRequest)
+		return
+	}
+
 	feedback := r.FormValue("feedback")
 	validatedFeedback, isValid := validateFeedback(feedback)
 

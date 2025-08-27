@@ -368,6 +368,10 @@
             <textarea name="feedback" maxlength="5000" required rows="7"
                 placeholder="Share your thoughts on features you'd like to see, pain points with current platforms, ideas for community building, or anything else that could help us create a better social platform for creatives..."></textarea>
             <br>
+            <!-- Honeypot fields - bots fill these, humans can't see them -->
+            <input type="text" name="website" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off">
+            <input type="email" name="email_address" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off">
+            
             <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
             <button type="submit">Send Feedback</button>
         </form>
