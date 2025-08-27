@@ -8,38 +8,92 @@ A community platform for creatives, makers and builders.
 - Ubuntu 24.04 LTS VM with public IP
 - Docker and Docker Compose installed
 - Domain pointing to your VM's IP
+- Ports 80 and 443 open in firewall
 
-### Quick Setup
+### Step-by-Step Setup
 
-1. **Clone and prepare:**
+1. **Install Docker (if needed):**
+   ```bash
+   sudo apt update
+   sudo apt install docker.io docker-compose-v2 -y
+   sudo usermod -aG docker $USER
+   # Log out and back in
+   ```
+
+2. **Configure firewall:**
+   ```bash
+   sudo ufw allow 22/tcp   # SSH
+   sudo ufw allow 80/tcp   # HTTP
+   sudo ufw allow 443/tcp  # HTTPS
+   sudo ufw enable
+   ```
+
+3. **Clone and deploy:**
    ```bash
    git clone <your-repo>
    cd circles.diy
-   ```
-
-2. **Initialize SSL certificate:**
-   ```bash
    ./init-letsencrypt.sh yourdomain.com your@email.com
    ```
-   
-   This script will:
-   - Update nginx config with your domain
-   - Start nginx with a temporary certificate
-   - Request a real Let's Encrypt certificate
-   - Restart nginx with the real certificate
-   - **Start your circles.diy app**
 
-Your site will be available at `https://yourdomain.com`
+4. **Verify deployment:**
+   ```bash
+   ./deploy-check.sh yourdomain.com
+   ```
 
-### Manual Startup (if needed)
+### What the Setup Does
+The `init-letsencrypt.sh` script:
+- ✅ Validates your domain and email
+- ✅ Checks domain DNS resolution  
+- ✅ Starts services with HTTP-only nginx
+- ✅ Requests Let's Encrypt SSL certificate
+- ✅ Switches to HTTPS configuration
+- ✅ Tests the final deployment
+- ✅ Sets up automatic certificate renewal
+
+### Troubleshooting
+
+**Certificate request fails:**
 ```bash
-docker compose up -d
+# Check domain resolution
+dig yourdomain.com A
+
+# Check HTTP accessibility
+curl -I http://yourdomain.com
+
+# View nginx logs
+docker compose logs nginx
 ```
 
-### Manual SSL Renewal
+**Service not starting:**
+```bash
+# Check all container status
+docker compose ps
+
+# View app logs
+docker compose logs circles-diy
+
+# Restart services
+docker compose restart
+```
+
+### Manual Operations
+
+**Manual SSL renewal:**
 ```bash
 docker compose --profile renewal run --rm certbot
 docker compose restart nginx
+```
+
+**View logs:**
+```bash
+docker compose logs -f
+```
+
+**Update and redeploy:**
+```bash
+git pull
+docker compose build --no-cache
+docker compose up -d
 ```
 
 ### Security Features
