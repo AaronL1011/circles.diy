@@ -37,11 +37,6 @@ Read the manifesto: https://circles.diy/
    ./init-letsencrypt.sh yourdomain.com your@email.com
    ```
 
-4. **Verify deployment:**
-   ```bash
-   ./deploy-check.sh yourdomain.com
-   ```
-
 ### What the Setup Does
 The `init-letsencrypt.sh` script:
 - ✅ Validates your domain and email
