@@ -2,6 +2,8 @@
 
 A community platform for creatives, makers and builders.
 
+Read the manifesto: https://circles.diy/
+
 ## Production Deployment (Ubuntu VM)
 
 ### Prerequisites
