@@ -51,6 +51,7 @@ USER appuser
 # Set environment variables
 ENV PORT=8080
 ENV GIN_MODE=release
+ENV TZ=Australia/Sydney
 
 # Expose port
 EXPOSE 8080

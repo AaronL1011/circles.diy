@@ -3,15 +3,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - 6969:8080
+    expose:
+      - "8080"
     environment:
       - PORT=8080
-      - TZ=Australia/Sydney
     volumes:
       - ./data:/app/data
     restart: unless-stopped
-    # no-new-privileges breaks Go binary execution
     tmpfs:
       - /tmp:nosuid,size=100m
     healthcheck:
@@ -20,6 +18,41 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certbot/conf:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot:ro
+    restart: unless-stopped
+    depends_on:
+      - circles-diy
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    command: renew --webroot -w /var/www/certbot --quiet
+    profiles:
+      - renewal
+
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
   feedback_data:
