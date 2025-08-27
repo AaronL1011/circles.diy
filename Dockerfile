@@ -22,10 +22,11 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 FROM alpine:3.18
 
 # Install ca-certificates for HTTPS requests
-RUN apk --no-cache add ca-certificates tzdata
+RUN apk --no-cache add ca-certificates tzdata wget && \
+    rm -rf /var/cache/apk/*
 
-# Create a non-root user
-RUN adduser -D -s /bin/sh appuser
+# Create a non-root user with no shell and no home directory
+RUN adduser -D -s /sbin/nologin -H appuser
 
 WORKDIR /app
 
@@ -36,7 +37,13 @@ COPY --from=builder /app/main .
 COPY --from=builder /app/index.html .
 
 # Create directory for feedback file with proper permissions
-RUN mkdir -p /app/data && chown appuser:appuser /app/data
+RUN mkdir -p /app/data && \
+    chown appuser:appuser /app/data && \
+    chmod 750 /app/data
+
+# Set proper permissions for the application binary
+RUN chmod 755 /app/main && \
+    chmod 644 /app/index.html
 
 # Switch to non-root user
 USER appuser
@@ -52,5 +59,5 @@ EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD wget --no-verbose --tries=1 --spider http://localhost:8080/ || exit 1
 
-# Run the application
+# Run the application with additional security
 CMD ["./main"]

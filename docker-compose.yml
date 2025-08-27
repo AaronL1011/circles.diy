@@ -4,13 +4,16 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6969:8080"
+      - 6969:8080
     environment:
       - PORT=8080
+      - TZ=Australia/Sydney
     volumes:
-      # Mount a volume for persistent feedback storage
       - ./data:/app/data
     restart: unless-stopped
+    # no-new-privileges breaks Go binary execution
+    tmpfs:
+      - /tmp:nosuid,size=100m
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/"]
       interval: 30s

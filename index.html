@@ -326,9 +326,10 @@
             could make circles.diy better.</p>
 
         <form method="POST" action="/feedback">
-            <textarea name="feedback"
+            <textarea name="feedback" maxlength="5000" required
                 placeholder="Share your thoughts on features you'd like to see, pain points with current platforms, ideas for community building, or anything else that could help us create a better social platform for creatives..."></textarea>
             <br>
+            <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
             <button type="submit">Send Feedback</button>
         </form>
     </div>
