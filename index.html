@@ -306,7 +306,8 @@
         <li>We believe it solidifies our ethos against the destructive patterns of privitised social networks.</li>
         <li>We believe if you build a good enough platform that provides <strong>real</strong> value to users, they
             won't want to leave 🤷</li>
-        <li>We believe in the power of high-quality communities to <strong>attract</strong> fellow creatives and we want to
+        <li>We believe in the power of high-quality communities to <strong>attract</strong> fellow creatives and we want
+            to
             make joining a circle as easy as possible 😇</li>
     </ul>
 
@@ -372,11 +373,16 @@
 
     <div class="feedback-section">
         <h2>Help shape circles.diy</h2>
-        <p>We’re shaping circles.diy together. If you’re a creator, maker, or builder, your voice belongs here. Share the tools you wish existed, the patterns you want to leave behind and the ideas you think could make circles.diy thrive.</p>
+        <p>We're shaping circles.diy together. If you're a creator, maker, or builder, your voice belongs here. Share
+            the tools you wish existed, the patterns you want to leave behind and the ideas you think could make
+            circles.diy thrive.</p>
 
         <form method="POST" action="/feedback">
-            <textarea name="feedback" maxlength="5000" required rows="7"
-                placeholder="Share your thoughts..."></textarea>
+            <textarea name="feedback" maxlength="5000" required rows="7" placeholder="Share your thoughts..."
+                id="feedback-textarea"></textarea>
+            <p id="char-count"
+                style="color: var(--text-light); font-size: 14px; margin-top: 8px; margin-bottom: 0px; text-align: right;">
+                5000 characters max.</p>
             <br>
             <!-- Honeypot fields - bots fill these, humans can't see them -->
             <input type="text" name="website" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1"
