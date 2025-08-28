@@ -160,6 +160,8 @@ func feedbackHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	feedback := r.FormValue("feedback")
+	personas := r.Form["persona"]
+	
 	validatedFeedback, isValid := validateFeedback(feedback)
 
 	if !isValid {
@@ -185,12 +187,22 @@ func feedbackHandler(w http.ResponseWriter, r *http.Request) {
 		defer file.Close()
 
 		submissionTime := time.Now()
-		if _, err := fmt.Fprintf(file, "=== Feedback received %s ===\n%s\n\n",
-			submissionTime.Format("2006-01-02 15:04:05"), validatedFeedback); err != nil {
+		var personaTexts []string
+		if len(personas) == 0 {
+			personaTexts = append(personaTexts, "curious-observer")
+		} else {
+			for _, persona := range personas {
+				personaTexts = append(personaTexts, html.EscapeString(persona))
+			}
+		}
+		personaText := strings.Join(personaTexts, ", ")
+		
+		if _, err := fmt.Fprintf(file, "=== Feedback received %s ===\nPersonas: %s\n%s\n\n",
+			submissionTime.Format("2006-01-02 15:04:05"), personaText, validatedFeedback); err != nil {
 			log.Printf("Error writing feedback: %v", err)
 		}
 
-		log.Printf("Feedback received from %s (length: %d)", r.RemoteAddr, len(validatedFeedback))
+		log.Printf("Feedback received from %s (personas: %s, length: %d)", r.RemoteAddr, personaText, len(validatedFeedback))
 	}
 
 	tmpl := template.Must(template.ParseFiles("index.html"))

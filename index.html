@@ -203,6 +203,51 @@
             margin-bottom: 16px;
             font-weight: 500;
         }
+
+        .persona-section {
+            margin-bottom: 24px;
+        }
+
+        .persona-section label {
+            display: block;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .persona-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .persona-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .persona-option:hover {
+            border-color: var(--accent-color);
+            background: var(--surface-color);
+        }
+
+        .persona-option input[type="checkbox"] {
+            margin: 0 6px 0 0;
+            cursor: pointer;
+        }
+
+        .persona-option input[type="checkbox"]:checked + .persona-label {
+            font-weight: 500;
+            color: var(--accent-color);
+        }
     </style>
 </head>
 
@@ -378,6 +423,36 @@
             circles.diy thrive.</p>
 
         <form method="POST" action="/feedback">
+            <div class="persona-section">
+                <label>I'd describe myself as:</label>
+                <div class="persona-options">
+                    <label class="persona-option">
+                        <input type="checkbox" name="persona" value="creator-artist">
+                        <span class="persona-label">Artist</span>
+                    </label>
+                    <label class="persona-option">
+                        <input type="checkbox" name="persona" value="maker-builder">
+                        <span class="persona-label">Maker</span>
+                    </label>
+                    <label class="persona-option">
+                        <input type="checkbox" name="persona" value="organiser-community">
+                        <span class="persona-label">Organiser</span>
+                    </label>
+                    <label class="persona-option">
+                        <input type="checkbox" name="persona" value="learner-explorer">
+                        <span class="persona-label">Learner</span>
+                    </label>
+                    <label class="persona-option">
+                        <input type="checkbox" name="persona" value="friends-family">
+                        <span class="persona-label">Friends & Family</span>
+                    </label>
+                    <label class="persona-option">
+                        <input type="checkbox" name="persona" value="curious-observer" checked>
+                        <span class="persona-label">Curious Observer</span>
+                    </label>
+                </div>
+            </div>
+            
             <textarea name="feedback" maxlength="5000" required rows="7" placeholder="Share your thoughts..."
                 id="feedback-textarea"></textarea>
             <p id="char-count"
