@@ -2,12 +2,14 @@
 .env
 .env.local
 .env.production
+.env.docmost
 *.key
 *.pem
 *.p12
 *.pfx
 secrets.txt
 config.json
+nginx.conf
 
 # OS generated files
 .DS_Store
@@ -58,6 +60,8 @@ build/
 *.db
 *.sqlite
 *.sqlite3
+certbot/*
+data/*
 
 # Backup files
 *.bak
