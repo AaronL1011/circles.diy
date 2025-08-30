@@ -101,21 +101,13 @@ docker compose up -d
 - ✅ Non-root container execution
 - ✅ CSRF protection
 
-### Local Development
-```bash
-PORT=6969 go run main.go
-# Access at http://localhost:6969
-```
-
 ### Monitoring
 - **View logs:** `docker compose logs -f`
 - **Check certificates:** `docker compose exec nginx nginx -t`
 - **Feedback storage:** `./data/feedback.txt`
 
-### Firewall Setup
+### Local Development
 ```bash
-sudo ufw allow 22/tcp
-sudo ufw allow 80/tcp  
-sudo ufw allow 443/tcp
-sudo ufw enable
+PORT=6969 go run main.go
+# Access at http://localhost:6969
 ```
