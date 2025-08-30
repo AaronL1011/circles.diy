@@ -103,7 +103,7 @@ docker compose up -d
 
 ### Local Development
 ```bash
-docker compose up circles-diy
+PORT=6969 go run main.go
 # Access at http://localhost:6969
 ```
 
