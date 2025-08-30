@@ -17,11 +17,11 @@
                 <button class="nav-item" data-section="circles">Circles</button>
                 <button class="nav-item" data-section="skills">Skills</button>
                 <button class="nav-item" data-section="gatherings">Gatherings</button>
-                <button class="nav-item" data-section="portfolio">Portfolio</button>
+                <button class="nav-item" data-section="profile">Profile</button>
             </nav>
             <div class="header-actions">
                 <div class="search-container">
-                    <input type="search" placeholder="Search skills, creations, discussions..." class="global-search" aria-label="Global search">
+                    <input type="search" placeholder="Search anything..." class="global-search" aria-label="Global search">
                     <button class="search-btn" aria-label="Search"></button>
                 </div>
                 <button class="user-menu" aria-label="User menu">�</button>
@@ -30,242 +30,263 @@
     </header>
 
     <main class="dashboard">
-        <section class="dashboard-grid">
+        <aside class="left-sidebar">
+            <div class="sidebar-section">
+                <h3>My Circles</h3>
+                <div class="circle-list">
+                    <div class="circle-item active">
+                        <span class="circle-name">Woodworking Circle</span>
+                        <span class="circle-count">8 online</span>
+                    </div>
+                    <div class="circle-item">
+                        <span class="circle-name">The Inner Circle</span>
+                        <span class="circle-count">12 members</span>
+                    </div>
+                    <div class="circle-item">
+                        <span class="circle-name">DIY Electronics</span>
+                        <span class="circle-count">24 members</span>
+                    </div>
+                </div>
+                <button class="sidebar-action-btn">Browse Circles</button>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Quick Actions</h3>
+                <div class="quick-actions-vertical">
+                    <button class="action-btn-vertical primary">New Post</button>
+                    <button class="action-btn-vertical">Start Discussion</button>
+                    <button class="action-btn-vertical">Create Event</button>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Your Impact</h3>
+                <div class="impact-stats">
+                    <div class="impact-item">
+                        <span class="impact-label">Contributions</span>
+                        <span class="impact-value">47</span>
+                    </div>
+                    <div class="impact-item">
+                        <span class="impact-label">Discussions</span>
+                        <span class="impact-value">23</span>
+                    </div>
+                    <div class="impact-item">
+                        <span class="impact-label">Circle Support</span>
+                        <span class="impact-value">$25/month</span>
+                    </div>
+                </div>
+                <button class="sidebar-action-btn">View Details</button>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Available Extensions</h3>
+                <div class="extensions-list">
+                    <div class="extension-item">
+                        <span class="extension-name">Portfolio Showcase</span>
+                        <button class="extension-toggle active" aria-label="Toggle extension">●</button>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-name">Event Planner</span>
+                        <button class="extension-toggle active" aria-label="Toggle extension">●</button>
+                    </div>
+                    <div class="extension-item">
+                        <span class="extension-name">Knowledge Base</span>
+                        <button class="extension-toggle" aria-label="Toggle extension">○</button>
+                    </div>
+                </div>
+                <button class="sidebar-action-btn">Browse More</button>
+            </div>
+        </aside>
+
+        <section class="main-content">
             
-            <div class="dashboard-section quick-actions">
-                <h2>Quick Actions</h2>
-                <div class="action-grid">
-                    <button class="action-btn primary">Share Knowledge</button>
-                    <button class="action-btn">Showcase Work</button>
-                    <button class="action-btn">Start Workshop</button>
-                    <button class="action-btn">Find Collaborators</button>
-                </div>
-            </div>
-
-            <div class="dashboard-section active-spaces">
-                <h2>Active Creative Spaces</h2>
-                <div class="spaces-list">
-                    <div class="space-item">
-                        <div class="space-info">
-                            <span class="space-name">Woodworking Circle</span>
-                            <span class="space-status">Live workshop • 8 makers</span>
+            <div class="feed-section">
+                <h2>Recent Activity</h2>
+                <div class="activity-feed">
+                    <article class="feed-item">
+                        <div class="feed-header">
+                            <div class="feed-user">
+                                <strong>@maya_ceramics</strong>
+                                <span class="feed-time">2m ago</span>
+                            </div>
+                            <div class="feed-circle">in Woodworking Circle</div>
                         </div>
-                        <div class="space-actions">
-                            <button class="space-join">Join</button>
-                            <button class="space-menu">⋮</button>
+                        <div class="feed-content">
+                            <p>Just finished this oak coffee table! Happy to step out of my cermaics comfort-zone and share some joinery for once!</p>
                         </div>
-                    </div>
-                    <div class="space-item">
-                        <div class="space-info">
-                            <span class="space-name">Local Artists Collective</span>
-                            <span class="space-status">Portfolio reviews • 12 artists</span>
-                        </div>
-                        <div class="space-actions">
-                            <button class="space-join">Join</button>
-                            <button class="space-menu">⋮</button>
-                        </div>
-                    </div>
-                </div>
-                <button class="see-all-btn">Browse all circles</button>
-            </div>
-
-            <div class="dashboard-section skill-exchanges">
-                <h2>Skill Exchanges</h2>
-                <div class="skill-feed">
-                    <article class="skill-item">
-                        <div class="skill-meta">
-                            <span class="skill-user">@maya_ceramics</span>
-                            <span class="skill-type">Teaching</span>
-                            <span class="skill-time">2m ago</span>
-                        </div>
-                        <div class="skill-content">
-                            <p>Offering pottery wheel techniques in exchange for photography lessons</p>
+                        <div class="feed-actions">
+                            <button class="feed-action">Reply</button>
+                            <button class="feed-action">Share</button>
+                            <button class="feed-action">Learn More</button>
                         </div>
                     </article>
-                    <article class="skill-item">
-                        <div class="skill-meta">
-                            <span class="skill-user">@tom_builder</span>
-                            <span class="skill-type">Seeking</span>
-                            <span class="skill-time">15m ago</span>
+                    
+                    <article class="feed-item">
+                        <div class="feed-header">
+                            <div class="feed-user">
+                                <strong>@tom_skywalker</strong>
+                                <span class="feed-time">15m ago</span>
+                            </div>
+                            <div class="feed-circle">in The Inner Circle</div>
                         </div>
-                        <div class="skill-content">
-                            <p>Looking for help with electrical work, can trade carpentry skills</p>
+                        <div class="feed-content">
+                            <p>Warming up the barbeque and just got couple cases of the finest bread-water. Keen to see you all... remember 7PM dont be late!</p>
+                        </div>
+                        <div class="feed-actions">
+                            <button class="feed-action">Reply</button>
+                            <button class="feed-action">Share</button>
+                            <button class="feed-action">RSVP</button>
                         </div>
                     </article>
-                    <article class="skill-item">
-                        <div class="skill-meta">
-                            <span class="skill-user">@sara_designs</span>
-                            <span class="skill-type">Completed</span>
-                            <span class="skill-time">1h ago</span>
+                    
+                    <article class="feed-item">
+                        <div class="feed-header">
+                            <div class="feed-user">
+                                <strong>@sara_designs</strong>
+                                <span class="feed-time">1h ago</span>
+                            </div>
+                            <div class="feed-circle">in DIY Electronics</div>
                         </div>
-                        <div class="skill-content">
-                            <p>Mentored 3 people in brand design fundamentals</p>
+                        <div class="feed-content">
+                            <p>New tutorial series starting: "Arduino for Beginners". First session covers basic circuits and programming fundamentals.</p>
+                        </div>
+                        <div class="feed-actions">
+                            <button class="feed-action">Reply</button>
+                            <button class="feed-action">Share</button>
+                            <button class="feed-action">Join Workshop</button>
                         </div>
                     </article>
                 </div>
-                <button class="see-all-btn">Browse skill network</button>
             </div>
 
-            <div class="dashboard-section creative-ripples">
-                <h2>Creative Ripples</h2>
-                <div class="ripples-container">
-                    <div class="ripple-item creative">
-                        <div class="ripple-user">@alex_studio</div>
-                        <div class="ripple-content">Work-in-progress: new sculpture series</div>
-                        <div class="ripple-meta">
-                            <span class="ripple-type">Portfolio</span>
-                            <span class="ripple-expires">Expires in 22h</span>
-                        </div>
-                    </div>
-                    <div class="ripple-item knowledge">
-                        <div class="ripple-user">@craft_collective</div>
-                        <div class="ripple-content">Quick tip: sustainable material sourcing</div>
-                        <div class="ripple-meta">
-                            <span class="ripple-type">Knowledge</span>
-                            <span class="ripple-expires">Expires in 18h</span>
-                        </div>
-                    </div>
-                    <div class="add-ripple">
-                        <button class="add-ripple-btn">+ Share Creation</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dashboard-section community-gatherings">
-                <h2>Community Gatherings</h2>
-                <div class="events-list">
-                    <div class="event-item workshop">
-                        <div class="event-date">
-                            <span class="event-day">31</span>
-                            <span class="event-month">Aug</span>
-                        </div>
-                        <div class="event-details">
-                            <div class="event-title">Sustainable Print Workshop</div>
-                            <div class="event-meta">
-                                <span class="event-time">2:00 PM</span>
-                                <span class="event-type">Skill Share</span>
+            <div class="discussions-section">
+                <h2>Active Discussions</h2>
+                <div class="discussion-list">
+                    <div class="discussion-item">
+                        <div class="discussion-header">
+                            <h3 class="discussion-title">Sustainable Materials: Where to Source?</h3>
+                            <div class="discussion-meta">
+                                <span class="discussion-circle">Woodworking Circle</span>
+                                <span class="discussion-stats">23 replies • 45m ago</span>
                             </div>
                         </div>
-                        <div class="event-actions">
-                            <button class="event-join">Learn</button>
+                        <p class="discussion-preview">Looking for suppliers of ethically sourced hardwoods. What are your go-to sources for...</p>
+                        <div class="discussion-actions">
+                            <button class="discussion-action">Join Discussion</button>
                         </div>
                     </div>
-                    <div class="event-item showcase">
-                        <div class="event-date">
-                            <span class="event-day">02</span>
-                            <span class="event-month">Sep</span>
-                        </div>
-                        <div class="event-details">
-                            <div class="event-title">Monthly Portfolio Review</div>
-                            <div class="event-meta">
-                                <span class="event-time">7:00 PM</span>
-                                <span class="event-type">Critique Circle</span>
+                    
+                    <div class="discussion-item">
+                        <div class="discussion-header">
+                            <h3 class="discussion-title">Pricing Creative Work: Community Wisdom</h3>
+                            <div class="discussion-meta">
+                                <span class="discussion-circle">Local Artists</span>
+                                <span class="discussion-stats">8 replies • 2h ago</span>
                             </div>
                         </div>
-                        <div class="event-actions">
-                            <button class="event-rsvp">Present</button>
+                        <p class="discussion-preview">How do you approach pricing custom commissions? Struggling to find the balance between...</p>
+                        <div class="discussion-actions">
+                            <button class="discussion-action">Join Discussion</button>
                         </div>
                     </div>
                 </div>
-                <button class="see-all-btn">Browse gatherings</button>
+                <button class="see-all-btn">Browse All Discussions</button>
             </div>
 
-            <div class="dashboard-section community-discussions">
-                <h2>Community Discussions</h2>
-                <div class="topics-list">
-                    <div class="topic-item knowledge">
-                        <div class="topic-title">Sustainable Materials: Where to Source?</div>
-                        <div class="topic-stats">23 makers sharing • 45m ago</div>
-                    </div>
-                    <div class="topic-item support">
-                        <div class="topic-title">Pricing Creative Work: Community Wisdom</div>
-                        <div class="topic-stats">8 creators discussing • 2h ago</div>
-                    </div>
-                    <div class="topic-item stewardship">
-                        <div class="topic-title">Circle Governance: Decision Making Tools</div>
-                        <div class="topic-stats">15 organizers collaborating • 4h ago</div>
-                    </div>
-                </div>
-                <button class="see-all-btn">Join discussions</button>
-            </div>
 
         </section>
 
-        <aside class="dashboard-sidebar">
+        <aside class="right-sidebar">
             <div class="sidebar-section">
-                <h3>Creative Tools</h3>
-                <div class="plugins-list">
-                    <div class="plugin-item">
-                        <span class="plugin-name">Portfolio Showcase</span>
-                        <button class="plugin-toggle active" aria-label="Toggle plugin">●</button>
+                <h3>Recent Ripples</h3>
+                <div class="ripples-compact">
+                    <div class="ripple-compact">
+                        <div class="ripple-user-compact">@alex_studio</div>
+                        <div class="ripple-content-compact">Quick progress update on the oak table project...</div>
+                        <div class="ripple-expires-compact">22h left</div>
                     </div>
-                    <div class="plugin-item">
-                        <span class="plugin-name">Skill Exchange</span>
-                        <button class="plugin-toggle active" aria-label="Toggle plugin">●</button>
-                    </div>
-                    <div class="plugin-item">
-                        <span class="plugin-name">Workshop Planner</span>
-                        <button class="plugin-toggle" aria-label="Toggle plugin">○</button>
-                    </div>
-                    <div class="plugin-item">
-                        <span class="plugin-name">Stewardship Tracker</span>
-                        <button class="plugin-toggle" aria-label="Toggle plugin">○</button>
+                    <div class="ripple-compact">
+                        <div class="ripple-user-compact">@craft_collective</div>
+                        <div class="ripple-content-compact">Tip: pre-drill hardwood to avoid splitting</div>
+                        <div class="ripple-expires-compact">18h left</div>
                     </div>
                 </div>
-                <button class="manage-plugins-btn">Browse Extensions</button>
+                <button class="sidebar-action-btn">New Ripple</button>
             </div>
 
             <div class="sidebar-section">
-                <h3>Dashboard Layout</h3>
-                <div class="layout-controls">
-                    <button class="layout-btn active">Grid View</button>
-                    <button class="layout-btn">List View</button>
+                <h3>Upcoming Events</h3>
+                <div class="events-compact">
+                    <div class="event-compact">
+                        <div class="event-date-compact">
+                            <span class="event-day-compact">31</span>
+                            <span class="event-month-compact">Aug</span>
+                        </div>
+                        <div class="event-info-compact">
+                            <div class="event-title-compact">Workshop: Intro to 3D Printing</div>
+                            <div class="event-time-compact">2:00 PM</div>
+                        </div>
+                    </div>
+                    <div class="event-compact">
+                        <div class="event-date-compact">
+                            <span class="event-day-compact">02</span>
+                            <span class="event-month-compact">Sep</span>
+                        </div>
+                        <div class="event-info-compact">
+                            <div class="event-title-compact">Monthly Showcase</div>
+                            <div class="event-time-compact">7:00 PM</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="section-toggles">
-                    <label class="section-toggle">
-                        <input type="checkbox" checked>
-                        <span>Quick Actions</span>
-                    </label>
-                    <label class="section-toggle">
-                        <input type="checkbox" checked>
-                        <span>Creative Spaces</span>
-                    </label>
-                    <label class="section-toggle">
-                        <input type="checkbox" checked>
-                        <span>Skill Exchanges</span>
-                    </label>
-                    <label class="section-toggle">
-                        <input type="checkbox" checked>
-                        <span>Creative Ripples</span>
-                    </label>
-                    <label class="section-toggle">
-                        <input type="checkbox" checked>
-                        <span>Gatherings</span>
-                    </label>
-                    <label class="section-toggle">
-                        <input type="checkbox" checked>
-                        <span>Discussions</span>
-                    </label>
-                </div>
+                <button class="sidebar-action-btn">View Calendar</button>
             </div>
 
             <div class="sidebar-section">
-                <h3>Community Stewardship</h3>
-                <div class="stewardship-stats">
-                    <div class="stewardship-item">
-                        <span class="stewardship-label">Skills Shared</span>
-                        <span class="stewardship-value">12</span>
+                <h3>Circle Marketplace</h3>
+                <div class="marketplace-items">
+                    <div class="marketplace-item">
+                        <div class="marketplace-header">
+                            <div class="marketplace-title">Vintage Router Table</div>
+                            <div class="marketplace-price">$85</div>
+                        </div>
+                        <div class="marketplace-meta">
+                            <span class="marketplace-location">Oakland, CA</span>
+                            <span class="marketplace-time">3h ago</span>
+                        </div>
+                        <div class="marketplace-actions">
+                            <button class="marketplace-btn">View Item</button>
+                        </div>
                     </div>
-                    <div class="stewardship-item">
-                        <span class="stewardship-label">Workshops Led</span>
-                        <span class="stewardship-value">3</span>
+                    
+                    <div class="marketplace-item">
+                        <div class="marketplace-header">
+                            <div class="marketplace-title">Ceramic Wheel & Tools</div>
+                            <div class="marketplace-price">Trade</div>
+                        </div>
+                        <div class="marketplace-meta">
+                            <span class="marketplace-location">Berkeley, CA</span>
+                            <span class="marketplace-time">1d ago</span>
+                        </div>
+                        <div class="marketplace-actions">
+                            <button class="marketplace-btn">View Item</button>
+                        </div>
                     </div>
-                    <div class="stewardship-item">
-                        <span class="stewardship-label">Commons Contribution</span>
-                        <span class="stewardship-value">$25/month</span>
+                    
+                    <div class="marketplace-item">
+                        <div class="marketplace-header">
+                            <div class="marketplace-title">Oak Lumber Bundle</div>
+                            <div class="marketplace-price">$120</div>
+                        </div>
+                        <div class="marketplace-meta">
+                            <span class="marketplace-location">San Francisco, CA</span>
+                            <span class="marketplace-time">2d ago</span>
+                        </div>
+                        <div class="marketplace-actions">
+                            <button class="marketplace-btn">View Item</button>
+                        </div>
                     </div>
                 </div>
-                <button class="stewardship-btn">View Impact</button>
+                <button class="sidebar-action-btn">Browse Marketplace</button>
             </div>
         </aside>
     </main>
