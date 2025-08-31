@@ -69,11 +69,11 @@ else
     echo "✅ Using existing .env.docmost"
 fi
 
-# Create working copy of nginx config
+# Create working copy of nginx config and prepare SSL version
 cp ./nginx/nginx.conf ./nginx/nginx.conf.bak 2>/dev/null || true
 cp ./nginx/nginx-init.conf ./nginx/nginx.conf
 
-# Replace domain in the full SSL config
+# Replace domain in the full SSL config (using the original backed up version)
 sed "s/DOMAIN/$DOMAIN/g" ./nginx/nginx.conf.bak > ./nginx/nginx-ssl.conf.tmp
 
 echo "### Starting services with HTTP-only configuration..."
