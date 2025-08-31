@@ -52,6 +52,7 @@
 html {
     font-size: 16px;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -63,6 +64,9 @@ body {
     display: flex;
     flex-direction: column;
     transition: background-color 0.2s ease, color 0.2s ease;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 /* Header */
@@ -187,6 +191,7 @@ body {
     grid-template-columns: 250px 1fr 280px;
     gap: 2rem;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .left-sidebar,
@@ -1232,6 +1237,8 @@ body {
 @media (max-width: 900px) {
     .dashboard {
         grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1rem;
     }
     
     .left-sidebar {
@@ -1245,10 +1252,13 @@ body {
     
     .main-content {
         width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
     .feed-image img {
         height: 180px;
+        max-width: 100%;
     }
 }
 
@@ -1258,6 +1268,8 @@ body {
         height: auto;
         padding: 1rem;
         gap: 1rem;
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
     .main-nav {
@@ -1267,76 +1279,109 @@ body {
         border-top: 1px solid var(--border-primary);
         margin-top: 1rem;
         padding-top: 1rem;
+        overflow-x: auto;
     }
     
     .nav-item {
         padding: 0.75rem 1rem;
         font-size: 0.8rem;
+        white-space: nowrap;
     }
     
     .global-search {
         width: 200px;
+        min-width: 150px;
+        max-width: 100%;
     }
     
     .dashboard {
         padding: 1rem;
         gap: 1rem;
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+    .feed-section,
+    .discussions-section,
+    .sidebar-section {
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
-    .dashboard-section {
-        padding: 1rem;
+    .feed-image {
+        max-width: 100%;
+        overflow: hidden;
     }
     
-    .action-grid {
-        grid-template-columns: 1fr;
+    .feed-image img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
     }
 }
 
 @media (max-width: 480px) {
     .header-content {
         padding: 0.75rem;
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
     .brand h1 {
         font-size: 1.25rem;
     }
     
+    .header-actions {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
     .global-search {
         width: 150px;
+        min-width: 120px;
         font-size: 0.8rem;
     }
     
     .dashboard {
         padding: 0.75rem;
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
-    .dashboard-section {
+    .feed-section,
+    .discussions-section,
+    .sidebar-section {
         padding: 0.75rem;
         min-height: auto;
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
-    .dashboard-section h2 {
+    .feed-section h2,
+    .discussions-section h2 {
         font-size: 1rem;
     }
     
-    .room-item,
-    .event-item,
-    .topic-item,
-    .plugin-item {
-        padding: 0.5rem;
+    .feed-item {
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
-    .sidebar-section {
-        padding: 0.75rem;
+    .feed-actions {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .feed-action {
+        flex: 1;
+        min-width: auto;
     }
     
     .feed-image img {
-        height: 150px;
+        height: auto;
+        max-height: 200px;
+        width: 100%;
+        max-width: 100%;
     }
     
     .user-avatar {
@@ -1352,6 +1397,17 @@ body {
     .circle-thumbnail {
         width: 20px;
         height: 20px;
+    }
+    
+    .discussion-item {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    .discussion-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
     }
 }
 
