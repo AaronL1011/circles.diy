@@ -9,6 +9,7 @@ services:
       - PORT=8080
     volumes:
       - ./data:/app/data
+      - ./concept-demo:/app/concept-demo:ro
     restart: unless-stopped
     tmpfs:
       - /tmp:nosuid,size=100m
