@@ -109,6 +109,8 @@ body {
     transition: background-color 0.15s ease;
     border-bottom: 2px solid transparent;
     color: var(--text-primary);
+    text-decoration: none;
+    display: inline-block;
 }
 
 .nav-item:hover {

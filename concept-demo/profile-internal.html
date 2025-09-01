@@ -17,7 +17,7 @@
                 <button class="nav-item" data-section="circles">Circles</button>
                 <button class="nav-item" data-section="chat">Chat</button>
                 <button class="nav-item" data-section="gatherings">Gatherings</button>
-                <button class="nav-item" data-section="profile" aria-current="page">Profile</button>
+                <a href="profile-internal.html" class="nav-item" aria-current="page">Profile</a>
             </nav>
             <div class="header-actions">
                 <div class="search-container">
@@ -199,7 +199,7 @@
                         </div>
                     </div>
                     <div class="profile-actions-edit">
-                        <button class="profile-preview-btn">Preview Profile</button>
+                        <a href="profile-external.html" class="profile-preview-btn">Preview Profile</a>
                         <button class="profile-share-btn">Share Profile</button>
                     </div>
                 </div>
@@ -833,6 +833,7 @@
         .profile-preview-btn {
             background: var(--active-bg);
             color: var(--active-text);
+            text-decoration: none;
         }
 
         .profile-share-btn {

@@ -157,6 +157,14 @@ func conceptDemoHandler(w http.ResponseWriter, r *http.Request) {
 		// Serve the CSS file
 		serveStaticFile(w, r, "concept-demo/app.css", "text/css; charset=utf-8")
 		return
+	case "/concept-demo/profile-internal.html":
+		// Serve the internal profile page (edit view)
+		serveStaticFile(w, r, "concept-demo/profile-internal.html", "text/html; charset=utf-8")
+		return
+	case "/concept-demo/profile-external.html":
+		// Serve the external profile page (public view)
+		serveStaticFile(w, r, "concept-demo/profile-external.html", "text/html; charset=utf-8")
+		return
 	default:
 		http.NotFound(w, r)
 	}
@@ -292,6 +300,8 @@ func main() {
 	mux.HandleFunc("/concept-demo", conceptDemoHandler)
 	mux.HandleFunc("/concept-demo/", conceptDemoHandler)
 	mux.HandleFunc("/concept-demo/app.css", conceptDemoHandler)
+	mux.HandleFunc("/concept-demo/profile-internal.html", conceptDemoHandler)
+	mux.HandleFunc("/concept-demo/profile-external.html", conceptDemoHandler)
 
 	handler := securityMiddleware(rateLimitMiddleware(mux))
 
