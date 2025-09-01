@@ -40,7 +40,7 @@ func (rl *RateLimiter) getLimiter(ip string) *rate.Limiter {
 
 	if !exists {
 		rl.mu.Lock()
-		limiter = rate.NewLimiter(rate.Every(time.Minute), 10)
+		limiter = rate.NewLimiter(rate.Every(time.Second), 10)
 		rl.visitors[ip] = limiter
 		rl.mu.Unlock()
 	}
@@ -100,7 +100,7 @@ func securityMiddleware(next http.Handler) http.Handler {
 		
 		// Different CSP for concept demo vs main site
 		if strings.HasPrefix(r.URL.Path, "/concept-demo") {
-			w.Header().Set("Content-Security-Policy", "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' https://images.unsplash.com https://unsplash.com https://cdn.britannica.com https://media.tenor.com data:; font-src 'self'")
+			w.Header().Set("Content-Security-Policy", "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' https://images.unsplash.com https://unsplash.com https://cdn.britannica.com https://media.tenor.com data:; media-src 'self' https://videos.pexels.com https://www.pexels.com data:; font-src 'self'")
 		} else {
 			w.Header().Set("Content-Security-Policy", "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'none'")
 		}

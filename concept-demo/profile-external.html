@@ -13,7 +13,7 @@
                 <h1>circles.diy</h1>
             </div>
             <nav class="main-nav">
-                <button class="nav-item" data-section="dashboard">Dashboard</button>
+                <a href="/concept-demo/" class="nav-item"">Dashboard</a>
                 <button class="nav-item" data-section="circles">Circles</button>
                 <button class="nav-item" data-section="chat">Chat</button>
                 <button class="nav-item" data-section="gatherings">Gatherings</button>
@@ -411,7 +411,6 @@
         .profile-name {
             font-size: 2rem;
             font-weight: 600;
-            margin: 0 0 0.25rem 0;
             color: var(--text-primary);
         }
 
@@ -431,7 +430,6 @@
             display: flex;
             gap: 0.75rem;
             align-items: flex-end;
-            padding-top: 60px;
         }
 
         .profile-action-btn {
@@ -462,6 +460,7 @@
             border-top: 1px solid var(--border-light);
             border-bottom: 1px solid var(--border-light);
             margin-bottom: 2rem;
+            justify-content: center;
         }
 
         .stat-item {
@@ -492,7 +491,7 @@
         .content-nav-item {
             background: none;
             border: none;
-            padding: 1rem 1.5rem;
+            padding: 1rem;
             cursor: pointer;
             font-size: 0.9rem;
             color: var(--text-secondary);
@@ -642,6 +641,10 @@
 
         /* Responsive design */
         @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+            
             .profile-container {
                 padding: 0 1rem 2rem;
             }
@@ -681,12 +684,6 @@
             .post-actions {
                 flex-wrap: wrap;
                 gap: 0.5rem;
-            }
-
-            .post-action {
-                flex: 1;
-                min-width: calc(50% - 0.25rem);
-                text-align: center;
             }
         }
     </style>
