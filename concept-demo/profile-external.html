@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@maia - circles.diy</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="brand">
+                <h1>circles.diy</h1>
+            </div>
+            <nav class="main-nav">
+                <button class="nav-item" data-section="dashboard">Dashboard</button>
+                <button class="nav-item" data-section="circles">Circles</button>
+                <button class="nav-item" data-section="chat">Chat</button>
+                <button class="nav-item" data-section="gatherings">Gatherings</button>
+                <button class="nav-item" data-section="profile" aria-current="page">Profile</button>
+            </nav>
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="search" placeholder="Search your circles..." class="global-search" aria-label="Global search">
+                </div>
+                <div class="theme-menu-container">
+                    <button class="theme-menu" aria-label="Theme settings" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" viewBox="0 0 256 256"><path d="M200.77,53.89A103.27,103.27,0,0,0,128,24h-1.07A104,104,0,0,0,24,128c0,43,26.58,79.06,69.36,94.17A32,32,0,0,0,136,192a16,16,0,0,1,16-16h46.21a31.81,31.81,0,0,0,31.2-24.88,104.43,104.43,0,0,0,2.59-24A103.28,103.28,0,0,0,200.77,53.89Zm13,93.71A15.89,15.89,0,0,1,198.21,160H152a32,32,0,0,0-32,32,16,16,0,0,1-21.31,15.07C62.49,194.3,40,164,40,128a88,88,0,0,1,87.09-88h.9a88.35,88.35,0,0,1,88,87.25A88.86,88.86,0,0,1,213.81,147.6ZM140,76a12,12,0,1,1-12-12A12,12,0,0,1,140,76ZM96,100A12,12,0,1,1,84,88,12,12,0,0,1,96,100Zm0,56a12,12,0,1,1-12-12A12,12,0,0,1,96,156Zm88-56a12,12,0,1,1-12-12A12,12,0,0,1,184,100Z"></path></svg>
+                    </button>
+                    <div class="theme-dropdown" hidden>
+                        <div class="theme-section">
+                            <h4>Border Radius</h4>
+                            <div class="radius-options">
+                                <button class="radius-option" data-radius="0" title="Sharp corners">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><rect x="40" y="40" width="176" height="176" rx="0" stroke="currentColor" stroke-width="16" fill="none"></rect></svg>
+                                </button>
+                                <button class="radius-option" data-radius="6" title="Slightly rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><rect x="40" y="40" width="176" height="176" rx="16" stroke="currentColor" stroke-width="16" fill="none"></rect></svg>
+                                </button>
+                                <button class="radius-option" data-radius="12" title="Moderately rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><rect x="40" y="40" width="176" height="176" rx="48" stroke="currentColor" stroke-width="16" fill="none"></rect></svg>
+                                </button>
+                                <button class="radius-option" data-radius="32" title="Fully rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><circle cx="128" cy="128" r="88" stroke="currentColor" stroke-width="16" fill="none"></circle></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="theme-section">
+                            <h4>Color Theme</h4>
+                            <div class="theme-options">
+                                <button class="theme-option" data-theme="light" title="Light theme">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><circle cx="128" cy="128" r="60" fill="currentColor"></circle><path d="m128,36a8,8,0,0,1-8-8V8a8,8,0,0,1,16,0V28A8,8,0,0,1,128,36Z"></path><path d="m62.1,62.1a8,8,0,0,1-11.31,0L39.48,50.79a8,8,0,0,1,11.32-11.31L62.1,50.79A8,8,0,0,1,62.1,62.1Z"></path><path d="M36,128a8,8,0,0,1-8-8H8a8,8,0,0,1,0-16H28A8,8,0,0,1,36,128Z"></path><path d="m62.1,193.9a8,8,0,0,1-11.31,11.31L39.48,193.9a8,8,0,0,1,11.32-11.31l11.31,11.31A8,8,0,0,1,62.1,193.9Z"></path><path d="m128,220a8,8,0,0,1,8,8v20a8,8,0,0,1-16,0V228A8,8,0,0,1,128,220Z"></path><path d="m193.9,193.9a8,8,0,0,1,11.31-11.31l11.31,11.31a8,8,0,0,1-11.32,11.31L193.9,193.9A8,8,0,0,1,193.9,193.9Z"></path><path d="M220,128a8,8,0,0,1,8,8h20a8,8,0,0,1,0,16H228A8,8,0,0,1,220,128Z"></path><path d="m193.9,62.1a8,8,0,0,1,11.31-11.31l11.31,11.31a8,8,0,0,1-11.32,11.31L193.9,62.1A8,8,0,0,1,193.9,62.1Z"></path></svg>
+                                    Light
+                                </button>
+                                <button class="theme-option" data-theme="dark" title="Dark theme">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M233.54,142.23a8,8,0,0,0-8-2A88,88,0,0,1,103.1,31.4,8,8,0,0,0,102,24a104,104,0,1,0,120,120A8,8,0,0,0,233.54,142.23Z"></path></svg>
+                                    Dark
+                                </button>
+                                <button class="theme-option" data-theme="system" title="System theme">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><rect x="32" y="48" width="192" height="160" rx="16" fill="none" stroke="currentColor" stroke-width="16"></rect><line x1="160" y1="224" x2="96" y2="224" stroke="currentColor" stroke-width="16"></line><line x1="128" y1="192" x2="128" y2="224" stroke="currentColor" stroke-width="16"></line></svg>
+                                    System
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="user-menu" aria-label="User menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM74.08,197.5a64,64,0,0,1,107.84,0,87.83,87.83,0,0,1-107.84,0ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Zm97.76,66.41a79.66,79.66,0,0,0-36.06-28.75,48,48,0,1,0-59.4,0,79.66,79.66,0,0,0-36.06,28.75,88,88,0,1,1,131.52,0Z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="profile-page">
+        <div class="profile-banner">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=300&fit=crop&crop=center" alt="Profile banner" />
+        </div>
+        
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-avatar-large">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=128&h=128&fit=crop&crop=face" alt="@maia" />
+                </div>
+                <div class="profile-info">
+                    <h1 class="profile-name">Maia Makes</h1>
+                    <p class="profile-handle">@maia</p>
+                    <p class="profile-bio">Woodworker & furniture maker crafting heirloom pieces from sustainably sourced timber. Teaching traditional joinery techniques and sharing the journey from tree to table.</p>
+                </div>
+                <div class="profile-actions">
+                    <button class="profile-action-btn">Follow</button>
+                    <button class="profile-action-btn secondary">Message</button>
+                </div>
+            </div>
+
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Posts</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">342</span>
+                    <span class="stat-label">Followers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">89</span>
+                    <span class="stat-label">Following</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Circles</span>
+                </div>
+            </div>
+
+            <div class="profile-content">
+                <div class="content-nav">
+                    <button class="content-nav-item active">Posts</button>
+                    <button class="content-nav-item">Workshop</button>
+                    <button class="content-nav-item">Gallery</button>
+                    <button class="content-nav-item">About</button>
+                </div>
+
+                <div class="posts-grid">
+                    <article class="post-item">
+                        <div class="post-header">
+                            <div class="post-user">
+                                <div class="user-avatar">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face" alt="@maia" />
+                                </div>
+                                <strong>@maia</strong>
+                                <span class="post-time">2h ago</span>
+                            </div>
+                            <div class="post-circle">in Woodworking</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-image">
+                                <img src="https://images.unsplash.com/photo-1707749522150-e3b1b5f3e079?w=600&h=400&fit=crop&crop=center" alt="Oak coffee table project" />
+                            </div>
+                            <p>Just finished this oak coffee table! Happy to step out of my comfort-zone and share some joinery! This piece is available 💜💸</p>
+                        </div>
+                        <div class="post-actions">
+                            <button class="post-action">Reply</button>
+                            <button class="post-action">Share</button>
+                            <button class="post-action">Buy Now</button>
+                        </div>
+                    </article>
+
+                    <article class="post-item">
+                        <div class="post-header">
+                            <div class="post-user">
+                                <div class="user-avatar">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face" alt="@maia" />
+                                </div>
+                                <strong>@maia</strong>
+                                <span class="post-time">1d ago</span>
+                            </div>
+                            <div class="post-circle">in Woodworking</div>
+                        </div>
+                        <div class="post-content">
+                            <p>Spending today selecting timber for the next commission. There's something meditative about running your hands along the grain, feeling for the perfect piece that wants to become a dining table. The wood tells its own story - weather marks, growth patterns, the years it spent reaching toward light.</p>
+                        </div>
+                        <div class="post-actions">
+                            <button class="post-action">Reply</button>
+                            <button class="post-action">Share</button>
+                        </div>
+                    </article>
+
+                    <article class="post-item">
+                        <div class="post-header">
+                            <div class="post-user">
+                                <div class="user-avatar">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face" alt="@maia" />
+                                </div>
+                                <strong>@maia</strong>
+                                <span class="post-time">3d ago</span>
+                            </div>
+                            <div class="post-circle">in Woodworking</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-video">
+                                <video controls>
+                                    <source src="https://www.pexels.com/download/video/5972633/" type="video/mp4">
+                                    Video showing old school planing of an uneven timber edge
+                                </video>
+                            </div>
+                            <p>Traditional style - the backbone of solid furniture. Here's the technique I learned from my mentor, passed down through generations of craftspeople. No shortcuts, just sharp tools and patient hands.</p>
+                        </div>
+                        <div class="post-actions">
+                            <button class="post-action">Reply</button>
+                            <button class="post-action">Share</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Theme Manager Implementation (same as dashboard)
+        class ThemeManager {
+            constructor() {
+                this.themeButton = document.querySelector('.theme-menu');
+                this.dropdown = document.querySelector('.theme-dropdown');
+                this.radiusOptions = document.querySelectorAll('.radius-option');
+                this.themeOptions = document.querySelectorAll('.theme-option');
+                this.root = document.documentElement;
+                
+                this.init();
+            }
+            
+            init() {
+                this.loadPreferences();
+                
+                this.themeButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.toggleDropdown();
+                });
+                
+                this.radiusOptions.forEach(option => {
+                    option.addEventListener('click', () => {
+                        const radius = option.dataset.radius;
+                        this.setRadius(radius);
+                    });
+                });
+                
+                this.themeOptions.forEach(option => {
+                    option.addEventListener('click', () => {
+                        const theme = option.dataset.theme;
+                        this.setTheme(theme);
+                    });
+                });
+                
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.theme-menu-container')) {
+                        this.closeDropdown();
+                    }
+                });
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && !this.dropdown.hidden) {
+                        this.closeDropdown();
+                        this.themeButton.focus();
+                    }
+                });
+            }
+            
+            toggleDropdown() {
+                if (this.dropdown.hidden) {
+                    this.openDropdown();
+                } else {
+                    this.closeDropdown();
+                }
+            }
+            
+            openDropdown() {
+                this.dropdown.hidden = false;
+                this.themeButton.setAttribute('aria-expanded', 'true');
+            }
+            
+            closeDropdown() {
+                this.dropdown.hidden = true;
+                this.themeButton.setAttribute('aria-expanded', 'false');
+            }
+            
+            setRadius(radius) {
+                this.root.style.setProperty('--container-radius', radius + 'px');
+                
+                this.radiusOptions.forEach(option => {
+                    option.classList.toggle('active', option.dataset.radius === radius);
+                });
+                
+                localStorage.setItem('theme-radius', radius);
+            }
+            
+            setTheme(theme) {
+                document.body.classList.remove('theme-light', 'theme-dark', 'theme-system');
+                document.body.classList.add(`theme-${theme}`);
+                
+                if (theme === 'light') {
+                    this.applyLightTheme();
+                } else if (theme === 'dark') {
+                    this.applyDarkTheme();
+                } else {
+                    this.applySystemTheme();
+                }
+                
+                this.themeOptions.forEach(option => {
+                    option.classList.toggle('active', option.dataset.theme === theme);
+                });
+                
+                localStorage.setItem('theme-mode', theme);
+            }
+            
+            applyLightTheme() {
+                this.root.style.setProperty('--bg-primary', '#ffffff');
+                this.root.style.setProperty('--bg-secondary', '#f5f5f5');
+                this.root.style.setProperty('--bg-tertiary', '#f9f9f9');
+                this.root.style.setProperty('--text-primary', '#000000');
+                this.root.style.setProperty('--text-secondary', '#666666');
+                this.root.style.setProperty('--text-tertiary', '#999999');
+                this.root.style.setProperty('--border-primary', '#000000');
+                this.root.style.setProperty('--border-secondary', '#cccccc');
+                this.root.style.setProperty('--border-light', '#eeeeee');
+                this.root.style.setProperty('--accent-primary', '#000000');
+                this.root.style.setProperty('--accent-secondary', '#ffffff');
+                this.root.style.setProperty('--hover-bg', '#f5f5f5');
+                this.root.style.setProperty('--active-bg', '#000000');
+                this.root.style.setProperty('--active-text', '#ffffff');
+                this.root.style.setProperty('--shadow-color', 'rgba(0, 0, 0, 0.1)');
+            }
+            
+            applyDarkTheme() {
+                this.root.style.setProperty('--bg-primary', '#000000');
+                this.root.style.setProperty('--bg-secondary', '#0a0a0a');
+                this.root.style.setProperty('--bg-tertiary', '#111111');
+                this.root.style.setProperty('--text-primary', '#ffffff');
+                this.root.style.setProperty('--text-secondary', '#a3a3a3');
+                this.root.style.setProperty('--text-tertiary', '#666666');
+                this.root.style.setProperty('--border-primary', '#ffffff');
+                this.root.style.setProperty('--border-secondary', '#333333');
+                this.root.style.setProperty('--border-light', '#222222');
+                this.root.style.setProperty('--accent-primary', '#ffffff');
+                this.root.style.setProperty('--accent-secondary', '#000000');
+                this.root.style.setProperty('--hover-bg', '#1a1a1a');
+                this.root.style.setProperty('--active-bg', '#ffffff');
+                this.root.style.setProperty('--active-text', '#000000');
+                this.root.style.setProperty('--shadow-color', 'rgba(255, 255, 255, 0.1)');
+            }
+            
+            applySystemTheme() {
+                const properties = [
+                    '--bg-primary', '--bg-secondary', '--bg-tertiary',
+                    '--text-primary', '--text-secondary', '--text-tertiary',
+                    '--border-primary', '--border-secondary', '--border-light',
+                    '--accent-primary', '--accent-secondary',
+                    '--hover-bg', '--active-bg', '--active-text', '--shadow-color'
+                ];
+                
+                properties.forEach(prop => {
+                    this.root.style.removeProperty(prop);
+                });
+            }
+            
+            loadPreferences() {
+                const savedRadius = localStorage.getItem('theme-radius') || '0';
+                this.setRadius(savedRadius);
+                
+                const savedTheme = localStorage.getItem('theme-mode') || 'system';
+                this.setTheme(savedTheme);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            new ThemeManager();
+        });
+    </script>
+
+    <style>
+        /* Profile-specific styles */
+        .profile-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--bg-primary);
+        }
+
+        .profile-banner {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-primary);
+        }
+
+        .profile-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-container {
+            padding: 0 2rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-header {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .profile-avatar-large {
+            width: 120px;
+            height: 120px;
+            border-radius: var(--container-radius);
+            overflow: hidden;
+            border: 4px solid var(--bg-primary);
+            flex-shrink: 0;
+        }
+
+        .profile-avatar-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 0 0 0.25rem 0;
+            color: var(--text-primary);
+        }
+
+        .profile-handle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin: 0 0 1rem 0;
+        }
+
+        .profile-bio {
+            color: var(--text-primary);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-end;
+            padding-top: 60px;
+        }
+
+        .profile-action-btn {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--border-primary);
+            background: var(--active-bg);
+            color: var(--active-text);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.15s ease;
+            border-radius: var(--container-radius);
+        }
+
+        .profile-action-btn.secondary {
+            background: none;
+            color: var(--text-primary);
+        }
+
+        .profile-action-btn:hover {
+            opacity: 0.8;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 2rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 2rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .content-nav {
+            display: flex;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 2rem;
+        }
+
+        .content-nav-item {
+            background: none;
+            border: none;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-bottom: 2px solid transparent;
+            transition: all 0.15s ease;
+        }
+
+        .content-nav-item:hover {
+            color: var(--text-primary);
+        }
+
+        .content-nav-item.active {
+            color: var(--text-primary);
+            border-bottom-color: var(--border-primary);
+            font-weight: 500;
+        }
+
+        .posts-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .post-item {
+            border: 1px solid var(--border-secondary);
+            padding: 1.5rem;
+            background: var(--bg-primary);
+            transition: all 0.2s ease;
+            border-radius: var(--container-radius);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .post-user {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .post-time {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: normal;
+        }
+
+        .post-circle {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .post-content {
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .post-image {
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--border-secondary);
+            border-radius: var(--container-radius);
+        }
+
+        .post-image img {
+            width: 100%;
+            display: block;
+            transition: opacity 0.2s ease;
+        }
+
+        .post-video {
+            margin-bottom: 1rem;
+            border-radius: var(--container-radius);
+            overflow: hidden;
+        }
+
+        .post-video video {
+            width: 100%;
+            display: block;
+        }
+
+        .post-gallery {
+            margin-bottom: 1rem;
+        }
+
+        .gallery-main {
+            margin-bottom: 0.5rem;
+            border-radius: var(--container-radius);
+            overflow: hidden;
+        }
+
+        .gallery-main img {
+            width: 100%;
+            display: block;
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .gallery-thumbnails img {
+            width: 60px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: var(--container-radius);
+            border: 1px solid var(--border-secondary);
+        }
+
+        .gallery-more {
+            width: 60px;
+            height: 48px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-secondary);
+            border-radius: var(--container-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .post-action {
+            background: none;
+            border: 1px solid var(--border-secondary);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            transition: all 0.15s ease;
+            border-radius: var(--container-radius);
+        }
+
+        .post-action:hover {
+            background: var(--active-bg);
+            color: var(--active-text);
+            border-color: var(--border-primary);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .profile-container {
+                padding: 0 1rem 2rem;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                align-items: stretch;
+                margin-top: -40px;
+                gap: 1rem;
+            }
+
+            .profile-avatar-large {
+                width: 80px;
+                height: 80px;
+                align-self: flex-start;
+            }
+
+            .profile-info,
+            .profile-actions {
+                padding-top: 0;
+            }
+
+            .profile-actions {
+                align-items: stretch;
+            }
+
+            .profile-action-btn {
+                flex: 1;
+                text-align: center;
+            }
+
+            .profile-stats {
+                gap: 1rem;
+                justify-content: space-around;
+            }
+
+            .post-actions {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .post-action {
+                flex: 1;
+                min-width: calc(50% - 0.25rem);
+                text-align: center;
+            }
+        }
+    </style>
+</body>
+</html>
