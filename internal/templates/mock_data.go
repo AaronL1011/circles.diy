@@ -133,7 +133,7 @@ func GetMockProfileData(handle string, isOwner bool) models.ProfileData {
 				Connections: 342,
 				Circles:     5,
 			},
-			IsConnected: !isOwner,
+			IsConnected: false,
 		},
 		Posts: []models.Post{
 			{
@@ -165,6 +165,25 @@ func GetMockProfileData(handle string, isOwner bool) models.ProfileData {
 			},
 			{
 				ID: "2",
+				User: models.User{
+					ID:     "maia",
+					Handle: "@maia",
+					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
+				},
+				Content: "Traditional style - the backbone of solid furniture. Here's the technique I learned from my mentor, passed down through generations of craftspeople. No shortcuts, just sharp tools and patient hands.",
+				TimeAgo: "3d ago",
+				Circle:  "Woodworking",
+				Video: &models.MediaItem{
+					URL: "https://www.pexels.com/download/video/5972633/",
+					Alt: "Video showing old school planing of an uneven timber edge",
+				},
+				Stats: &models.PostStats{
+					Replies: 34,
+					Shares:  67,
+				},
+			},
+			{
+				ID: "3",
 				User: models.User{
 					ID:     "maia",
 					Handle: "@maia",
@@ -289,6 +308,21 @@ func GetMockProfileInternalData() models.ProfileData {
 				Stats: &models.PostStats{
 					Replies: 34,
 					Shares:  67,
+				},
+			},
+			{
+				ID: "4",
+				User: models.User{
+					ID:     "maia",
+					Handle: "@maia",
+					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
+				},
+				Content: "With over a decade in the business, it's nice to still have all my fingers.",
+				TimeAgo: "3d ago",
+				Circle:  "Woodworking",
+				Stats: &models.PostStats{
+					Replies: 16,
+					Shares:  5,
 				},
 			},
 		},
