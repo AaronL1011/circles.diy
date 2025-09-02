@@ -30,7 +30,7 @@
         --text-primary: #ffffff;
         --text-secondary: #a3a3a3;
         --text-tertiary: #666666;
-        --border-primary: #ffffff;
+        --border-primary: #dddddd;
         --border-secondary: #333333;
         --border-light: #222222;
         --accent-primary: #ffffff;
@@ -213,8 +213,6 @@ body {
 .feed-section,
 .discussions-section {
     background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    padding: 1.5rem;
     transition: all 0.2s ease;
     border-radius: var(--container-radius);
 }
@@ -1366,7 +1364,7 @@ body {
     .feed-section,
     .discussions-section,
     .sidebar-section {
-        padding: 0.75rem;
+        padding: 0.25rem;
         min-height: auto;
         max-width: 100%;
         overflow-x: hidden;
@@ -1469,7 +1467,6 @@ input:focus {
     .feed-section,
     .discussions-section {
         break-inside: avoid;
-        border: 1px solid var(--border-primary);
     }
 }
 
