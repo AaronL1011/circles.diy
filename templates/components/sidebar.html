@@ -1,0 +1,86 @@
+{{define "circles-sidebar"}}
+<aside class="sidebar-section">
+    <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><circle cx="128" cy="128" r="40" fill="none" stroke="currentColor" stroke-width="16"></circle><circle cx="128" cy="128" r="96" fill="none" stroke="currentColor" stroke-width="16"></circle></svg>
+        My Circles
+    </h3>
+    <div class="circle-list">
+        {{range .Circles}}
+        <div class="circle-item {{if .Active}}active{{end}}" hx-get="/api/circles/{{.ID}}/feed" hx-target="#main-content">
+            <div class="circle-thumbnail">
+                <img src="{{.Thumbnail}}" alt="{{.Name}}" />
+            </div>
+            <div class="circle-info">
+                <span class="circle-name">{{.Name}}</span>
+                <span class="circle-count">{{.MemberCount}}</span>
+            </div>
+        </div>
+        {{end}}
+    </div>
+    <div class="quick-actions-vertical">
+        <button class="action-btn-vertical primary" hx-get="/circles/create" hx-target="#modal">Create Circle</button>
+        <button class="action-btn-vertical" hx-get="/circles/discover" hx-target="#main-content">Discover Circles</button>
+        <button class="action-btn-vertical" hx-get="/circles/join" hx-target="#modal">Join Circle</button>
+    </div>
+</aside>
+{{end}}
+
+{{define "events-sidebar"}}
+<aside class="sidebar-section">
+    <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><rect x="40" y="40" width="176" height="176" rx="8" fill="none" stroke="currentColor" stroke-width="16"></rect><line x1="176" y1="24" x2="176" y2="56" stroke="currentColor" stroke-width="16"></line><line x1="80" y1="24" x2="80" y2="56" stroke="currentColor" stroke-width="16"></line><line x1="40" y1="88" x2="216" y2="88" stroke="currentColor" stroke-width="16"></line></svg>
+        Upcoming Events
+    </h3>
+    <div class="events-compact">
+        {{range .Events}}
+        <div class="event-compact" hx-get="/api/events/{{.ID}}" hx-target="#modal">
+            <div class="event-date-compact">
+                <div class="event-day-compact">{{.Day}}</div>
+                <div class="event-month-compact">{{.Month}}</div>
+            </div>
+            <div class="event-info-compact">
+                <div class="event-title-compact">{{.Title}}</div>
+                <div class="event-time-compact">{{.Time}}</div>
+            </div>
+        </div>
+        {{end}}
+    </div>
+    <button class="sidebar-action-btn" hx-get="/events" hx-target="#main-content">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path></svg>
+        Create Event
+    </button>
+</aside>
+{{end}}
+
+{{define "marketplace-sidebar"}}
+<aside class="sidebar-section">
+    <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M184,89.57V84c0-25.08-37.83-44-88-44S8,58.92,8,84v40c0,20.89,26.25,37.49,64,42.46V172c0,25.08,37.83,44,88,44s88-18.92,88-44V132C248,111.3,222.58,94.68,184,89.57ZM232,132c0,13.22-30.79,28-72,28-3.73,0-7.43-.13-11.08-.37C170.49,151.77,184,139,184,124V105.74C213.87,110.19,232,122.27,232,132ZM72,150.25V126.46A183.74,183.74,0,0,0,96,128a183.74,183.74,0,0,0,24-1.54v23.79A183.74,183.74,0,0,1,96,152,183.74,183.74,0,0,1,72,150.25ZM96,112c-41.21,0-72-14.78-72-28s30.79-28,72-28,72,14.78,72,28S137.21,112,96,112Zm-72,20v-8.86C37.77,130.13,64.52,136,96,136s58.23-5.87,72-12.86V124c0,13.22-30.79,28-72,28S24,137.22,24,124Zm72,64c-41.21,0-72-14.78-72-28v-8.86C37.77,158.13,64.52,164,96,164s58.23-5.87,72-12.86V160C168,173.22,137.21,188,96,188Zm136-20c0,13.22-30.79,28-72,28a183.74,183.74,0,0,1-24-1.54V170.25A183.74,183.74,0,0,0,160,172c3.73,0,7.43-.13,11.08-.37C192.49,163.77,206,151,206,136V105.74C213.87,110.19,232,122.27,232,132Z"></path></svg>
+        Circle Marketplace
+    </h3>
+    <div class="marketplace-items">
+        {{range .MarketplaceItems}}
+        <div class="marketplace-item" hx-get="/api/marketplace/{{.ID}}" hx-target="#modal">
+            <div class="marketplace-image">
+                <img src="{{.Image}}" alt="{{.Title}}" />
+            </div>
+            <div class="marketplace-header">
+                <div class="marketplace-title">{{.Title}}</div>
+                <div class="marketplace-price">{{.Price}}</div>
+            </div>
+            <div class="marketplace-meta">
+                <span class="marketplace-location">{{.Location}}</span>
+                <span class="marketplace-time">{{.TimeAgo}}</span>
+            </div>
+            <div class="marketplace-actions">
+                <button class="marketplace-btn" hx-post="/api/marketplace/{{.ID}}/contact">Contact</button>
+            </div>
+        </div>
+        {{end}}
+    </div>
+    <button class="sidebar-action-btn" hx-get="/marketplace/sell" hx-target="#modal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path></svg>
+        List Item
+    </button>
+</aside>
+{{end}}

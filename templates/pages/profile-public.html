@@ -1,0 +1,276 @@
+{{define "profile-public"}}
+{{template "base" .}}
+{{end}}
+
+{{define "main"}}
+<div class="profile-page">
+    <div class="profile-banner">
+        <img src="{{.Profile.Banner}}" alt="Profile banner" />
+    </div>
+    
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar-large">
+                <img src="{{.Profile.Avatar}}" alt="{{.Profile.Handle}}" />
+            </div>
+            <div class="profile-info">
+                <h1 class="profile-name">{{.Profile.Name}}</h1>
+                <p class="profile-handle">{{.Profile.Handle}}</p>
+                <p class="profile-bio">{{.Profile.Bio}}</p>
+            </div>
+            <div class="profile-actions">
+                {{if not .IsOwner}}
+                <button class="profile-action-btn" hx-post="/api/users/{{.Profile.ID}}/connect" hx-swap="outerHTML">
+                    {{if .Profile.IsConnected}}Disconnect{{else}}Connect{{end}}
+                </button>
+                <button class="profile-action-btn secondary" hx-get="/messages/new/{{.Profile.ID}}" hx-target="#modal">Message</button>
+                {{else}}
+                <a href="/profile/edit" class="profile-action-btn">Edit Profile</a>
+                <button class="profile-action-btn secondary" hx-get="/profile/share" hx-target="#modal">Share Profile</button>
+                {{end}}
+            </div>
+        </div>
+
+        <div class="profile-stats">
+            <div class="stat-item">
+                <span class="stat-number">{{.Profile.Stats.Posts}}</span>
+                <span class="stat-label">Posts</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">{{.Profile.Stats.Connections}}</span>
+                <span class="stat-label">Connections</span>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <div class="content-nav">
+                <button class="content-nav-item active" hx-get="/api/users/{{.Profile.ID}}/posts" hx-target="#profile-posts">Posts</button>
+                <button class="content-nav-item" hx-get="/api/users/{{.Profile.ID}}/workshop" hx-target="#profile-posts">Workshop</button>
+                <button class="content-nav-item" hx-get="/api/users/{{.Profile.ID}}/gallery" hx-target="#profile-posts">Gallery</button>
+                <button class="content-nav-item" hx-get="/api/users/{{.Profile.ID}}/about" hx-target="#profile-posts">About</button>
+            </div>
+
+            <div class="posts-grid" id="profile-posts">
+                {{range .Posts}}
+                <article class="post-item">
+                    <div class="post-header">
+                        <div class="post-user">
+                            <div class="user-avatar">
+                                <img src="{{.User.Avatar}}" alt="{{.User.Handle}}" />
+                            </div>
+                            <strong>{{.User.Handle}}</strong>
+                            <span class="post-time">{{.TimeAgo}}</span>
+                        </div>
+                        <div class="post-circle">in {{.Circle}}</div>
+                    </div>
+                    <div class="post-content">
+                        {{if .Image}}
+                        <div class="post-image">
+                            <img src="{{.Image.URL}}" alt="{{.Image.Alt}}" />
+                        </div>
+                        {{end}}
+                        {{if .Video}}
+                        <div class="post-video">
+                            <video controls>
+                                <source src="{{.Video.URL}}" type="video/mp4">
+                                {{.Video.Alt}}
+                            </video>
+                        </div>
+                        {{end}}
+                        {{if .Gallery}}
+                        <div class="post-gallery">
+                            <div class="gallery-main">
+                                <img src="{{(index .Gallery 0).URL}}" alt="{{(index .Gallery 0).Alt}}" />
+                            </div>
+                            {{if gt (len .Gallery) 1}}
+                            <div class="gallery-thumbnails">
+                                {{range slice .Gallery 1 4}}
+                                <img src="{{.URL}}" alt="{{.Alt}}" />
+                                {{end}}
+                                {{if gt (len .Gallery) 4}}
+                                <div class="gallery-more">+{{sub (len .Gallery) 4}}</div>
+                                {{end}}
+                            </div>
+                            {{end}}
+                        </div>
+                        {{end}}
+                        <p>{{.Content}}</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action" hx-get="/posts/{{.ID}}/reply" hx-target="#modal">Reply</button>
+                        <button class="post-action" hx-post="/api/posts/{{.ID}}/share">Share</button>
+                        {{if .CanBuy}}
+                        <button class="post-action" hx-post="/api/posts/{{.ID}}/buy">Buy Now</button>
+                        {{end}}
+                    </div>
+                </article>
+                {{end}}
+            </div>
+
+            {{if .HasMorePosts}}
+            <div class="load-more-container" style="text-align: center; margin-top: 2rem;">
+                <button class="sidebar-action-btn" hx-get="/api/users/{{.Profile.ID}}/posts/more?offset={{.PostOffset}}" hx-target="#profile-posts" hx-swap="beforeend">
+                    Load More Posts
+                </button>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</div>
+
+<!-- Modal container -->
+<div id="modal" hx-swap-oob="true"></div>
+{{end}}
+
+{{define "scripts"}}
+<script>
+// Theme Manager (same as dashboard)
+class ThemeManager {
+    constructor() {
+        this.themeButton = document.querySelector('.theme-menu');
+        this.dropdown = document.querySelector('.theme-dropdown');
+        this.radiusOptions = document.querySelectorAll('.radius-option');
+        this.themeOptions = document.querySelectorAll('.theme-option');
+        this.root = document.documentElement;
+        
+        this.init();
+    }
+    
+    init() {
+        this.loadPreferences();
+        
+        this.themeButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleDropdown();
+        });
+        
+        this.radiusOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const radius = option.dataset.radius;
+                this.setRadius(radius);
+            });
+        });
+        
+        this.themeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const theme = option.dataset.theme;
+                this.setTheme(theme);
+            });
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.theme-menu-container')) {
+                this.closeDropdown();
+            }
+        });
+    }
+    
+    toggleDropdown() {
+        if (this.dropdown.hidden) {
+            this.openDropdown();
+        } else {
+            this.closeDropdown();
+        }
+    }
+    
+    openDropdown() {
+        this.dropdown.hidden = false;
+        this.themeButton.setAttribute('aria-expanded', 'true');
+    }
+    
+    closeDropdown() {
+        this.dropdown.hidden = true;
+        this.themeButton.setAttribute('aria-expanded', 'false');
+    }
+    
+    setRadius(radius) {
+        this.root.style.setProperty('--container-radius', radius + 'px');
+        this.radiusOptions.forEach(option => {
+            option.classList.toggle('active', option.dataset.radius === radius);
+        });
+        localStorage.setItem('theme-radius', radius);
+    }
+    
+    setTheme(theme) {
+        document.body.classList.remove('theme-light', 'theme-dark', 'theme-system');
+        document.body.classList.add(`theme-${theme}`);
+        
+        if (theme === 'light') {
+            this.applyLightTheme();
+        } else if (theme === 'dark') {
+            this.applyDarkTheme();
+        } else {
+            this.applySystemTheme();
+        }
+        
+        this.themeOptions.forEach(option => {
+            option.classList.toggle('active', option.dataset.theme === theme);
+        });
+        
+        localStorage.setItem('theme-mode', theme);
+    }
+    
+    applyLightTheme() {
+        this.root.style.setProperty('--bg-primary', '#ffffff');
+        this.root.style.setProperty('--bg-secondary', '#f5f5f5');
+        this.root.style.setProperty('--bg-tertiary', '#f9f9f9');
+        this.root.style.setProperty('--text-primary', '#000000');
+        this.root.style.setProperty('--text-secondary', '#666666');
+        this.root.style.setProperty('--text-tertiary', '#999999');
+        this.root.style.setProperty('--border-primary', '#000000');
+        this.root.style.setProperty('--border-secondary', '#cccccc');
+        this.root.style.setProperty('--border-light', '#eeeeee');
+        this.root.style.setProperty('--accent-primary', '#000000');
+        this.root.style.setProperty('--accent-secondary', '#ffffff');
+        this.root.style.setProperty('--hover-bg', '#f5f5f5');
+        this.root.style.setProperty('--active-bg', '#000000');
+        this.root.style.setProperty('--active-text', '#ffffff');
+        this.root.style.setProperty('--shadow-color', 'rgba(0, 0, 0, 0.1)');
+    }
+    
+    applyDarkTheme() {
+        this.root.style.setProperty('--bg-primary', '#000000');
+        this.root.style.setProperty('--bg-secondary', '#0a0a0a');
+        this.root.style.setProperty('--bg-tertiary', '#111111');
+        this.root.style.setProperty('--text-primary', '#ffffff');
+        this.root.style.setProperty('--text-secondary', '#a3a3a3');
+        this.root.style.setProperty('--text-tertiary', '#666666');
+        this.root.style.setProperty('--border-primary', '#ffffff');
+        this.root.style.setProperty('--border-secondary', '#333333');
+        this.root.style.setProperty('--border-light', '#222222');
+        this.root.style.setProperty('--accent-primary', '#ffffff');
+        this.root.style.setProperty('--accent-secondary', '#000000');
+        this.root.style.setProperty('--hover-bg', '#1a1a1a');
+        this.root.style.setProperty('--active-bg', '#ffffff');
+        this.root.style.setProperty('--active-text', '#000000');
+        this.root.style.setProperty('--shadow-color', 'rgba(255, 255, 255, 0.1)');
+    }
+    
+    applySystemTheme() {
+        const properties = [
+            '--bg-primary', '--bg-secondary', '--bg-tertiary',
+            '--text-primary', '--text-secondary', '--text-tertiary',
+            '--border-primary', '--border-secondary', '--border-light',
+            '--accent-primary', '--accent-secondary',
+            '--hover-bg', '--active-bg', '--active-text', '--shadow-color'
+        ];
+        
+        properties.forEach(prop => {
+            this.root.style.removeProperty(prop);
+        });
+    }
+    
+    loadPreferences() {
+        const savedRadius = localStorage.getItem('theme-radius') || '{{.Theme.Radius}}';
+        this.setRadius(savedRadius);
+        
+        const savedTheme = localStorage.getItem('theme-mode') || '{{.Theme.Mode}}';
+        this.setTheme(savedTheme);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    new ThemeManager();
+});
+</script>
+{{end}}

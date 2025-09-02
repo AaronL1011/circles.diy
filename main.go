@@ -6,9 +6,11 @@ import (
 	"fmt"
 	"html"
 	"html/template"
+	"io"
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 	"sync"
@@ -21,6 +23,147 @@ type PageData struct {
 	Success   bool
 	CSRFToken string
 }
+
+// Template data structures
+type BaseData struct {
+	Title     string
+	ActiveNav string
+	Theme     ThemeSettings
+	CSRFToken string
+}
+
+type ThemeSettings struct {
+	Mode   string `json:"mode"`   // light, dark, system
+	Radius string `json:"radius"` // 0, 6, 12, 32
+}
+
+type User struct {
+	ID       string `json:"id"`
+	Handle   string `json:"handle"`
+	Name     string `json:"name"`
+	Avatar   string `json:"avatar"`
+	Bio      string `json:"bio"`
+	Banner   string `json:"banner"`
+}
+
+type FeedItem struct {
+	ID       string    `json:"id"`
+	User     User      `json:"user"`
+	Content  string    `json:"content"`
+	TimeAgo  string    `json:"time_ago"`
+	Circle   string    `json:"circle"`
+	Image    *MediaItem `json:"image,omitempty"`
+	Video    *MediaItem `json:"video,omitempty"`
+	Gallery  []MediaItem `json:"gallery,omitempty"`
+	CanBuy   bool      `json:"can_buy"`
+}
+
+type MediaItem struct {
+	URL string `json:"url"`
+	Alt string `json:"alt"`
+}
+
+type Circle struct {
+	ID          string `json:"id"`
+	Name        string `json:"name"`
+	Thumbnail   string `json:"thumbnail"`
+	MemberCount string `json:"member_count"`
+	Active      bool   `json:"active"`
+}
+
+type Discussion struct {
+	ID      string `json:"id"`
+	Title   string `json:"title"`
+	Preview string `json:"preview"`
+	Circle  string `json:"circle"`
+	TimeAgo string `json:"time_ago"`
+}
+
+type Event struct {
+	ID    string `json:"id"`
+	Title string `json:"title"`
+	Time  string `json:"time"`
+	Day   string `json:"day"`
+	Month string `json:"month"`
+}
+
+type Ripple struct {
+	ID        string `json:"id"`
+	User      string `json:"user"`
+	Content   string `json:"content"`
+	ExpiresIn string `json:"expires_in"`
+}
+
+type MarketplaceItem struct {
+	ID       string `json:"id"`
+	Title    string `json:"title"`
+	Price    string `json:"price"`
+	Image    string `json:"image"`
+	Location string `json:"location"`
+	TimeAgo  string `json:"time_ago"`
+}
+
+type ImpactItem struct {
+	Label string `json:"label"`
+	Value string `json:"value"`
+}
+
+type DashboardData struct {
+	BaseData
+	Feed              []FeedItem        `json:"feed"`
+	FeedOffset        int              `json:"feed_offset"`
+	Circles           []Circle         `json:"circles"`
+	Discussions       []Discussion     `json:"discussions"`
+	Events            []Event          `json:"events"`
+	Ripples           []Ripple         `json:"ripples"`
+	MarketplaceItems  []MarketplaceItem `json:"marketplace_items"`
+	Impact            []ImpactItem     `json:"impact"`
+}
+
+type ProfileStats struct {
+	Posts       int `json:"posts"`
+	Connections int `json:"connections"`
+}
+
+type Profile struct {
+	ID          string       `json:"id"`
+	Handle      string       `json:"handle"`
+	Name        string       `json:"name"`
+	Avatar      string       `json:"avatar"`
+	Banner      string       `json:"banner"`
+	Bio         string       `json:"bio"`
+	Stats       ProfileStats `json:"stats"`
+	IsConnected bool         `json:"is_connected"`
+}
+
+type Post struct {
+	ID      string      `json:"id"`
+	User    User        `json:"user"`
+	Content string      `json:"content"`
+	TimeAgo string      `json:"time_ago"`
+	Circle  string      `json:"circle"`
+	Image   *MediaItem  `json:"image,omitempty"`
+	Video   *MediaItem  `json:"video,omitempty"`
+	Gallery []MediaItem `json:"gallery,omitempty"`
+	CanBuy  bool        `json:"can_buy"`
+}
+
+type ProfileData struct {
+	BaseData
+	Profile     Profile `json:"profile"`
+	Posts       []Post  `json:"posts"`
+	PostOffset  int     `json:"post_offset"`
+	HasMorePosts bool   `json:"has_more_posts"`
+	IsOwner     bool    `json:"is_owner"`
+}
+
+// Template management
+type Templates struct {
+	dashboard     *template.Template
+	profilePublic *template.Template
+}
+
+var templates *Templates
 
 type RateLimiter struct {
 	visitors map[string]*rate.Limiter
@@ -293,15 +436,351 @@ func feedbackHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, data)
 }
 
+// CSS building system
+func buildCSS() error {
+	cssFiles := []string{
+		"static/css/variables.css",
+		"static/css/base.css",
+		"static/css/layout.css",
+		"static/css/components.css",
+		"static/css/themes.css",
+	}
+	
+	// Create output file
+	outputFile := "static/css/style.css"
+	output, err := os.Create(outputFile)
+	if err != nil {
+		return fmt.Errorf("failed to create output CSS file: %v", err)
+	}
+	defer output.Close()
+	
+	// Write header comment
+	if _, err := output.WriteString("/* Generated CSS - circles.diy */\n\n"); err != nil {
+		return fmt.Errorf("failed to write header: %v", err)
+	}
+	
+	// Concatenate all CSS files
+	for _, cssFile := range cssFiles {
+		if _, err := os.Stat(cssFile); os.IsNotExist(err) {
+			log.Printf("CSS file not found: %s, skipping", cssFile)
+			continue
+		}
+		
+		file, err := os.Open(cssFile)
+		if err != nil {
+			return fmt.Errorf("failed to open CSS file %s: %v", cssFile, err)
+		}
+		
+		// Write file marker comment
+		if _, err := output.WriteString(fmt.Sprintf("/* === %s === */\n", cssFile)); err != nil {
+			file.Close()
+			return fmt.Errorf("failed to write file marker: %v", err)
+		}
+		
+		// Copy file content
+		if _, err := io.Copy(output, file); err != nil {
+			file.Close()
+			return fmt.Errorf("failed to copy CSS file %s: %v", cssFile, err)
+		}
+		
+		// Add separator
+		if _, err := output.WriteString("\n\n"); err != nil {
+			file.Close()
+			return fmt.Errorf("failed to write separator: %v", err)
+		}
+		
+		file.Close()
+		log.Printf("Added %s to compiled CSS", cssFile)
+	}
+	
+	log.Printf("CSS compiled successfully to %s", outputFile)
+	return nil
+}
+
+// CSS file watcher for development
+func watchCSSFiles() {
+	cssDir := "static/css"
+	lastModTime := time.Time{}
+	
+	for {
+		hasChanges := false
+		
+		// Check if any CSS files have changed
+		err := filepath.Walk(cssDir, func(path string, info os.FileInfo, err error) error {
+			if err != nil {
+				return err
+			}
+			
+			if filepath.Ext(path) == ".css" && path != "static/css/style.css" {
+				if info.ModTime().After(lastModTime) {
+					hasChanges = true
+					lastModTime = info.ModTime()
+				}
+			}
+			return nil
+		})
+		
+		if err != nil {
+			log.Printf("Error watching CSS files: %v", err)
+		} else if hasChanges {
+			log.Println("CSS files changed, rebuilding...")
+			if err := buildCSS(); err != nil {
+				log.Printf("Error rebuilding CSS: %v", err)
+			}
+		}
+		
+		time.Sleep(1 * time.Second)
+	}
+}
+
+// Template initialization
+func initTemplates() error {
+	templates = &Templates{}
+	
+	// Define custom template functions
+	funcMap := template.FuncMap{
+		"sub": func(a, b int) int {
+			return a - b
+		},
+		"slice": func(s []interface{}, start, end int) []interface{} {
+			if start < 0 || end > len(s) || start > end {
+				return []interface{}{}
+			}
+			return s[start:end]
+		},
+		"add": func(a, b int) int {
+			return a + b
+		},
+	}
+	
+	// Parse dashboard template
+	dashboardTemplate := template.New("dashboard").Funcs(funcMap)
+	dashboardTemplate, err := dashboardTemplate.ParseGlob("templates/layouts/*.html")
+	if err != nil {
+		return fmt.Errorf("failed to parse layout templates: %v", err)
+	}
+	
+	dashboardTemplate, err = dashboardTemplate.ParseGlob("templates/components/*.html")
+	if err != nil {
+		return fmt.Errorf("failed to parse component templates: %v", err)
+	}
+	
+	dashboardTemplate, err = dashboardTemplate.ParseFiles("templates/pages/dashboard.html")
+	if err != nil {
+		return fmt.Errorf("failed to parse dashboard template: %v", err)
+	}
+	templates.dashboard = dashboardTemplate
+	
+	// Parse profile template
+	profileTemplate := template.New("profile").Funcs(funcMap)
+	profileTemplate, err = profileTemplate.ParseGlob("templates/layouts/*.html")
+	if err != nil {
+		return fmt.Errorf("failed to parse layout templates for profile: %v", err)
+	}
+	
+	profileTemplate, err = profileTemplate.ParseGlob("templates/components/*.html")
+	if err != nil {
+		return fmt.Errorf("failed to parse component templates for profile: %v", err)
+	}
+	
+	profileTemplate, err = profileTemplate.ParseFiles("templates/pages/profile-public.html")
+	if err != nil {
+		return fmt.Errorf("failed to parse profile template: %v", err)
+	}
+	templates.profilePublic = profileTemplate
+	
+	log.Println("Templates initialized successfully")
+	return nil
+}
+
+// Mock data generators for development
+func getMockDashboardData() DashboardData {
+	return DashboardData{
+		BaseData: BaseData{
+			Title:     "Dashboard",
+			ActiveNav: "dashboard",
+			Theme: ThemeSettings{
+				Mode:   "system",
+				Radius: "0",
+			},
+			CSRFToken: generateCSRFToken(),
+		},
+		Feed: []FeedItem{
+			{
+				ID: "1",
+				User: User{
+					ID:     "maia",
+					Handle: "@maia",
+					Avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+				},
+				Content: "Just finished this oak coffee table! Happy to step out of my comfort-zone and share some joinery! This piece is available 💜💸",
+				TimeAgo: "2h ago",
+				Circle:  "Woodworking",
+				Image: &MediaItem{
+					URL: "https://images.unsplash.com/photo-1707749522150-e3b1b5f3e079?w=600&h=400&fit=crop&crop=center",
+					Alt: "Oak coffee table project",
+				},
+				CanBuy: true,
+			},
+			{
+				ID: "2",
+				User: User{
+					ID:     "maia",
+					Handle: "@maia",
+					Avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+				},
+				Content: "Spending today selecting timber for the next commission. There's something meditative about running your hands along the grain, feeling for the perfect piece that wants to become a dining table.",
+				TimeAgo: "1d ago",
+				Circle:  "Woodworking",
+			},
+		},
+		FeedOffset: 2,
+		Circles: []Circle{
+			{ID: "1", Name: "Woodworking", Thumbnail: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=24&h=24&fit=crop&crop=center", MemberCount: "234", Active: true},
+			{ID: "2", Name: "Local Artists", Thumbnail: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=24&h=24&fit=crop&crop=center", MemberCount: "89"},
+		},
+		Discussions: []Discussion{
+			{ID: "1", Title: "Best wood for beginners?", Preview: "I'm just starting out and wondering what wood types are most forgiving...", Circle: "Woodworking", TimeAgo: "3h ago"},
+			{ID: "2", Title: "Summer art market planning", Preview: "Who's planning to set up at the summer markets? Let's coordinate...", Circle: "Local Artists", TimeAgo: "5h ago"},
+		},
+		Events: []Event{
+			{ID: "1", Title: "Workshop Planning", Time: "2:00 PM", Day: "15", Month: "FEB"},
+			{ID: "2", Title: "Art Gallery Opening", Time: "7:00 PM", Day: "18", Month: "FEB"},
+		},
+		Ripples: []Ripple{
+			{ID: "1", User: "@alex", Content: "Looking for someone to help move furniture this weekend!", ExpiresIn: "2 days"},
+			{ID: "2", User: "@sam", Content: "Free wood scraps available - message me!", ExpiresIn: "5 hours"},
+		},
+		MarketplaceItems: []MarketplaceItem{
+			{ID: "1", Title: "Handcrafted Oak Bookshelf", Price: "$240", Image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=150&h=100&fit=crop&crop=center", Location: "Downtown", TimeAgo: "2h ago"},
+		},
+		Impact: []ImpactItem{
+			{Label: "Skills Shared", Value: "12"},
+			{Label: "Hours Contributed", Value: "34"},
+			{Label: "Connections Made", Value: "8"},
+		},
+	}
+}
+
+func getMockProfileData(handle string, isOwner bool) ProfileData {
+	return ProfileData{
+		BaseData: BaseData{
+			Title:     fmt.Sprintf("%s - Profile", handle),
+			ActiveNav: "profile",
+			Theme: ThemeSettings{
+				Mode:   "system",
+				Radius: "0",
+			},
+			CSRFToken: generateCSRFToken(),
+		},
+		Profile: Profile{
+			ID:     "maia",
+			Handle: "@maia",
+			Name:   "Maia Makes",
+			Avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=128&h=128&fit=crop&crop=face",
+			Banner: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=300&fit=crop&crop=center",
+			Bio:    "Woodworker & furniture maker crafting heirloom pieces from sustainably sourced timber. Teaching traditional joinery techniques and sharing the journey from tree to table.",
+			Stats: ProfileStats{
+				Posts:       3,
+				Connections: 342,
+			},
+			IsConnected: !isOwner,
+		},
+		Posts: []Post{
+			{
+				ID: "1",
+				User: User{
+					ID:     "maia",
+					Handle: "@maia",
+					Avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+				},
+				Content: "Just finished this oak coffee table! Happy to step out of my comfort-zone and share some joinery! This piece is available 💜💸",
+				TimeAgo: "2h ago",
+				Circle:  "Woodworking",
+				Image: &MediaItem{
+					URL: "https://images.unsplash.com/photo-1707749522150-e3b1b5f3e079?w=600&h=400&fit=crop&crop=center",
+					Alt: "Oak coffee table project",
+				},
+				CanBuy: true,
+			},
+		},
+		PostOffset:   1,
+		HasMorePosts: false,
+		IsOwner:      isOwner,
+	}
+}
+
+// New route handlers
+func dashboardHandler(w http.ResponseWriter, r *http.Request) {
+	data := getMockDashboardData()
+	
+	err := templates.dashboard.ExecuteTemplate(w, "dashboard", data)
+	if err != nil {
+		log.Printf("Error rendering dashboard template: %v", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+}
+
+func profileHandler(w http.ResponseWriter, r *http.Request) {
+	// Extract handle from URL path if present, otherwise default to current user
+	handle := "@maia" // In a real app, this would come from session/auth
+	isOwner := true   // In a real app, this would be determined by comparing with logged-in user
+	
+	data := getMockProfileData(handle, isOwner)
+	
+	err := templates.profilePublic.ExecuteTemplate(w, "profile-public", data)
+	if err != nil {
+		log.Printf("Error rendering profile template: %v", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+}
+
 func main() {
+	// Build CSS on startup
+	log.Println("Building CSS...")
+	if err := buildCSS(); err != nil {
+		log.Fatalf("Failed to build CSS: %v", err)
+	}
+	
+	// Initialize templates
+	log.Println("Initializing templates...")
+	if err := initTemplates(); err != nil {
+		log.Fatalf("Failed to initialize templates: %v", err)
+	}
+	
+	// Start CSS file watcher in development mode
+	isDev := os.Getenv("ENV") != "production"
+	if isDev {
+		log.Println("Starting CSS file watcher...")
+		go watchCSSFiles()
+	}
+
 	mux := http.NewServeMux()
+	
+	// IMPORTANT: Keep existing root route unchanged - serves index.html
 	mux.HandleFunc("/", homeHandler)
 	mux.HandleFunc("/feedback", feedbackHandler)
+	
+	// New template-based routes
+	mux.HandleFunc("/dashboard", dashboardHandler)
+	mux.HandleFunc("/profile", profileHandler)
+	
+	// Existing concept-demo routes (preserved)
 	mux.HandleFunc("/concept-demo", conceptDemoHandler)
 	mux.HandleFunc("/concept-demo/", conceptDemoHandler)
 	mux.HandleFunc("/concept-demo/app.css", conceptDemoHandler)
 	mux.HandleFunc("/concept-demo/profile-internal.html", conceptDemoHandler)
 	mux.HandleFunc("/concept-demo/profile-external.html", conceptDemoHandler)
+	
+	// Static asset routes
+	mux.HandleFunc("/static/css/style.css", func(w http.ResponseWriter, r *http.Request) {
+		serveStaticFile(w, r, "static/css/style.css", "text/css; charset=utf-8")
+	})
+	mux.HandleFunc("/static/js/htmx.min.js", func(w http.ResponseWriter, r *http.Request) {
+		serveStaticFile(w, r, "static/js/htmx.min.js", "application/javascript; charset=utf-8")
+	})
 
 	handler := securityMiddleware(rateLimitMiddleware(mux))
 
@@ -319,5 +798,10 @@ func main() {
 	}
 
 	log.Printf("Server starting on port %s", port)
+	log.Printf("Routes available:")
+	log.Printf("  / - Original landing page (index.html)")
+	log.Printf("  /dashboard - New dashboard with templates + HTMX")
+	log.Printf("  /profile - New profile page with templates + HTMX")
+	log.Printf("  /concept-demo/ - Original concept demo")
 	log.Fatal(server.ListenAndServe())
 }

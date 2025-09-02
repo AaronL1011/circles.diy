@@ -1,0 +1,106 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+/* Focus and Accessibility */
+button:focus,
+input:focus {
+    outline: 2px solid var(--border-primary);
+    outline-offset: 2px;
+}
+
+.nav-item:focus {
+    outline: none;
+    background: var(--hover-bg);
+    box-shadow: inset 0 0 0 2px var(--border-primary);
+}
+
+/* Focus states for interactive elements */
+.circle-item:focus,
+.feed-item:focus,
+.discussion-item:focus,
+.event-compact:focus,
+.ripple-compact:focus,
+.extension-item:focus,
+.impact-item:focus {
+    outline: 1px solid var(--border-primary);
+    outline-offset: 1px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .circle-item,
+    .feed-item,
+    .discussion-item,
+    .event-compact,
+    .ripple-compact,
+    .extension-item,
+    .impact-item {
+        border-color: var(--border-primary);
+        border-width: 2px;
+    }
+    
+    .global-search,
+    .user-menu,
+    .sidebar-action-btn,
+    .action-btn-vertical,
+    .feed-action,
+    .discussion-action {
+        border-width: 2px;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .main-header,
+    .left-sidebar,
+    .right-sidebar,
+    .header-actions {
+        display: none;
+    }
+    
+    .dashboard {
+        grid-template-columns: 1fr;
+        max-width: none;
+    }
+    
+    .sidebar-section,
+    .feed-section,
+    .discussions-section {
+        break-inside: avoid;
+    }
+}

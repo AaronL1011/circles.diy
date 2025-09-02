@@ -1,0 +1,32 @@
+{{define "feed-item"}}
+<article class="feed-item">
+    <div class="feed-header">
+        <div class="feed-user">
+            <div class="user-avatar">
+                <img src="{{.User.Avatar}}" alt="{{.User.Handle}}" />
+            </div>
+            <strong>{{.User.Handle}}</strong>
+            <span class="feed-time">{{.TimeAgo}}</span>
+        </div>
+        <div class="feed-circle">in {{.Circle}}</div>
+    </div>
+    <div class="feed-content">
+        {{if .Image}}
+        <div class="feed-image">
+            <img src="{{.Image.URL}}" alt="{{.Image.Alt}}" />
+        </div>
+        {{end}}
+        <p>{{.Content}}</p>
+    </div>
+    <div class="feed-actions">
+        <button class="feed-action" hx-post="/api/posts/{{.ID}}/reply" hx-target="#reply-modal">Reply</button>
+        <button class="feed-action" hx-post="/api/posts/{{.ID}}/share" hx-swap="outerHTML">Share</button>
+        {{if .CanBuy}}
+        <button class="feed-action" hx-post="/api/posts/{{.ID}}/buy">Buy Now</button>
+        {{end}}
+        <button class="feed-action">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><circle cx="128" cy="128" r="12"></circle><circle cx="128" cy="64" r="12"></circle><circle cx="128" cy="192" r="12"></circle></svg>
+        </button>
+    </div>
+</article>
+{{end}}
