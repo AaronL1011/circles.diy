@@ -648,7 +648,7 @@ func getMockDashboardData() DashboardData {
 				User: User{
 					ID:     "maia",
 					Handle: "@maia",
-					Avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=128&h=128&fit=crop&crop=face",
+					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=128&h=128&fit=crop&crop=face",
 				},
 				Content: "Just finished this oak coffee table! Happy to step out of my comfort-zone and share some joinery! This piece is available 💜💸",
 				TimeAgo: "2m ago",
@@ -749,8 +749,8 @@ func getMockProfileData(handle string, isOwner bool) ProfileData {
 			ID:     "maia",
 			Handle: "@maia",
 			Name:   "Maia Makes",
-			Avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=128&h=128&fit=crop&crop=face",
-			Banner: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=300&fit=crop&crop=center",
+			Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=128&h=128&fit=crop&crop=face",
+			Banner: "https://images.unsplash.com/photo-1597960194599-22929afc25b1?w=1200&h=300&fit=crop&crop=center",
 			Bio:    "Woodworker & furniture maker crafting heirloom pieces from sustainably sourced timber. Teaching traditional joinery techniques and sharing the journey from tree to table.",
 			Stats: ProfileStats{
 				Posts:       3,
@@ -765,7 +765,7 @@ func getMockProfileData(handle string, isOwner bool) ProfileData {
 				User: User{
 					ID:     "maia",
 					Handle: "@maia",
-					Avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
 				},
 				Content: "Just finished this oak coffee table! Happy to step out of my comfort-zone and share some joinery! This piece is available 💜💸",
 				TimeAgo: "2h ago",
@@ -781,7 +781,7 @@ func getMockProfileData(handle string, isOwner bool) ProfileData {
 				User: User{
 					ID:     "maia",
 					Handle: "@maia",
-					Avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
 				},
 				Content: "Spending today selecting timber for the next commission. There's something meditative about running your hands along the grain, feeling for the perfect piece that wants to become a dining table. The wood tells its own story - weather marks, growth patterns, all the years it spent reaching toward light.",
 				TimeAgo: "1d ago",
@@ -792,7 +792,7 @@ func getMockProfileData(handle string, isOwner bool) ProfileData {
 				User: User{
 					ID:     "maia",
 					Handle: "@maia",
-					Avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
 				},
 				Content: "With over a decade in the business, it's nice to still have all my fingers.",
 				TimeAgo: "3d ago",
@@ -820,8 +820,8 @@ func getMockProfileInternalData() ProfileData {
 			ID:     "maia",
 			Handle: "@maia",
 			Name:   "Maia Makes",
-			Avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=128&h=128&fit=crop&crop=face",
-			Banner: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=300&fit=crop&crop=center",
+			Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=128&h=128&fit=crop&crop=face",
+			Banner: "https://images.unsplash.com/photo-1597960194599-22929afc25b1?w=1200&h=300&fit=crop&crop=center",
 			Bio:    "Woodworker & furniture maker crafting heirloom pieces from sustainably sourced timber. Teaching traditional joinery techniques and sharing the journey from tree to table.",
 			Stats: ProfileStats{
 				Posts:       3,
@@ -864,7 +864,7 @@ func getMockProfileInternalData() ProfileData {
 				User: User{
 					ID:     "maia",
 					Handle: "@maia",
-					Avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
 				},
 				Content: "Just finished this oak coffee table! Happy to step out of my comfort-zone and share some joinery! This piece is available 💜💸",
 				TimeAgo: "2h ago",
@@ -885,7 +885,7 @@ func getMockProfileInternalData() ProfileData {
 				User: User{
 					ID:     "maia",
 					Handle: "@maia",
-					Avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
 				},
 				Content: "Spending today selecting timber for the next commission. There's something meditative about running your hands along the grain, feeling for the perfect piece that wants to become a dining table. The wood tells its own story - weather marks, growth patterns, the years it spent reaching toward light.",
 				TimeAgo: "1d ago",
@@ -901,7 +901,7 @@ func getMockProfileInternalData() ProfileData {
 				User: User{
 					ID:     "maia",
 					Handle: "@maia",
-					Avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
 				},
 				Content: "Traditional style - the backbone of solid furniture. Here's the technique I learned from my mentor, passed down through generations of craftspeople. No shortcuts, just sharp tools and patient hands.",
 				TimeAgo: "3d ago",
