@@ -43,6 +43,7 @@ func main() {
 
 	// App routes
 	mux.HandleFunc("/dashboard", handlers.DashboardHandler)
+	mux.HandleFunc("/dashboard/", handlers.DashboardHandler)
 	mux.HandleFunc("/profile", handlers.ProfileHandler)
 	mux.HandleFunc("/profile/", handlers.ProfileHandler)
 
