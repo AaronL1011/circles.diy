@@ -648,13 +648,13 @@ func getMockDashboardData() DashboardData {
 				User: User{
 					ID:     "maia",
 					Handle: "@maia",
-					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=128&h=128&fit=crop&crop=face",
+					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=48&h=48&fit=crop&crop=face",
 				},
 				Content: "Just finished this oak coffee table! Happy to step out of my comfort-zone and share some joinery! This piece is available 💜💸",
 				TimeAgo: "2m ago",
 				Circle:  "Woodworking",
 				Image: &MediaItem{
-					URL: "https://images.unsplash.com/photo-1707749522150-e3b1b5f3e079?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8b2FrJTIwdGFibGV8ZW58MHx8MHx8fDI%3D",
+					URL: "https://images.unsplash.com/photo-1707749522150-e3b1b5f3e079?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8b2FrJTIwdGFibGV8ZW58MHx8MHx8fDI%3D",
 					Alt: "Oak coffee table project",
 				},
 				CanBuy: true,
@@ -664,13 +664,13 @@ func getMockDashboardData() DashboardData {
 				User: User{
 					ID:     "heathtyler",
 					Handle: "@heathtyler",
-					Avatar: "https://unsplash.com/photos/_mscfMq3kKI/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NXx8cHJvZmlsZSUyMHBpY3xlbnwwfHx8fDE3NTY2MzgyNTd8Mg&force=true&w=256&crop=face",
+					Avatar: "https://images.unsplash.com/photo-1581391528803-54be77ce23e3?w=48&h=48&fit=crop&crop=face",
 				},
 				Content: "Warming up the barbeque and just got couple cases of the finest bread-water. Keen to see you all... remember 7PM dont be late!",
 				TimeAgo: "15m ago",
 				Circle:  "The Crop Circle",
 				Image: &MediaItem{
-					URL: "https://images.unsplash.com/photo-1664463758574-e640a7a998d4?q=80&w=2831&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+					URL: "https://images.unsplash.com/photo-1664463758574-e640a7a998d4?q=80&w=600&auto=format&fit=crop",
 					Alt: "BBQ gathering setup",
 				},
 				CanBuy: false,
@@ -680,13 +680,13 @@ func getMockDashboardData() DashboardData {
 				User: User{
 					ID:     "sara_pcb",
 					Handle: "@sara_pcb",
-					Avatar: "https://unsplash.com/photos/3TLl_97HNJo/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTV8fHByb2ZpbGUlMjBwaWN8ZW58MHx8fHwxNzU2NjM4MjU3fDI&force=true&w=128&crop=face",
+					Avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=48&h=48&auto=format&fit=crop",
 				},
 				Content: "New tutorial series starting: \"Arduino for Beginners\". First session covers basic circuits and programming fundamentals.",
 				TimeAgo: "1h ago",
 				Circle:  "DIY Electronics",
 				Image: &MediaItem{
-					URL: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop&crop=center",
+					URL: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&fit=crop&crop=center",
 					Alt: "Arduino tutorial setup",
 				},
 				CanBuy: false,
@@ -705,9 +705,9 @@ func getMockDashboardData() DashboardData {
 		},
 		FeedOffset: 4,
 		Circles: []Circle{
-			{ID: "1", Name: "Woodworking", Thumbnail: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=24&h=24&fit=crop&crop=center", MemberCount: "8 online"},
-			{ID: "2", Name: "The Crop Circle", Thumbnail: "https://cdn.britannica.com/15/152615-050-3CB2AEEA/Crop-circle-England.jpg", MemberCount: "12 members"},
-			{ID: "3", Name: "DIY Electronics", Thumbnail: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=24&h=24&fit=crop&crop=center", MemberCount: "24 members"},
+			{ID: "1", Name: "Woodworking", Thumbnail: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=48&h=48&fit=crop&crop=center", MemberCount: "8 online"},
+			{ID: "2", Name: "The Crop Circle", Thumbnail: "https://images.unsplash.com/photo-1611402858501-d3de70f3c67e?q=80&w=48&auto=format&fit=crop", MemberCount: "12 members"},
+			{ID: "3", Name: "DIY Electronics", Thumbnail: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=48&h=48&fit=crop&crop=center", MemberCount: "24 members"},
 		},
 		Discussions: []Discussion{
 			{ID: "1", Title: "Sustainable Materials: Where to Source?", Preview: "Looking for suppliers of ethically sourced hardwoods. What are your go-to sources for...", Circle: "Woodworking", TimeAgo: "23 replies • 45m ago"},
@@ -722,9 +722,9 @@ func getMockDashboardData() DashboardData {
 			{ID: "2", User: "@craft_collective", Content: "Tip: pre-drill hardwood to avoid splitting", ExpiresIn: "18h left"},
 		},
 		MarketplaceItems: []MarketplaceItem{
-			{ID: "1", Title: "Cordless Drill", Price: "$85", Image: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=120&h=80&fit=crop&crop=center", Location: "Sydney, NSW", TimeAgo: "3h ago"},
-			{ID: "2", Title: "Ceramic Wheel & Tools", Price: "Trade", Image: "https://unsplash.com/photos/ZSgWcW70cTs/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NXx8Y2VyYW1pYyUyMHdoZWVsfGVufDB8fHx8MTc1NjU1NjAxNXwy&force=true&w=640", Location: "Stanwell Park, NSW", TimeAgo: "1d ago"},
-			{ID: "3", Title: "Oak Lumber Bundle", Price: "$120", Image: "https://unsplash.com/photos/urjasxHT9Ck/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8OHx8bHVtYmVyfGVufDB8fHx8MTc1NjU1NjcwNnwy&force=true&w=640", Location: "Granville, NSW", TimeAgo: "2d ago"},
+			{ID: "1", Title: "Cordless Drill", Price: "$85", Image: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=128&fit=crop&crop=center", Location: "Sydney, NSW", TimeAgo: "3h ago"},
+			{ID: "2", Title: "Ceramic Wheel & Tools", Price: "Trade", Image: "https://unsplash.com/photos/ZSgWcW70cTs/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NXx8Y2VyYW1pYyUyMHdoZWVsfGVufDB8fHx8MTc1NjU1NjAxNXwy&force=true&w=128", Location: "Stanwell Park, NSW", TimeAgo: "1d ago"},
+			{ID: "3", Title: "Oak Lumber Bundle", Price: "$120", Image: "https://unsplash.com/photos/urjasxHT9Ck/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8OHx8bHVtYmVyfGVufDB8fHx8MTc1NjU1NjcwNnwy&force=true&w=128", Location: "Granville, NSW", TimeAgo: "2d ago"},
 		},
 		Impact: []ImpactItem{
 			{Label: "Contributions", Value: "47"},
