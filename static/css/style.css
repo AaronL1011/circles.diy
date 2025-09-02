@@ -357,6 +357,102 @@ input:focus {
     flex: 1;
 }
 
+.profile-name-edit,
+.profile-handle-edit {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-name-edit {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.profile-handle-edit {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin: 0 0 1rem 0;
+}
+
+.edit-inline-btn {
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.15s ease;
+    border-radius: var(--container-radius);
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.edit-inline-btn:hover {
+    color: var(--text-primary);
+    background: var(--hover-bg);
+}
+
+.profile-bio-edit {
+    position: relative;
+}
+
+.profile-bio-edit p {
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+}
+
+.edit-bio-btn {
+    background: none;
+    border: 1px solid var(--border-secondary);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    transition: all 0.15s ease;
+    border-radius: var(--container-radius);
+}
+
+.edit-bio-btn:hover {
+    background: var(--active-bg);
+    color: var(--active-text);
+    border-color: var(--border-primary);
+}
+
+.profile-actions-edit {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-end;
+}
+
+.profile-preview-btn,
+.profile-share-btn {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border-primary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
+    border-radius: var(--container-radius);
+}
+
+.profile-preview-btn {
+    background: var(--active-bg);
+    color: var(--active-text);
+    text-decoration: none;
+}
+
+.profile-share-btn {
+    background: none;
+    color: var(--text-primary);
+}
+
+.profile-preview-btn:hover,
+.profile-share-btn:hover {
+    opacity: 0.8;
+}
+
 .profile-actions-edit {
     display: flex;
     gap: 0.75rem;
@@ -383,11 +479,11 @@ input:focus {
     .dashboard {
         grid-template-columns: 200px 1fr;
     }
-    
+
     .right-sidebar {
         display: none;
     }
-    
+
     .profile-layout {
         grid-template-columns: 1fr;
         padding: 1rem;
@@ -412,16 +508,16 @@ input:focus {
         padding: 1rem;
         gap: 1rem;
     }
-    
+
     .left-sidebar {
         order: -1;
     }
-    
+
     .left-sidebar,
     .right-sidebar {
         display: none;
     }
-    
+
     .main-content {
         width: 100%;
         max-width: 100%;
@@ -442,7 +538,7 @@ input:focus {
         max-width: 100%;
         overflow-x: hidden;
     }
-    
+
     .main-nav {
         order: 3;
         width: 100%;
@@ -451,20 +547,20 @@ input:focus {
         padding-top: 1rem;
         overflow-x: auto;
     }
-    
+
     .nav-item {
         padding: 0.75rem 1rem;
         font-size: 0.8rem;
         white-space: nowrap;
     }
-    
+
     .dashboard {
         padding: 1rem;
         gap: 1rem;
         max-width: 100%;
         overflow-x: hidden;
     }
-    
+
     .profile-container {
         padding: 0 1rem 2rem;
     }
@@ -484,7 +580,7 @@ input:focus {
         gap: 1rem;
         justify-content: space-around;
     }
-    
+
     .profile-layout {
         padding: 1rem;
     }
@@ -496,31 +592,27 @@ input:focus {
 }
 
 @media (max-width: 480px) {
-    html {
-        font-size: 14px;
-    }
-
     .header-content {
         padding: 0.75rem;
         max-width: 100%;
         overflow-x: hidden;
     }
-    
+
     .brand h1 {
         font-size: 1.25rem;
     }
-    
+
     .header-actions {
         flex-wrap: wrap;
         gap: 0.5rem;
     }
-    
+
     .dashboard {
         padding: 0.75rem;
         max-width: 100%;
         overflow-x: hidden;
     }
-    
+
     .profile-header {
         gap: 1rem;
     }
@@ -774,6 +866,21 @@ input:focus {
 	);
 }
 
+.feed-more-btn {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    transition: all 0.15s ease;
+    border-radius: var(--container-radius);
+    display: flex;
+    justify-content: center;
+}
+
 .feed-item {
     border: 1px solid var(--border-secondary);
     padding: 1.5rem;
@@ -968,6 +1075,142 @@ input:focus {
     border-bottom-color: var(--border-primary);
     font-weight: 500;
 }
+
+.draft-count {
+            background: var(--text-secondary);
+            color: var(--bg-primary);
+            font-size: 0.7rem;
+            padding: 0.125rem 0.375rem;
+            border-radius: 999px;
+            margin-left: 0.5rem;
+        }
+
+        .new-post-section {
+            margin-bottom: 1rem;
+        }
+
+        .new-post-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: var(--active-bg);
+            color: var(--active-text);
+            border: 1px solid var(--border-primary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.15s ease;
+            border-radius: var(--container-radius);
+            width: 100%;
+            justify-content: center;
+        }
+
+        .new-post-btn:hover {
+            opacity: 0.8;
+        }
+
+        .posts-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .post-item-edit {
+            border: 1px solid var(--border-secondary);
+            padding: 1.5rem;
+            background: var(--bg-primary);
+            transition: all 0.2s ease;
+            border-radius: var(--container-radius);
+            position: relative;
+        }
+
+        .post-item-edit.draft {
+            background: var(--bg-tertiary);
+            border-color: var(--text-tertiary);
+        }
+
+        .post-draft-label {
+            /* background: var(--text-tertiary); */
+            color: var(--text-primary);
+            padding-bottom: 0.5rem;
+            font-size: 1rem;
+            border-radius: var(--container-radius);
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .post-edit-controls {
+            position: absolute;
+            bottom: 1rem;
+            right: 1.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .post-edit-btn,
+        .post-delete-btn {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-secondary);
+            padding: 0.5rem;
+            border-radius: var(--container-radius);
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.15s ease;
+        }
+
+        .post-edit-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--border-primary);
+        }
+
+        .post-delete-btn:hover {
+            color: #ef4444;
+            border-color: #ef4444;
+        }
+
+        .post-stats {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-light);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .post-draft-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .draft-publish-btn,
+        .draft-continue-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-primary);
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.15s ease;
+            border-radius: var(--container-radius);
+        }
+
+        .draft-publish-btn {
+            background: var(--active-bg);
+            color: var(--active-text);
+        }
+
+        .draft-continue-btn {
+            background: none;
+            color: var(--text-primary);
+        }
+
+        .draft-publish-btn:hover,
+        .draft-continue-btn:hover {
+            opacity: 0.8;
+        }
 
 /* Posts Grid */
 .posts-grid {
