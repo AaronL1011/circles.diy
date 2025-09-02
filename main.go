@@ -322,34 +322,6 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, data)
 }
 
-func conceptDemoHandler(w http.ResponseWriter, r *http.Request) {
-	// Handle concept demo routes
-	switch r.URL.Path {
-	case "/concept-demo":
-		// Redirect to ensure trailing slash
-		http.Redirect(w, r, "/concept-demo/", http.StatusMovedPermanently)
-		return
-	case "/concept-demo/":
-		// Serve the HTML file
-		serveStaticFile(w, r, "concept-demo/index.html", "text/html; charset=utf-8")
-		return
-	case "/concept-demo/app.css":
-		// Serve the CSS file
-		serveStaticFile(w, r, "concept-demo/app.css", "text/css; charset=utf-8")
-		return
-	case "/concept-demo/profile-internal.html":
-		// Serve the internal profile page (edit view)
-		serveStaticFile(w, r, "concept-demo/profile-internal.html", "text/html; charset=utf-8")
-		return
-	case "/concept-demo/profile-external.html":
-		// Serve the external profile page (public view)
-		serveStaticFile(w, r, "concept-demo/profile-external.html", "text/html; charset=utf-8")
-		return
-	default:
-		http.NotFound(w, r)
-	}
-}
-
 func serveStaticFile(w http.ResponseWriter, r *http.Request, filePath, contentType string) {
 	// Security: prevent path traversal
 	if strings.Contains(filePath, "..") {
@@ -941,7 +913,6 @@ func getMockProfileInternalData() ProfileData {
 				Stats: &PostStats{
 					Replies: 34,
 					Shares:  67,
-					Views:   203,
 				},
 			},
 		},
@@ -1023,21 +994,14 @@ func main() {
 
 	mux := http.NewServeMux()
 
-	// IMPORTANT: Keep existing root route unchanged - serves index.html
+	// Manifesto & user research routes
 	mux.HandleFunc("/", homeHandler)
 	mux.HandleFunc("/feedback", feedbackHandler)
 
-	// New template-based routes
+	// App routes
 	mux.HandleFunc("/dashboard", dashboardHandler)
 	mux.HandleFunc("/profile", profileHandler)
 	mux.HandleFunc("/profile/", profileHandler)
-
-	// Existing concept-demo routes (preserved)
-	mux.HandleFunc("/concept-demo", conceptDemoHandler)
-	mux.HandleFunc("/concept-demo/", conceptDemoHandler)
-	mux.HandleFunc("/concept-demo/app.css", conceptDemoHandler)
-	mux.HandleFunc("/concept-demo/profile-internal.html", conceptDemoHandler)
-	mux.HandleFunc("/concept-demo/profile-external.html", conceptDemoHandler)
 
 	// Static asset routes
 	mux.HandleFunc("/static/css/style.css", func(w http.ResponseWriter, r *http.Request) {

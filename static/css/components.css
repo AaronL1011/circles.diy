@@ -427,7 +427,6 @@
 .content-nav {
     display: flex;
     border-bottom: 1px solid var(--border-light);
-    margin-bottom: 2rem;
 }
 
 .content-nav-item {
