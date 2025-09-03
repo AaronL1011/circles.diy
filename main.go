@@ -50,6 +50,8 @@ func main() {
 	mux.HandleFunc("/circles/", handlers.CirclesHandler)
 	mux.HandleFunc("/chat", handlers.ChatHandler)
 	mux.HandleFunc("/chat/", handlers.ChatHandler)
+	mux.HandleFunc("/gather", handlers.GatherHandler)
+	mux.HandleFunc("/gather/", handlers.GatherHandler)
 
 	// Static asset routes
 	mux.HandleFunc("/static/css/style.css", func(w http.ResponseWriter, r *http.Request) {

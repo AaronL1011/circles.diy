@@ -14,6 +14,7 @@ type Templates struct {
 	ProfileInternal *template.Template
 	Circles         *template.Template
 	Chat            *template.Template
+	Gather          *template.Template
 }
 
 var templates *Templates
@@ -136,6 +137,24 @@ func InitTemplates() error {
 		return fmt.Errorf("failed to parse chat template: %v", err)
 	}
 	templates.Chat = chatTemplate
+
+	// Parse gather template
+	gatherTemplate := template.New("gather").Funcs(funcMap)
+	gatherTemplate, err = gatherTemplate.ParseGlob("templates/layouts/*.html")
+	if err != nil {
+		return fmt.Errorf("failed to parse layout templates for gather: %v", err)
+	}
+
+	gatherTemplate, err = gatherTemplate.ParseGlob("templates/components/*.html")
+	if err != nil {
+		return fmt.Errorf("failed to parse component templates for gather: %v", err)
+	}
+
+	gatherTemplate, err = gatherTemplate.ParseFiles("templates/pages/gather.html")
+	if err != nil {
+		return fmt.Errorf("failed to parse gather template: %v", err)
+	}
+	templates.Gather = gatherTemplate
 
 	log.Println("Templates initialized successfully")
 	return nil

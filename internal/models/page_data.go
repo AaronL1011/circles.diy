@@ -87,3 +87,67 @@ type Contact struct {
 	LastSeen     string `json:"last_seen,omitempty"`
 	Relationship string `json:"relationship"` // friend, circle_member, etc.
 }
+
+type GatherPageData struct {
+	BaseData
+	FeaturedEvents   []GatherEvent      `json:"featured_events"`
+	UpcomingEvents   []GatherEvent      `json:"upcoming_events"`
+	MyEvents         []GatherEvent      `json:"my_events"`
+	EventCategories  []EventCategory    `json:"event_categories"`
+	PopularLocations []EventLocation    `json:"popular_locations"`
+}
+
+type GatherEvent struct {
+	ID              string          `json:"id"`
+	Title           string          `json:"title"`
+	Description     string          `json:"description"`
+	Host            User            `json:"host"`
+	Circle          string          `json:"circle,omitempty"`
+	DateTime        string          `json:"date_time"`
+	TimeAgo         string          `json:"time_ago"`
+	Duration        string          `json:"duration"`
+	Location        EventLocation   `json:"location"`
+	Type            string          `json:"type"` // in-person, online, hybrid
+	Category        string          `json:"category"`
+	IsTicketed      bool            `json:"is_ticketed"`
+	Price           string          `json:"price,omitempty"`
+	Currency        string          `json:"currency,omitempty"`
+	Capacity        int             `json:"capacity"`
+	AttendeeCount   int             `json:"attendee_count"`
+	RSVPStatus      string          `json:"rsvp_status"` // going, maybe, not_going, not_responded
+	IsHost          bool            `json:"is_host"`
+	Image           *MediaItem      `json:"image,omitempty"`
+	Tags            []string        `json:"tags"`
+	Announcements   []Announcement  `json:"announcements"`
+	Attendees       []EventAttendee `json:"attendees"`
+}
+
+type EventLocation struct {
+	Type        string  `json:"type"` // venue, online, address
+	Name        string  `json:"name"`
+	Address     string  `json:"address,omitempty"`
+	City        string  `json:"city,omitempty"`
+	OnlineLink  string  `json:"online_link,omitempty"`
+	Coordinates string  `json:"coordinates,omitempty"`
+}
+
+type EventCategory struct {
+	ID    string `json:"id"`
+	Name  string `json:"name"`
+	Icon  string `json:"icon"`
+	Count int    `json:"count"`
+}
+
+type Announcement struct {
+	ID      string `json:"id"`
+	Title   string `json:"title"`
+	Content string `json:"content"`
+	Author  User   `json:"author"`
+	TimeAgo string `json:"time_ago"`
+}
+
+type EventAttendee struct {
+	User
+	RSVPStatus string `json:"rsvp_status"`
+	JoinedAt   string `json:"joined_at"`
+}
