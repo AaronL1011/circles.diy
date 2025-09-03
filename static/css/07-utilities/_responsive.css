@@ -1,0 +1,48 @@
+/* Responsive Utilities */
+@media (max-width: 767px) {
+    .u-mobile-hidden {
+        display: none !important;
+    }
+    
+    .u-mobile-visible {
+        display: block !important;
+    }
+    
+    .u-mobile-text-center {
+        text-align: center !important;
+    }
+    
+    .u-mobile-text-left {
+        text-align: left !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .u-desktop-hidden {
+        display: none !important;
+    }
+    
+    .u-desktop-visible {
+        display: block !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .u-tablet-hidden {
+        display: none !important;
+    }
+    
+    .u-tablet-visible {
+        display: block !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .u-large-desktop-visible {
+        display: block !important;
+    }
+    
+    .u-large-desktop-hidden {
+        display: none !important;
+    }
+}

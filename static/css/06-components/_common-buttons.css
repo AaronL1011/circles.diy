@@ -1,0 +1,19 @@
+/* Common Buttons */
+.see-all-btn,
+.manage-plugins-btn {
+    width: 100%;
+    padding: 0.5rem;
+    background: none;
+    border: 1px solid var(--border-primary);
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    transition: all 0.15s ease;
+    border-radius: var(--container-radius);
+}
+
+.see-all-btn:hover,
+.manage-plugins-btn:hover {
+    background: var(--active-bg);
+    color: var(--active-text);
+}

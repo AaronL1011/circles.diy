@@ -1,0 +1,5 @@
+/* Layout and Sizing Settings */
+:root {
+    /* Border Radius System - Set to 0 for sharp corners, increase for rounded */
+    --container-radius: 0px;  /* Main control for all container roundness (0px = sharp, 999px = fully rounded) */
+}

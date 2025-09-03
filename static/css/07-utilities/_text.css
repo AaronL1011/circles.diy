@@ -1,0 +1,50 @@
+/* Text Utilities */
+.u-text-left {
+    text-align: left !important;
+}
+
+.u-text-center {
+    text-align: center !important;
+}
+
+.u-text-right {
+    text-align: right !important;
+}
+
+.u-text-justify {
+    text-align: justify !important;
+}
+
+.u-text-nowrap {
+    white-space: nowrap !important;
+}
+
+.u-text-wrap {
+    white-space: normal !important;
+}
+
+.u-text-truncate {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+.u-text-bold {
+    font-weight: bold !important;
+}
+
+.u-text-normal {
+    font-weight: normal !important;
+}
+
+.u-text-uppercase {
+    text-transform: uppercase !important;
+}
+
+.u-text-lowercase {
+    text-transform: lowercase !important;
+}
+
+.u-text-capitalize {
+    text-transform: capitalize !important;
+}

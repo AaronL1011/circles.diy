@@ -1,0 +1,45 @@
+/* Main Navigation Component */
+.main-nav {
+    display: flex;
+    gap: 0;
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    border-bottom: 2px solid transparent;
+    color: var(--text-primary);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.nav-item:hover {
+    background: var(--hover-bg);
+}
+
+.nav-item[aria-current="page"] {
+    border-bottom-color: var(--border-primary);
+    font-weight: 500;
+}
+
+/* Navigation responsive styles */
+@media (max-width: 768px) {
+    .main-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        border-top: 1px solid var(--border-primary);
+        padding-top: 1rem;
+        overflow-x: auto;
+    }
+
+    .nav-item {
+        padding: 0.75rem 1rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+}

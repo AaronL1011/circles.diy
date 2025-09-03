@@ -1,0 +1,54 @@
+/* Edit Controls */
+.edit-banner-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    padding: 0.5rem;
+    border-radius: var(--container-radius);
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: all 0.15s ease;
+}
+
+.edit-banner-btn:hover {
+    background: var(--active-bg);
+    color: var(--active-text);
+}
+
+.profile-avatar-edit {
+    width: 120px;
+    height: 120px;
+    border-radius: var(--container-radius);
+    overflow: hidden;
+    border: 4px solid var(--bg-primary);
+    flex-shrink: 0;
+    position: relative;
+}
+
+.profile-avatar-edit img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.edit-avatar-btn {
+    position: absolute;
+    bottom: 0.25rem;
+    right: 0.25rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    padding: 0.25rem;
+    border-radius: var(--container-radius);
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: all 0.15s ease;
+}
+
+.edit-avatar-btn:hover {
+    background: var(--active-bg);
+    color: var(--active-text);
+}

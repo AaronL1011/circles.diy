@@ -10,12 +10,15 @@ import (
 )
 
 func BuildCSS() error {
-	cssFiles := []string{
-		"static/css/variables.css",
-		"static/css/base.css",
-		"static/css/layout.css",
-		"static/css/components.css",
-		"static/css/themes.css",
+	// ITCSS Layer directories in correct specificity order
+	cssDirectories := []string{
+		"static/css/01-settings",
+		"static/css/02-tools",
+		"static/css/03-generic", 
+		"static/css/04-elements",
+		"static/css/05-objects",
+		"static/css/06-components",
+		"static/css/07-utilities",
 	}
 
 	// Create output file
@@ -31,38 +34,59 @@ func BuildCSS() error {
 		return fmt.Errorf("failed to write header: %v", err)
 	}
 
-	// Concatenate all CSS files
-	for _, cssFile := range cssFiles {
-		if _, err := os.Stat(cssFile); os.IsNotExist(err) {
-			log.Printf("CSS file not found: %s, skipping", cssFile)
+	// Process each ITCSS layer directory
+	for _, cssDir := range cssDirectories {
+		if _, err := os.Stat(cssDir); os.IsNotExist(err) {
+			log.Printf("CSS directory not found: %s, skipping", cssDir)
 			continue
 		}
 
-		file, err := os.Open(cssFile)
+		// Get all CSS files in the directory
+		files, err := filepath.Glob(filepath.Join(cssDir, "*.css"))
 		if err != nil {
-			return fmt.Errorf("failed to open CSS file %s: %v", cssFile, err)
+			return fmt.Errorf("failed to glob CSS files in %s: %v", cssDir, err)
 		}
 
-		// Write file marker comment
-		if _, err := output.WriteString(fmt.Sprintf("/* === %s === */\n", cssFile)); err != nil {
+		if len(files) == 0 {
+			log.Printf("No CSS files found in %s, skipping", cssDir)
+			continue
+		}
+
+		// Write layer comment
+		layerName := filepath.Base(cssDir)
+		if _, err := output.WriteString(fmt.Sprintf("/* === ITCSS Layer: %s === */\n", layerName)); err != nil {
+			return fmt.Errorf("failed to write layer comment: %v", err)
+		}
+
+		// Process each CSS file in the directory
+		for _, cssFile := range files {
+			file, err := os.Open(cssFile)
+			if err != nil {
+				return fmt.Errorf("failed to open CSS file %s: %v", cssFile, err)
+			}
+
+			// Write file marker comment
+			fileName := filepath.Base(cssFile)
+			if _, err := output.WriteString(fmt.Sprintf("/* --- %s --- */\n", fileName)); err != nil {
+				file.Close()
+				return fmt.Errorf("failed to write file marker: %v", err)
+			}
+
+			// Copy file content
+			if _, err := io.Copy(output, file); err != nil {
+				file.Close()
+				return fmt.Errorf("failed to copy CSS file %s: %v", cssFile, err)
+			}
+
+			// Add separator
+			if _, err := output.WriteString("\n\n"); err != nil {
+				file.Close()
+				return fmt.Errorf("failed to write separator: %v", err)
+			}
+
 			file.Close()
-			return fmt.Errorf("failed to write file marker: %v", err)
+			log.Printf("Added %s to compiled CSS", cssFile)
 		}
-
-		// Copy file content
-		if _, err := io.Copy(output, file); err != nil {
-			file.Close()
-			return fmt.Errorf("failed to copy CSS file %s: %v", cssFile, err)
-		}
-
-		// Add separator
-		if _, err := output.WriteString("\n\n"); err != nil {
-			file.Close()
-			return fmt.Errorf("failed to write separator: %v", err)
-		}
-
-		file.Close()
-		log.Printf("Added %s to compiled CSS", cssFile)
 	}
 
 	log.Printf("CSS compiled successfully to %s", outputFile)

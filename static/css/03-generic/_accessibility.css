@@ -1,0 +1,55 @@
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .circle-item,
+    .feed-item,
+    .discussion-item,
+    .event-compact,
+    .ripple-compact,
+    .extension-item,
+    .impact-item {
+        border-color: var(--border-primary);
+        border-width: 2px;
+    }
+    
+    .global-search,
+    .user-menu,
+    .sidebar-action-btn,
+    .action-btn-vertical,
+    .feed-action,
+    .discussion-action {
+        border-width: 2px;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .main-header,
+    .left-sidebar,
+    .right-sidebar,
+    .header-actions {
+        display: none;
+    }
+    
+    .dashboard {
+        grid-template-columns: 1fr;
+        max-width: none;
+    }
+    
+    .sidebar-section,
+    .feed-section,
+    .discussions-section {
+        break-inside: avoid;
+    }
+}

@@ -1,0 +1,97 @@
+/* Undecorated Layout Objects - structural patterns only */
+
+/* Main Dashboard Layout Object */
+.o-dashboard {
+    flex: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    display: grid;
+    grid-template-columns: 250px 1fr 280px;
+    gap: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Two-column Layout Object */
+.o-two-column {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+}
+
+/* Three-column Layout Object */
+.o-three-column {
+    display: grid;
+    grid-template-columns: 250px 1fr 280px;
+    gap: 2rem;
+}
+
+/* Container Object */
+.o-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Sidebar Object */
+.o-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Main Content Object */
+.o-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-height: 600px;
+}
+
+/* Grid Object */
+.o-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.o-grid--auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.o-grid--auto-fill {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+/* Flex Object */
+.o-flex {
+    display: flex;
+}
+
+.o-flex--column {
+    flex-direction: column;
+}
+
+.o-flex--center {
+    align-items: center;
+    justify-content: center;
+}
+
+.o-flex--between {
+    justify-content: space-between;
+}
+
+/* Media Object */
+.o-media {
+    display: flex;
+    gap: 1rem;
+}
+
+.o-media__figure {
+    flex-shrink: 0;
+}
+
+.o-media__body {
+    flex: 1;
+    min-width: 0;
+}
