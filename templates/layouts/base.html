@@ -48,7 +48,7 @@
 {{define "nav"}}
 <nav class="main-nav">
     <a href="/dashboard" class="nav-item" {{if eq .ActiveNav "dashboard"}}aria-current="page"{{end}}>Dashboard</a>
-    <button class="nav-item" data-section="circles" {{if eq .ActiveNav "circles"}}aria-current="page"{{end}}>Circles</button>
+    <a href="/circles" class="nav-item" {{if eq .ActiveNav "circles"}}aria-current="page"{{end}}>Circles</a>
     <button class="nav-item" data-section="chat" {{if eq .ActiveNav "chat"}}aria-current="page"{{end}}>Chat</button>
     <button class="nav-item" data-section="gatherings" {{if eq .ActiveNav "gatherings"}}aria-current="page"{{end}}>Gatherings</button>
     <a href="/profile" class="nav-item" {{if eq .ActiveNav "profile"}}aria-current="page"{{end}}>Profile</a>

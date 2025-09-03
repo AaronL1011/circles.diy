@@ -46,6 +46,8 @@ func main() {
 	mux.HandleFunc("/dashboard/", handlers.DashboardHandler)
 	mux.HandleFunc("/profile", handlers.ProfileHandler)
 	mux.HandleFunc("/profile/", handlers.ProfileHandler)
+	mux.HandleFunc("/circles", handlers.CirclesHandler)
+	mux.HandleFunc("/circles/", handlers.CirclesHandler)
 
 	// Static asset routes
 	mux.HandleFunc("/static/css/style.css", func(w http.ResponseWriter, r *http.Request) {
@@ -73,6 +75,7 @@ func main() {
 	log.Printf("  / - Original landing page (index.html)")
 	log.Printf("  /dashboard - New dashboard with templates + HTMX")
 	log.Printf("  /profile - New profile page with templates + HTMX")
+	log.Printf("  /circles - New circles page with templates + HTMX")
 	log.Printf("  /concept-demo/ - Original concept demo")
 	log.Fatal(server.ListenAndServe())
 }

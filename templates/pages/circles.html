@@ -1,0 +1,185 @@
+{{define "circles"}}
+{{template "base" .}}
+{{end}}
+
+{{define "main"}}
+<div class="circles-page">
+    <div class="circles-header">
+        <div class="circles-title-section">
+            <h1 class="circles-title">My Circles</h1>
+            <p class="circles-subtitle">Stay connected with your communities and discover new ones</p>
+        </div>
+        <div class="circles-actions">
+            <button class="btn-secondary" hx-get="/circles/search" hx-target="#modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+                </svg>
+                Discover Circles
+            </button>
+            <button class="btn-primary" hx-get="/circles/create" hx-target="#modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
+                </svg>
+                Create Circle
+            </button>
+        </div>
+    </div>
+
+    <!-- <div class="circles-stats">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">{{.Stats.TotalPosts}}</div>
+                <div class="stat-label">Total Posts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">{{.Stats.ActiveMembers}}</div>
+                <div class="stat-label">Active Members</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">{{.Stats.WeeklyGrowth}}</div>
+                <div class="stat-label">Weekly Growth</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">{{.Stats.EngagementRate}}</div>
+                <div class="stat-label">Engagement Rate</div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="circles-content">
+        <div class="circles-main">
+            <section class="my-circles-section">
+                <div class="section-header">
+                    <h2>Your Circles</h2>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">All</button>
+                        <button class="filter-tab" data-filter="active">Active</button>
+                        <button class="filter-tab" data-filter="admin">Admin</button>
+                    </div>
+                </div>
+                
+                <div class="circles-grid" id="circles-grid">
+                    {{range .Circles}}
+                    {{template "circle-card" .}}
+                    {{end}}
+                </div>
+            </section>
+
+            <section class="featured-circles-section">
+                <div class="section-header">
+                    <h2>Discover New Circles</h2>
+                    <button class="see-all-btn" hx-get="/circles/browse" hx-target="#main-content">
+                        Browse All
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+                            <path d="m221.66,133.66-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="featured-grid">
+                    {{range .FeaturedCircles}}
+                    <div class="featured-circle" hx-get="/circles/{{.ID}}/preview" hx-target="#modal">
+                        <div class="featured-thumbnail">
+                            <img src="{{.Thumbnail}}" alt="{{.Name}}" />
+                        </div>
+                        <div class="featured-info">
+                            <h3 class="featured-name">{{.Name}}</h3>
+                            <p class="featured-description">{{.Description}}</p>
+                            <div class="featured-meta">
+                                <span class="featured-members">{{.MemberCount}} members</span>
+                                <span class="featured-active">{{.OnlineCount}} online</span>
+                            </div>
+                        </div>
+                        <button class="join-btn" hx-post="/circles/{{.ID}}/join" hx-target="closest .featured-circle" hx-swap="outerHTML">
+                            Join Circle
+                        </button>
+                    </div>
+                    {{end}}
+                </div>
+            </section>
+        </div>
+
+        <aside class="circles-sidebar">
+            <div class="sidebar-section">
+                <h3>Recent Activity</h3>
+                <div class="activity-list">
+                    {{range .RecentActivity}}
+                    <div class="activity-item" hx-get="/circles/{{.CircleID}}" hx-target="#main-content">
+                        <div class="activity-icon activity-{{.Type}}">
+                            {{if eq .Type "post"}}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256">
+                                <path d="M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48ZM32,192V64H224V192Z"></path>
+                            </svg>
+                            {{else if eq .Type "event"}}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256">
+                                <path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Z"></path>
+                            </svg>
+                            {{else if eq .Type "announcement"}}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256">
+                                <path d="M224,71.1a8,8,0,0,1-10.78-3.42,94.13,94.13,0,0,0-33.46-36.91,8,8,0,1,1,8.54-13.54,111.46,111.46,0,0,1,39.12,43.09A8,8,0,0,1,224,71.1ZM35.71,72a8,8,0,0,1,7.1-8.78,111.46,111.46,0,0,1,39.12-43.09,8,8,0,1,1,8.54,13.54A94.13,94.13,0,0,0,57,70.58,8,8,0,0,1,35.71,72Z"></path>
+                            </svg>
+                            {{else}}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256">
+                                <path d="M224,128a96,96,0,1,1-96-96A96,96,0,0,1,224,128Z"></path>
+                            </svg>
+                            {{end}}
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">{{.Title}}</div>
+                            <div class="activity-meta">
+                                <span class="activity-user">{{.User}}</span>
+                                <span class="activity-time">{{.TimeAgo}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {{end}}
+                </div>
+                <button class="sidebar-action-btn" hx-get="/activity/all" hx-target="#main-content">View All Activity</button>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<!-- Modal container for HTMX -->
+<div id="modal" hx-swap-oob="true"></div>
+{{end}}
+
+{{define "scripts"}}
+<script>
+// Filter functionality for circles
+document.addEventListener('DOMContentLoaded', function() {
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const circleCards = document.querySelectorAll('.circle-card');
+    
+    filterTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const filter = this.dataset.filter;
+            
+            // Update active tab
+            filterTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filter circles
+            circleCards.forEach(card => {
+                const shouldShow = filter === 'all' || 
+                    (filter === 'active' && card.dataset.active === 'true') ||
+                    (filter === 'admin' && (card.dataset.role === 'admin' || card.dataset.role === 'owner'));
+                
+                card.style.display = shouldShow ? 'block' : 'none';
+            });
+        });
+    });
+});
+
+// HTMX event listeners
+document.body.addEventListener('htmx:afterSwap', function(evt) {
+    if (evt.detail.target.id === 'circles-grid') {
+        console.log('Circles grid updated');
+    }
+});
+
+document.body.addEventListener('htmx:responseError', function(evt) {
+    console.error('HTMX Error:', evt.detail.xhr.responseText);
+});
+</script>
+{{end}}

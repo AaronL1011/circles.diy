@@ -41,3 +41,11 @@ type ProfileData struct {
 	Drafts       []DraftPost `json:"drafts"`
 	DraftCount   int         `json:"draft_count"`
 }
+
+type CirclesPageData struct {
+	BaseData
+	Circles         []Circle         `json:"circles"`
+	RecentActivity  []CircleActivity `json:"recent_activity"`
+	Stats           CircleStats      `json:"stats"`
+	FeaturedCircles []Circle         `json:"featured_circles"`
+}
