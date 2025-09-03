@@ -11,7 +11,7 @@ func SecurityMiddleware(next http.Handler) http.Handler {
 		// Content Security Policy - tailored for current site content
 		csp := "default-src 'self'; " +
 			"style-src 'self' 'unsafe-inline'; " + // Allow inline styles for theme system and index.html
-			"script-src 'self' 'unsafe-inline'; " + // Allow self-hosted JS (htmx.min.js) and inline scripts (theme manager)
+			"script-src 'self' 'unsafe-inline' 'unsafe-eval'; " + // Allow self-hosted JS (htmx.min.js), inline scripts (theme manager), and eval for HTMX
 			"img-src 'self' https://images.unsplash.com https://unsplash.com https://media.tenor.com data:; " + // Allow Unsplash images, Tenor GIFs, and data URIs
 			"media-src 'self' https://www.pexels.com https://videos.pexels.com data:; " + // Allow Pexels videos and data URIs
 			"font-src 'self'; " + // Only self-hosted fonts

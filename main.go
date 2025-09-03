@@ -48,6 +48,8 @@ func main() {
 	mux.HandleFunc("/profile/", handlers.ProfileHandler)
 	mux.HandleFunc("/circles", handlers.CirclesHandler)
 	mux.HandleFunc("/circles/", handlers.CirclesHandler)
+	mux.HandleFunc("/chat", handlers.ChatHandler)
+	mux.HandleFunc("/chat/", handlers.ChatHandler)
 
 	// Static asset routes
 	mux.HandleFunc("/static/css/style.css", func(w http.ResponseWriter, r *http.Request) {
@@ -76,6 +78,7 @@ func main() {
 	log.Printf("  /dashboard - New dashboard with templates + HTMX")
 	log.Printf("  /profile - New profile page with templates + HTMX")
 	log.Printf("  /circles - New circles page with templates + HTMX")
+	log.Printf("  /chat - New chat page with templates + HTMX")
 	log.Printf("  /concept-demo/ - Original concept demo")
 	log.Fatal(server.ListenAndServe())
 }

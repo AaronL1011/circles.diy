@@ -49,3 +49,41 @@ type CirclesPageData struct {
 	Stats           CircleStats      `json:"stats"`
 	FeaturedCircles []Circle         `json:"featured_circles"`
 }
+
+type ChatPageData struct {
+	BaseData
+	Conversations []Conversation `json:"conversations"`
+	ActiveChat    *Conversation  `json:"active_chat,omitempty"`
+	Messages      []Message      `json:"messages"`
+	Contacts      []Contact      `json:"contacts"`
+}
+
+type Conversation struct {
+	ID           string  `json:"id"`
+	Name         string  `json:"name"`
+	Avatar       string  `json:"avatar"`
+	LastMessage  string  `json:"last_message"`
+	LastTime     string  `json:"last_time"`
+	UnreadCount  int     `json:"unread_count"`
+	IsOnline     bool    `json:"is_online"`
+	IsGroup      bool    `json:"is_group"`
+	Participants []User  `json:"participants,omitempty"`
+}
+
+type Message struct {
+	ID        string     `json:"id"`
+	Content   string     `json:"content"`
+	Timestamp string     `json:"timestamp"`
+	Sender    User       `json:"sender"`
+	IsOwn     bool       `json:"is_own"`
+	IsRead    bool       `json:"is_read"`
+	Type      string     `json:"type"` // text, image, voice, video, call
+	Media     *MediaItem `json:"media,omitempty"`
+}
+
+type Contact struct {
+	User
+	IsOnline     bool   `json:"is_online"`
+	LastSeen     string `json:"last_seen,omitempty"`
+	Relationship string `json:"relationship"` // friend, circle_member, etc.
+}

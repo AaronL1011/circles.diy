@@ -68,7 +68,7 @@
             <section class="featured-circles-section">
                 <div class="section-header">
                     <h2>Discover New Circles</h2>
-                    <button class="see-all-btn" hx-get="/circles/browse" hx-target="#main-content">
+                    <button class="see-all-btn">
                         Browse All
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
                             <path d="m221.66,133.66-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path>
@@ -90,7 +90,7 @@
                                 <span class="featured-active">{{.OnlineCount}} online</span>
                             </div>
                         </div>
-                        <button class="join-btn" hx-post="/circles/{{.ID}}/join" hx-target="closest .featured-circle" hx-swap="outerHTML">
+                        <button class="join-btn">
                             Join Circle
                         </button>
                     </div>

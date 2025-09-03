@@ -13,6 +13,7 @@ type Templates struct {
 	ProfilePublic   *template.Template
 	ProfileInternal *template.Template
 	Circles         *template.Template
+	Chat            *template.Template
 }
 
 var templates *Templates
@@ -117,6 +118,24 @@ func InitTemplates() error {
 		return fmt.Errorf("failed to parse circles template: %v", err)
 	}
 	templates.Circles = circlesTemplate
+
+	// Parse chat template
+	chatTemplate := template.New("chat").Funcs(funcMap)
+	chatTemplate, err = chatTemplate.ParseGlob("templates/layouts/*.html")
+	if err != nil {
+		return fmt.Errorf("failed to parse layout templates for chat: %v", err)
+	}
+
+	chatTemplate, err = chatTemplate.ParseGlob("templates/components/*.html")
+	if err != nil {
+		return fmt.Errorf("failed to parse component templates for chat: %v", err)
+	}
+
+	chatTemplate, err = chatTemplate.ParseFiles("templates/pages/chat.html")
+	if err != nil {
+		return fmt.Errorf("failed to parse chat template: %v", err)
+	}
+	templates.Chat = chatTemplate
 
 	log.Println("Templates initialized successfully")
 	return nil
