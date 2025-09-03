@@ -49,7 +49,7 @@ func RateLimitMiddleware(next http.Handler) http.Handler {
 		}
 
 		if !rateLimiter.Allow(strings.TrimSpace(ip)) {
-			http.Error(w, "Rate limit exceeded", http.StatusTooManyRequests)
+			http.Error(w, "Rate limit exceeded lol", http.StatusTooManyRequests)
 			return
 		}
 
