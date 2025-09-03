@@ -911,12 +911,12 @@ func GetMockGatherData() models.GatherPageData {
 			},
 		},
 		EventCategories: []models.EventCategory{
-			{ID: "workshop", Name: "Workshops", Icon: "🔨", Count: 12},
-			{ID: "social", Name: "Social", Icon: "🍻", Count: 8},
-			{ID: "community", Name: "Community", Icon: "🤝", Count: 6},
-			{ID: "art", Name: "Art & Culture", Icon: "🎨", Count: 9},
-			{ID: "tech", Name: "Technology", Icon: "💻", Count: 7},
-			{ID: "outdoor", Name: "Outdoor", Icon: "🌲", Count: 4},
+			{ID: "workshop", Name: "Workshops", Icon: "🔨", Count: 2},
+			{ID: "social", Name: "Social", Icon: "🍻", Count: 0},
+			{ID: "community", Name: "Community", Icon: "🤝", Count: 1},
+			{ID: "art", Name: "Art & Culture", Icon: "🎨", Count: 1},
+			{ID: "tech", Name: "Technology", Icon: "💻", Count: 0},
+			{ID: "outdoor", Name: "Outdoor", Icon: "🌲", Count: 0},
 		},
 		PopularLocations: []models.EventLocation{
 			{Type: "venue", Name: "The Workshop", City: "Alexandria, NSW"},
