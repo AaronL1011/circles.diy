@@ -90,7 +90,7 @@ func FeedbackHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		personaText := strings.Join(personaTexts, ", ")
 
-		if _, err := fmt.Fprintf(file, "=== Feedback received %s ===\\nPersonas: %s\\n%s\\n\\n",
+		if _, err := fmt.Fprintf(file, "=== Feedback received %s ===\nPersonas: %s\n%s\n\n",
 			submissionTime.Format("2006-01-02 15:04:05"), personaText, validatedFeedback); err != nil {
 			log.Printf("Error writing feedback: %v", err)
 		}
