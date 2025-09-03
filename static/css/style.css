@@ -1866,6 +1866,7 @@ input:focus {
     line-height: 1.4;
     margin: 0 0 1rem 0;
     display: -webkit-box;
+    line-clamp: 2;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -2032,6 +2033,7 @@ input:focus {
     margin: 0 0 1rem 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
