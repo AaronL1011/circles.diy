@@ -933,7 +933,7 @@
 }
 
 .circles-title-section h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
     color: var(--text-primary);
@@ -1168,16 +1168,19 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
 }
 
 .role-owner {
-    background: #fbbf24;
-    color: #92400e;
+    background: var(--text-secondary);
+    color: var(--bg-secondary);
 }
 
 .role-admin {
-    background: #a78bfa;
-    color: #5b21b6;
+    border: 1px solid var(--border-primary);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
 }
 
 .role-member {
@@ -1459,35 +1462,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    /* border-radius: 50%; */
     flex-shrink: 0;
-}
-
-.activity-post {
-    background: #ddd6fe;
-    color: #5b21b6;
-}
-
-.activity-event {
-    background: #fef3c7;
-    color: #d97706;
-}
-
-.activity-announcement {
-    background: #dcfce7;
-    color: #16a34a;
-}
-
-.activity-member_joined {
-    background: #e0f2fe;
-    color: #0284c7;
-}
-
-.activity-content {
-    flex: 1;
-    min-width: 0;
 }
 
 .activity-title {
@@ -1497,6 +1475,7 @@
     margin-bottom: 0.25rem;
     display: -webkit-box;
     -webkit-line-clamp: 1;
+    line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -1595,11 +1574,7 @@
     }
 }
 
-@media (max-width: 480px) {
-    .circles-title-section h1 {
-        font-size: 2rem;
-    }
-    
+@media (max-width: 480px) {    
     .circles-subtitle {
         font-size: 1rem;
     }
