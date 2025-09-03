@@ -2195,7 +2195,6 @@ input:focus {
     }
     
     .section-header {
-        flex-direction: column;
         align-items: stretch;
         gap: 1rem;
     }
@@ -3150,7 +3149,6 @@ input:focus {
 .event-time {
     color: var(--text-tertiary);
     font-size: 0.85rem;
-    margin-left: auto;
 }
 
 .event-title {
@@ -3410,7 +3408,6 @@ input:focus {
 }
 
 .event-basic-info {
-    flex: 1;
     min-width: 0;
 }
 
@@ -3733,13 +3730,12 @@ input:focus {
     }
     
     .section-header {
-        flex-direction: column;
         align-items: stretch;
         gap: 1rem;
     }
     
     .view-controls {
-        align-self: stretch;
+        display:none;
     }
 }
 
