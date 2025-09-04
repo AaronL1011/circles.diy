@@ -84,15 +84,15 @@
 }
 
 .voice-call-btn:hover {
-    color: #10b981;
-    border-color: #10b981;
-    background: #f0fdf4;
+    color: var(--success);
+    border-color: var(--success);
+    background: var(--success-bg);
 }
 
 .video-call-btn:hover {
-    color: #3b82f6;
-    border-color: #3b82f6;
-    background: #eff6ff;
+    color: var(--info);
+    border-color: var(--info);
+    background: var(--info-light);
 }
 
 /* No Chat Selected State */

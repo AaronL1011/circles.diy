@@ -116,9 +116,9 @@
 }
 
 .analytics-change.up {
-    color: #22c55e;
+    color: var(--success);
 }
 
 .analytics-change.down {
-    color: #ef4444;
+    color: var(--error);
 }

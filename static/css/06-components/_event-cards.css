@@ -64,15 +64,15 @@
 }
 
 .event-type-badge.in-person {
-    background: #10b981;
+    background: var(--success);
 }
 
 .event-type-badge.online {
-    background: #3b82f6;
+    background: var(--info);
 }
 
 .event-type-badge.hybrid {
-    background: #8b5cf6;
+    background: var(--purple);
 }
 
 .ticket-badge {

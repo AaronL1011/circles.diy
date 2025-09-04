@@ -16,6 +16,53 @@
     --active-bg: #000000;
     --active-text: #ffffff;
     --shadow-color: rgba(0, 0, 0, 0.1);
+    
+    /* Status Colors */
+    --success: #10b981;
+    --success-light: #d1fae5;
+    --success-text: #065f46;
+    --success-bg: #f0fdf4;
+    
+    --warning: #f59e0b;
+    --warning-light: #fef3c7;
+    --warning-text: #92400e;
+    
+    --error: #ef4444;
+    --error-light: #fee2e2;
+    --error-text: #991b1b;
+    --error-bg: #fef2f2;
+    --error-dark: #dc2626;
+    
+    --info: #3b82f6;
+    --info-light: #eff6ff;
+    
+    --purple: #8b5cf6;
+    
+    /* Success variant */
+    --green-500: #10b981;
+    --green-600: #059669;
+    --green-50: #f0fdf4;
+    --green-800: #065f46;
+    --green-100: #d1fae5;
+    
+    /* Error variant */
+    --red-500: #ef4444;
+    --red-600: #dc2626;
+    --red-800: #991b1b;
+    --red-50: #fef2f2;
+    --red-100: #fee2e2;
+    
+    /* Warning variant */
+    --amber-500: #f59e0b;
+    --amber-700: #92400e;
+    --amber-100: #fef3c7;
+    
+    /* Info variant */
+    --blue-500: #3b82f6;
+    --blue-50: #eff6ff;
+    
+    /* Purple variant */
+    --violet-500: #8b5cf6;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -36,5 +83,52 @@
         --active-bg: #ffffff;
         --active-text: #000000;
         --shadow-color: rgba(255, 255, 255, 0.1);
+        
+        /* Status Colors - Dark Mode */
+        --success: #10b981;
+        --success-light: #064e3b;
+        --success-text: #6ee7b7;
+        --success-bg: #064e3b;
+        
+        --warning: #f59e0b;
+        --warning-light: #78350f;
+        --warning-text: #fcd34d;
+        
+        --error: #ef4444;
+        --error-light: #7f1d1d;
+        --error-text: #fca5a5;
+        --error-bg: #7f1d1d;
+        --error-dark: #dc2626;
+        
+        --info: #3b82f6;
+        --info-light: #1e3a8a;
+        
+        --purple: #8b5cf6;
+        
+        /* Success variant - Dark Mode */
+        --green-500: #10b981;
+        --green-600: #059669;
+        --green-50: #064e3b;
+        --green-800: #065f46;
+        --green-100: #064e3b;
+        
+        /* Error variant - Dark Mode */
+        --red-500: #ef4444;
+        --red-600: #dc2626;
+        --red-800: #991b1b;
+        --red-50: #7f1d1d;
+        --red-100: #7f1d1d;
+        
+        /* Warning variant - Dark Mode */
+        --amber-500: #f59e0b;
+        --amber-700: #92400e;
+        --amber-100: #78350f;
+        
+        /* Info variant - Dark Mode */
+        --blue-500: #3b82f6;
+        --blue-50: #1e3a8a;
+        
+        /* Purple variant - Dark Mode */
+        --violet-500: #8b5cf6;
     }
 }

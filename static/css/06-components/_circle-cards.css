@@ -60,7 +60,7 @@
 }
 
 .circle-status.active {
-    background: #10b981;
+    background: var(--success);
 }
 
 .circle-status.inactive {
@@ -256,12 +256,12 @@
 }
 
 .dropdown-action.danger {
-    color: #ef4444;
+    color: var(--error);
 }
 
 .dropdown-action.danger:hover {
-    background: #fef2f2;
-    color: #dc2626;
+    background: var(--error-bg);
+    color: var(--error-dark);
 }
 
 .dropdown-separator {

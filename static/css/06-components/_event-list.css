@@ -32,15 +32,15 @@
 }
 
 .event-type-indicator.in-person {
-    background: #10b981;
+    background: var(--success);
 }
 
 .event-type-indicator.online {
-    background: #3b82f6;
+    background: var(--info);
 }
 
 .event-type-indicator.hybrid {
-    background: #8b5cf6;
+    background: var(--purple);
 }
 
 .event-card-content {
@@ -109,21 +109,21 @@
 }
 
 .rsvp-status.going {
-    background: #d1fae5;
-    color: #065f46;
-    border-color: #10b981;
+    background: var(--success-light);
+    color: var(--success-text);
+    border-color: var(--success);
 }
 
 .rsvp-status.maybe {
-    background: #fef3c7;
-    color: #92400e;
-    border-color: #f59e0b;
+    background: var(--warning-light);
+    color: var(--warning-text);
+    border-color: var(--warning);
 }
 
 .rsvp-status.not_going {
-    background: #fee2e2;
-    color: #991b1b;
-    border-color: #ef4444;
+    background: var(--error-light);
+    color: var(--error-text);
+    border-color: var(--error);
 }
 
 .rsvp-status:not(.going):not(.maybe):not(.not_going) {
@@ -162,12 +162,12 @@
 }
 
 .event-card.compact.going {
-    border-left-color: #10b981;
+    border-left-color: var(--success);
     background: rgba(16, 185, 129, 0.05);
 }
 
 .event-card.compact.maybe {
-    border-left-color: #f59e0b;
+    border-left-color: var(--warning);
     background: rgba(245, 158, 11, 0.05);
 }
 
@@ -212,8 +212,8 @@
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    background: #fef3c7;
-    color: #92400e;
+    background: var(--warning-light);
+    color: var(--warning-text);
     padding: 0.25rem 0.5rem;
     border-radius: var(--container-radius);
     font-size: 0.75rem;

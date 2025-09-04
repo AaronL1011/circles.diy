@@ -44,7 +44,7 @@
     right: 0;
     width: 14px;
     height: 14px;
-    background: #10b981;
+    background: var(--success);
     border-radius: 50%;
     border: 2px solid var(--bg-primary);
 }

@@ -110,7 +110,7 @@
 }
 
 .read-receipt {
-    color: #10b981;
+    color: var(--success);
 }
 
 .delivered {
