@@ -51,6 +51,7 @@ vendor/
 # Build outputs
 dist/
 build/
+static/css/style.css
 *.exe
 *.dll
 *.so
