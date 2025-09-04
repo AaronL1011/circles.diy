@@ -3,6 +3,7 @@ package handlers
 import (
 	"net/http"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 )
@@ -50,4 +51,43 @@ func ServeStaticFile(w http.ResponseWriter, r *http.Request, filePath, contentTy
 
 	// Serve the file
 	http.ServeFile(w, r, filePath)
+}
+
+func ServeStaticImage(w http.ResponseWriter, r *http.Request) {
+	// Extract the image path from URL
+	imagePath := strings.TrimPrefix(r.URL.Path, "/static/img/")
+	
+	// Security: prevent path traversal
+	if strings.Contains(imagePath, "..") || imagePath == "" {
+		http.Error(w, "Invalid file path", http.StatusBadRequest)
+		return
+	}
+	
+	// Construct full file path
+	fullPath := filepath.Join("static", "img", imagePath)
+	
+	// Determine content type based on file extension
+	ext := strings.ToLower(filepath.Ext(imagePath))
+	var contentType string
+	
+	switch ext {
+	case ".jpg", ".jpeg":
+		contentType = "image/jpeg"
+	case ".png":
+		contentType = "image/png"
+	case ".gif":
+		contentType = "image/gif"
+	case ".webp":
+		contentType = "image/webp"
+	case ".svg":
+		contentType = "image/svg+xml"
+	case ".ico":
+		contentType = "image/x-icon"
+	default:
+		http.Error(w, "Unsupported image format", http.StatusBadRequest)
+		return
+	}
+	
+	// Use the existing ServeStaticFile function
+	ServeStaticFile(w, r, fullPath, contentType)
 }

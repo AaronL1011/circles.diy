@@ -59,6 +59,7 @@ func main() {
 	mux.HandleFunc("/static/js/htmx.min.js", func(w http.ResponseWriter, r *http.Request) {
 		handlers.ServeStaticFile(w, r, "static/js/htmx.min.js", "application/javascript; charset=utf-8")
 	})
+	mux.HandleFunc("/static/img/", handlers.ServeStaticImage)
 
 	// Apply middleware chain
 	handler := middleware.Chain(mux, middleware.SecurityMiddleware, middleware.RateLimitMiddleware)
