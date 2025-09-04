@@ -31,13 +31,13 @@
     z-index: 2;
 }
 
-.circle-thumbnail-wrapper {
+.circle-card-thumbnail-wrapper {
     position: relative;
 }
 
-.circle-thumbnail {
-    width: 60px;
-    height: 60px;
+.circle-card-thumbnail {
+    width: 64px;
+    height: 64px;
     border-radius: var(--container-radius);
     object-fit: cover;
     border: 2px solid var(--bg-primary);
@@ -47,10 +47,16 @@
     position: absolute;
     bottom: -2px;
     right: -2px;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
+    width: max-content;
+    height: 1.5rem;
+    border-radius: var(--container-radius);
+    padding: 0.25rem 0.5rem;
     border: 2px solid var(--bg-primary);
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    transform: translateX(50%);
 }
 
 .circle-status.active {
@@ -58,7 +64,7 @@
 }
 
 .circle-status.inactive {
-    background: var(--text-tertiary);
+    display: none;
 }
 
 .circle-role-badge {

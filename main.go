@@ -16,22 +16,21 @@ func main() {
 	// Load configuration
 	cfg := config.NewConfig()
 
-	// Build CSS on startup
 	log.Println("Building CSS...")
-	if err := utils.BuildCSS(); err != nil {
-		log.Fatalf("Failed to build CSS: %v", err)
+	// Start CSS file watcher in development mode
+	if cfg.IsDev {
+		log.Println("Starting CSS file watcher...")
+		go utils.WatchCSSFiles()
+	} else {
+		if err := utils.BuildCSS(); err != nil {
+			log.Fatalf("Failed to build CSS: %v", err)
+		}
 	}
 
 	// Initialize templates
 	log.Println("Initializing templates...")
 	if err := templates.InitTemplates(); err != nil {
 		log.Fatalf("Failed to initialize templates: %v", err)
-	}
-
-	// Start CSS file watcher in development mode
-	if cfg.IsDev {
-		log.Println("Starting CSS file watcher...")
-		go utils.WatchCSSFiles()
 	}
 
 	// Setup routes
@@ -76,11 +75,11 @@ func main() {
 	// Start server
 	log.Printf("Server starting on port %s", cfg.Port)
 	log.Printf("Routes available:")
-	log.Printf("  / - Original landing page (index.html)")
-	log.Printf("  /dashboard - New dashboard with templates + HTMX")
-	log.Printf("  /profile - New profile page with templates + HTMX")
-	log.Printf("  /circles - New circles page with templates + HTMX")
-	log.Printf("  /chat - New chat page with templates + HTMX")
-	log.Printf("  /concept-demo/ - Original concept demo")
+	log.Printf("  / - Manifesto landing page (index.html)")
+	log.Printf("  /dashboard - Dashboard with templates + HTMX")
+	log.Printf("  /profile - Profile page with templates + HTMX")
+	log.Printf("  /circles - Circles page with templates + HTMX")
+	log.Printf("  /chat - Chat page with templates + HTMX")
+	log.Printf("  /gather - Events page with templates + HTMX")
 	log.Fatal(server.ListenAndServe())
 }
