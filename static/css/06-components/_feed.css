@@ -20,6 +20,11 @@
 	);
 }
 
+.feed-more-container {
+    padding: 0 0 1rem;
+    text-align: center;
+}
+
 .feed-more-btn {
     width: fit-content;
     margin: 0 auto;

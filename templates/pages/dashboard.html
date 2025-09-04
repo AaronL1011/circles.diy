@@ -35,7 +35,7 @@
                 {{template "feed-item" .}}
                 {{end}}
             </div>
-            <div class="load-more-container" style="text-align: center; margin-top: 1rem;">
+            <div class="feed-more-container">
                 <button class="feed-more-btn" hx-get="/api/feed/more?offset={{.FeedOffset}}" hx-target="#activity-feed" hx-swap="beforeend">
                     Load More Posts
                 </button>
