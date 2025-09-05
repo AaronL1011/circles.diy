@@ -10,6 +10,8 @@
 secrets.txt
 config.json
 nginx.conf
+docs/
+CLAUDE.md
 
 # OS generated files
 .DS_Store
