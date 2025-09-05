@@ -10,6 +10,8 @@
 secrets.txt
 config.json
 nginx.conf
+docs/
+CLAUDE.md
 
 # OS generated files
 .DS_Store
@@ -51,6 +53,7 @@ vendor/
 # Build outputs
 dist/
 build/
+static/css/style.css
 *.exe
 *.dll
 *.so

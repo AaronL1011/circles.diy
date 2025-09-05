@@ -1,0 +1,49 @@
+/* Image Components */
+.feed-image {
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--container-radius);
+}
+
+.feed-image img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.2s ease;
+}
+
+.feed-image img:hover {
+    opacity: 0.9;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid var(--border-secondary);
+    flex-shrink: 0;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Responsive adjustments for images */
+@media (max-width: 480px) {
+    .feed-image img {
+        height: auto;
+        max-height: 200px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .user-avatar {
+        width: 28px;
+        height: 28px;
+    }
+}

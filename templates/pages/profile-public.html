@@ -1,0 +1,126 @@
+{{define "profile-public"}}
+{{template "base" .}}
+{{end}}
+
+{{define "main"}}
+<div class="profile-page">
+    <div class="profile-banner">
+        <img src="{{.Profile.Banner}}" alt="Profile banner" />
+    </div>
+    
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar-large">
+                <img src="{{.Profile.Avatar}}" alt="{{.Profile.Handle}}" />
+            </div>
+            <div class="profile-info">
+                <h1 class="profile-name">{{.Profile.Name}}</h1>
+                <p class="profile-handle">{{.Profile.Handle}}</p>
+                <p class="profile-bio">{{.Profile.Bio}}</p>
+            </div>
+            <div class="profile-actions">
+                {{if not .IsOwner}}
+                <button class="profile-action-btn" hx-post="/api/users/{{.Profile.ID}}/connect" hx-swap="outerHTML">
+                    {{if .Profile.IsConnected}}Disconnect{{else}}Connect{{end}}
+                </button>
+                <button class="profile-action-btn secondary" hx-get="/messages/new/{{.Profile.ID}}" hx-target="#modal">Message</button>
+                {{else}}
+                <a href="/profile/edit" class="profile-action-btn">Edit Profile</a>
+                <button class="profile-action-btn secondary" hx-get="/profile/share" hx-target="#modal">Share Profile</button>
+                {{end}}
+            </div>
+        </div>
+
+        <div class="profile-stats">
+            <div class="stat-item">
+                <span class="stat-number">{{.Profile.Stats.Posts}}</span>
+                <span class="stat-label">Posts</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">{{.Profile.Stats.Connections}}</span>
+                <span class="stat-label">Connections</span>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <div class="content-nav">
+                <button class="content-nav-item active" hx-get="/api/users/{{.Profile.ID}}/posts" hx-target="#profile-posts">Posts</button>
+                <button class="content-nav-item" hx-get="/api/users/{{.Profile.ID}}/workshop" hx-target="#profile-posts">Workshop</button>
+                <button class="content-nav-item" hx-get="/api/users/{{.Profile.ID}}/gallery" hx-target="#profile-posts">Gallery</button>
+                <button class="content-nav-item" hx-get="/api/users/{{.Profile.ID}}/about" hx-target="#profile-posts">About</button>
+            </div>
+
+            <div class="posts-grid" id="profile-posts">
+                {{range .Posts}}
+                <article class="post-item">
+                    <div class="post-header">
+                        <div class="post-user">
+                            <div class="user-avatar">
+                                <img src="{{.User.Avatar}}" alt="{{.User.Handle}}" />
+                            </div>
+                            <strong>{{.User.Handle}}</strong>
+                            <span class="post-time">{{.TimeAgo}}</span>
+                        </div>
+                        <div class="post-circle">in {{.Circle}}</div>
+                    </div>
+                    <div class="post-content">
+                        {{if .Image}}
+                        <div class="post-image">
+                            <img src="{{.Image.URL}}" alt="{{.Image.Alt}}" />
+                        </div>
+                        {{end}}
+                        {{if .Video}}
+                        <div class="post-video">
+                            <video controls>
+                                <source src="{{.Video.URL}}" type="video/mp4">
+                                {{.Video.Alt}}
+                            </video>
+                        </div>
+                        {{end}}
+                        {{if .Gallery}}
+                        <div class="post-gallery">
+                            <div class="gallery-main">
+                                <img src="{{(index .Gallery 0).URL}}" alt="{{(index .Gallery 0).Alt}}" />
+                            </div>
+                            {{if gt (len .Gallery) 1}}
+                            <div class="gallery-thumbnails">
+                                {{range slice .Gallery 1 4}}
+                                <img src="{{.URL}}" alt="{{.Alt}}" />
+                                {{end}}
+                                {{if gt (len .Gallery) 4}}
+                                <div class="gallery-more">+{{sub (len .Gallery) 4}}</div>
+                                {{end}}
+                            </div>
+                            {{end}}
+                        </div>
+                        {{end}}
+                        <p>{{.Content}}</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action" hx-get="/posts/{{.ID}}/reply" hx-target="#modal">Reply</button>
+                        <button class="post-action" hx-post="/api/posts/{{.ID}}/share">Share</button>
+                        {{if .CanBuy}}
+                        <button class="post-action" hx-post="/api/posts/{{.ID}}/buy">Buy Now</button>
+                        {{end}}
+                    </div>
+                </article>
+                {{end}}
+            </div>
+
+            {{if .HasMorePosts}}
+            <div class="load-more-container" style="text-align: center; margin-top: 2rem;">
+                <button class="sidebar-action-btn" hx-get="/api/users/{{.Profile.ID}}/posts/more?offset={{.PostOffset}}" hx-target="#profile-posts" hx-swap="beforeend">
+                    Load More Posts
+                </button>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</div>
+
+<!-- Modal container -->
+<div id="modal" hx-swap-oob="true"></div>
+{{end}}
+
+{{define "scripts"}}
+{{end}}

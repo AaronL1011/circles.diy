@@ -1,6 +1,6 @@
 # circles.diy
 
-A community platform for creatives, makers and builders.
+A social platform for communities, creators and collaborators.
 
 Read the manifesto: https://circles.diy/
 

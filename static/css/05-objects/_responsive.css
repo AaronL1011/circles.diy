@@ -1,0 +1,55 @@
+/* Responsive Layout Objects - structural breakpoints only */
+
+/* Responsive Dashboard Layout */
+@media (max-width: 1024px) {
+    .o-dashboard {
+        grid-template-columns: 200px 1fr;
+    }
+    
+    .o-three-column {
+        grid-template-columns: 200px 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .o-dashboard {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .o-two-column,
+    .o-three-column {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .o-container {
+        padding: 0 0.75rem;
+    }
+    
+    .o-grid {
+        gap: 1rem;
+    }
+    
+    .o-grid--auto-fit,
+    .o-grid--auto-fill {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .o-container {
+        padding: 0 0.5rem;
+    }
+    
+    .o-dashboard {
+        padding: 0.75rem;
+    }
+    
+    .o-sidebar {
+        gap: 1rem;
+    }
+}

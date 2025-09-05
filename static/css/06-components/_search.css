@@ -1,0 +1,54 @@
+/* Search Components */
+.search-container {
+    display: flex;
+    position: relative;
+}
+
+.global-search {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-primary);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    width: 250px;
+    outline: none;
+    transition: all 0.2s ease;
+    border-radius: var(--container-radius);
+}
+
+.global-search:focus {
+    box-shadow: 0 0 0 2px var(--border-primary);
+}
+
+.global-search::placeholder {
+    color: var(--text-secondary);
+}
+
+.search-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: none;
+    border: none;
+    padding: 0 0.75rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+/* Responsive adjustments for search */
+@media (max-width: 768px) {
+    .global-search {
+        width: 200px;
+        min-width: 150px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .global-search {
+        width: 150px;
+        min-width: 120px;
+        font-size: 0.8rem;
+    }
+}

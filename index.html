@@ -8,7 +8,7 @@
 
     <!-- SEO and Social Media Meta Tags -->
     <meta name="description"
-        content="A community platform for creatives, makers and builders. Built on principles of community stewardship, not capital extraction.">
+        content="A social platform for communities, creators and collaborators. Built on principles of community stewardship, not capital extraction.">
     <meta name="keywords" content="community platform, creatives, makers, builders, social network, DIY, decentralized">
 
     <!-- Open Graph / Facebook -->
@@ -16,15 +16,19 @@
     <meta property="og:url" content="https://circles.diy/">
     <meta property="og:title" content="circles.diy - The Community Platform for Creatives">
     <meta property="og:description"
-        content="A community platform for creatives, makers and builders. Built on principles of community stewardship, not capital extraction.">
+        content="A social platform for communities, creators and collaborators. Built on principles of community stewardship, not capital extraction.">
     <meta property="og:site_name" content="circles.diy">
+    <meta property="og:image" content="https://circles.diy/static/img/circles-og-image.jpeg">
+
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary">
     <meta property="twitter:url" content="https://circles.diy/">
     <meta property="twitter:title" content="circles.diy - The Community Platform for Creatives">
     <meta property="twitter:description"
-        content="A community platform for creatives, makers and builders. Built on principles of community stewardship, not capital extraction.">
+        content="A social platform for communities, creators and collaborators. Built on principles of community stewardship, not capital extraction.">
+    <meta property="twitter:image" content="https://circles.diy/static/img/circles-og-image.jpeg">
+
     <style>
         :root {
             --bg-color: #ffffff;
@@ -130,6 +134,17 @@
             margin: 0;
             font-size: 1.125rem;
             line-height: 1.5;
+        }
+
+        .logo {
+            transform: translateY(-2px);
+        }
+
+        .title-container {
+            display: flex;
+            gap: 0.5rem;
+            width: max-content;
+            align-items: center;
         }
 
         .manifesto {
@@ -252,11 +267,29 @@
 </head>
 
 <body>
-    <h1>circles.diy</h1>
+    <div class="title-container">
+        <svg class="logo" width="48" height="48" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="11" cy="22" r="6" stroke="currentColor"/>
+            <circle cx="11" cy="8" r="6" stroke="currentColor"/>
+            <circle cx="19" cy="22" r="6" stroke="currentColor"/>
+            <circle cx="15" cy="23" r="6" stroke="currentColor"/>
+            <circle cx="22" cy="19" r="6" transform="rotate(-90 22 19)" stroke="currentColor"/>
+            <ellipse cx="15" cy="15" rx="2" ry="2" transform="rotate(-90 15 15)" stroke="currentColor"/>
+            <circle cx="22" cy="11" r="6" transform="rotate(-90 22 11)" stroke="currentColor"/>
+            <circle cx="23" cy="15" r="6" transform="rotate(-90 23 15)" stroke="currentColor"/>
+            <circle cx="8" cy="11" r="6" transform="rotate(90 8 11)" stroke="currentColor"/>
+            <circle cx="8" cy="19" r="6" transform="rotate(90 8 19)" stroke="currentColor"/>
+            <circle cx="7" cy="15" r="6" transform="rotate(90 7 15)" stroke="currentColor"/>
+            <circle cx="15" cy="7" r="6" stroke="currentColor"/>
+            <circle cx="19" cy="8" r="6" stroke="currentColor"/>
+        </svg>
+
+        <h1>circles.diy</h1>
+    </div>
     {{if .Success}}
-    <div class="success">Thank you for your feedback! We value your input 💚</div>
+    <div class="success">Thank you! Your voice is a critical part of making circles.diy a space that belongs to everyone 💚</div>
     {{end}}
-    <h3>A community platform for creatives, makers and builders.</h3>
+    <h3>A social platform for communities, creators and collaborators.</h3>
 
     <p>circles.diy is born out of frustration with the current state of social networks. Mainstream platforms have
         twisted creativity and community into raw material for profit, attention and control. They exploit your data,

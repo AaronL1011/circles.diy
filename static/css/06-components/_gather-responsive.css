@@ -1,0 +1,121 @@
+/* Responsive Design for Gather Page */
+@media (max-width: 1024px) {
+    .gather-main {
+        grid-template-columns: 1fr;
+    }
+    
+    .gather-sidebar {
+        order: -1;
+    }
+    
+    .featured-events-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .gather-header {
+        padding: 1.5rem 1rem;
+    }
+    
+    .gather-header-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: stretch;
+    }
+    
+    .gather-actions {
+        justify-content: stretch;
+        gap: 0.75rem;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .gather-content {
+        padding: 1.5rem 1rem;
+    }
+    
+    .featured-events-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .event-info {
+        padding-right: 0;
+    }
+    
+    .events-container[data-view="grid"] {
+        grid-template-columns: 1fr;
+    }
+    
+    .event-card.list {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .event-card.list .event-thumbnail {
+        width: 100%;
+        height: 150px;
+        margin: 0 0 1rem 0;
+    }
+    
+    .event-card-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .event-actions {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .section-header {
+        align-items: stretch;
+        gap: 1rem;
+    }
+    
+    .view-controls {
+        display:none;
+    }
+}
+
+@media (max-width: 480px) {    
+    .gather-title p {
+        font-size: 1rem;
+    }
+    
+    .filter-categories {
+        justify-content: flex-end;
+        gap: 0.5rem;
+    }
+    
+    .category-filter {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.85rem;
+    }
+    
+    .category-name {
+        font-size: 0.75rem;
+    }
+    
+    .event-card.compact {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+    
+    .event-quick-stats {
+        justify-content: space-between;
+        width: 100%;
+    }
+    
+    .gather-sidebar .sidebar-section {
+        padding: 1rem;
+    }
+}

@@ -9,7 +9,8 @@ services:
       - PORT=8080
     volumes:
       - ./data:/app/data
-      - ./concept-demo:/app/concept-demo:ro
+      - ./static:/app/static:rw
+      - ./templates:/app/templates:ro
     restart: unless-stopped
     tmpfs:
       - /tmp:nosuid,size=100m
@@ -94,8 +95,6 @@ networks:
     driver: bridge
 
 volumes:
-  feedback_data:
-    driver: local
   docmost_data:
     driver: local
   db_data:

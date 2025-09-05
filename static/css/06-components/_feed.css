@@ -1,0 +1,135 @@
+/* Feed Components */
+.activity-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-height: 750px;
+    padding-bottom: 2rem;
+    overflow: auto;
+    -webkit-mask-image: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 1) 0%,
+		rgba(0, 0, 0, 1) 95%,
+		rgba(0, 0, 0, 0) 100%
+	);
+	mask-image: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 1) 0%,
+		rgba(0, 0, 0, 1) 95%,
+		rgba(0, 0, 0, 0) 100%
+	);
+}
+
+.feed-more-container {
+    padding: 0 0 1rem;
+    text-align: center;
+}
+
+.feed-more-btn {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    transition: all 0.15s ease;
+    border-radius: var(--container-radius);
+    display: flex;
+    justify-content: center;
+}
+
+.feed-item {
+    border: 1px solid var(--border-secondary);
+    padding: 1.5rem;
+    background: var(--bg-primary);
+    transition: all 0.2s ease;
+    border-radius: var(--container-radius);
+}
+
+.feed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.feed-user {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.feed-time {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: normal;
+}
+
+.feed-circle {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.feed-content {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.feed-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.feed-action {
+    background: none;
+    border: 1px solid var(--border-secondary);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    transition: all 0.15s ease;
+    border-radius: var(--container-radius);
+}
+
+.feed-action:last-of-type {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.feed-action:hover {
+    background: var(--active-bg);
+    color: var(--active-text);
+    border-color: var(--border-primary);
+}
+
+/* Responsive adjustments for feed */
+@media (max-width: 768px) {
+    .feed-actions {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .feed-section,
+    .discussions-section,
+    .sidebar-section {
+        padding: 0.25rem;
+        min-height: auto;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .feed-section h2,
+    .discussions-section h2 {
+        font-size: 1rem;
+    }
+
+    .feed-actions {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+}

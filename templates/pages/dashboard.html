@@ -1,0 +1,117 @@
+{{define "dashboard"}}
+{{template "base" .}}
+{{end}}
+
+{{define "main"}}
+<div class="dashboard">
+    <aside class="left-sidebar">
+        <div class="quick-actions-vertical">
+            <button class="action-btn-vertical primary" hx-get="/posts/new" hx-target="#modal">New Post</button>
+            <button class="action-btn-vertical" hx-get="/messages/new" hx-target="#modal">Direct Message</button>
+            <button class="action-btn-vertical" hx-get="/gather/new" hx-target="#modal">Create Gathering</button>
+        </div>
+        
+        {{template "circles-sidebar" .}}
+        
+        <div class="sidebar-section">
+            <h3>Stewardship</h3>
+            <div class="impact-stats">
+                {{range .Impact}}
+                <div class="impact-item">
+                    <span class="impact-label">{{.Label}}</span>
+                    <span class="impact-value">{{.Value}}</span>
+                </div>
+                {{end}}
+            </div>
+            <button class="sidebar-action-btn" hx-get="/stewardship/manage" hx-target="#modal">Manage Stewardship</button>
+        </div>
+    </aside>
+
+    <div class="main-content" id="main-content">
+        <section class="feed-section">
+            <h2>Recent Activity</h2>
+            <div class="activity-feed" id="activity-feed">
+                {{range .Feed}}
+                {{template "feed-item" .}}
+                {{end}}
+            </div>
+            <div class="feed-more-container">
+                <button class="feed-more-btn" hx-get="/api/feed/more?offset={{.FeedOffset}}" hx-target="#activity-feed" hx-swap="beforeend">
+                    Load More Posts
+                </button>
+            </div>
+        </section>
+
+        <section class="discussions-section">
+            <h2>Active Discussions</h2>
+            <div class="discussion-list">
+                {{range .Discussions}}
+                <div class="discussion-item" hx-get="/discussions/{{.ID}}" hx-target="#main-content">
+                    <div class="discussion-header">
+                        <h3 class="discussion-title">{{.Title}}</h3>
+                        <div class="discussion-meta">
+                            <span class="discussion-circle">{{.Circle}}</span>
+                            <span>{{.TimeAgo}}</span>
+                        </div>
+                    </div>
+                    <p class="discussion-preview">{{.Preview}}</p>
+                    <div class="discussion-actions">
+                        <button class="discussion-action" hx-get="/discussions/{{.ID}}" hx-target="#main-content">Join Discussion</button>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+            <button class="see-all-btn" hx-get="/discussions" hx-target="#main-content">Browse All Discussions</button>
+        </section>
+    </div>
+
+    <div class="right-sidebar">        
+        <div class="sidebar-section">
+            <h3>
+                <svg width="1.5rem" height="1.5rem" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="14" cy="14" r="5" stroke="currentColor" stroke-opacity="0.6" stroke-width="2"/>
+                    <circle cx="14" cy="14" r="2" fill="currentColor"/>
+                    <circle cx="14" cy="14" r="9" stroke="currentColor" stroke-opacity="0.3" stroke-width="2"/>
+                    <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-opacity="0.08" stroke-width="2"/>
+                </svg>
+                Recent Ripples
+            </h3>
+            <div class="ripples-compact">
+                {{range .Ripples}}
+                <div class="ripple-compact" hx-get="/ripples/{{.ID}}" hx-target="#modal">
+                    <div class="ripple-user-compact">{{.User}}</div>
+                    <div class="ripple-content-compact">{{.Content}}</div>
+                    <div class="ripple-expires-compact">{{.ExpiresIn}}</div>
+                </div>
+                {{end}}
+            </div>
+            <button class="sidebar-action-btn" hx-get="/ripples/new" hx-target="#modal">New Ripple</button>
+        </div>
+
+        {{template "events-sidebar" .}}
+
+        {{template "marketplace-sidebar" .}}
+    </div>
+</div>
+
+<!-- Modal container for HTMX -->
+<div id="modal" hx-swap-oob="true"></div>
+{{end}}
+
+{{define "scripts"}}
+<script>
+// HTMX event listeners for dynamic content
+document.body.addEventListener('htmx:afterSwap', function(evt) {
+    // Re-initialize any JavaScript components in dynamically loaded content
+    if (evt.detail.target.id === 'main-content') {
+        // Reinitialize any components that might be in the new content
+        console.log('Content swapped in main area');
+    }
+});
+
+// Handle theme switching via HTMX
+document.body.addEventListener('htmx:responseError', function(evt) {
+    console.error('HTMX Error:', evt.detail.xhr.responseText);
+});
+</script>
+{{end}}

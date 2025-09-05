@@ -1,0 +1,223 @@
+/* Gather Page Styles */
+.gather-page {
+    background: var(--bg-primary);
+    min-height: calc(100vh - 61px);
+}
+
+.gather-header {
+    padding: 2rem;
+    border-bottom: 1px solid var(--border-light);
+    background: var(--bg-primary);
+}
+
+.gather-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gather-title h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+}
+
+.gather-title p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.gather-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.gather-filters {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.filter-categories {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.category-filter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--container-radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.category-filter:hover,
+.category-filter.active {
+    background: var(--active-bg);
+    color: var(--active-text);
+    border-color: var(--active-bg);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.category-icon {
+    font-size: 1.2rem;
+}
+
+.category-name {
+    font-weight: 500;
+}
+
+.category-count {
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    padding: 0.125rem 0.5rem;
+    border-radius: var(--container-radius);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.category-filter:hover .category-count,
+.category-filter.active .category-count {
+    background: var(--accent-secondary);
+    color: var(--accent-primary);
+}
+
+.gather-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Gather Main Layout */
+.gather-main {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.events-list {
+    min-width: 0;
+}
+
+.gather-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* View Controls */
+.view-controls {
+    display: flex;
+    gap: 0.25rem;
+    background: var(--bg-secondary);
+    border-radius: var(--container-radius);
+    padding: 0.25rem;
+}
+
+.view-btn {
+    padding: 0.5rem 1rem;
+    background: none;
+    border: none;
+    border-radius: calc(var(--container-radius) - 2px);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.view-btn.active,
+.view-btn:hover {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.gather-content .see-all-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    width: fit-content;
+}
+
+.see-all-btn:hover {
+    color: var(--text-primary);
+}
+
+.manage-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--container-radius);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.manage-btn:hover {
+    background: var(--hover-bg);
+    border-color: var(--border-primary);
+}
+
+/* Events Container */
+.events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.events-container[data-view="grid"] {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.events-container[data-view="grid"] .event-card.list {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.events-container[data-view="grid"] .event-card.list .event-thumbnail {
+    width: 100%;
+    height: 150px;
+    margin: 0 0 1rem 0;
+    border-radius: 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.events-container[data-view="grid"] .event-card-content {
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.events-container[data-view="grid"] .event-info {
+    margin-bottom: 1rem;
+    padding-right: 0;
+}
+
+.events-container[data-view="grid"] .event-actions {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem 1rem;
+}

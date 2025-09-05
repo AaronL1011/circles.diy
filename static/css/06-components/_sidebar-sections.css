@@ -1,0 +1,38 @@
+/* Sidebar Sections */
+.sidebar-section,
+.feed-section,
+.discussions-section {
+    background: var(--bg-primary);
+    transition: all 0.2s ease;
+    border-radius: var(--container-radius);
+}
+
+.sidebar-section {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+.sidebar-section h3,
+.feed-section h2,
+.discussions-section h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-primary);
+    padding-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.sidebar-section h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-primary);
+    padding-bottom: 0.5rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
