@@ -25,6 +25,15 @@
     min-height: 600px;
 }
 
+/* Recent Ripples Responsive Control */
+.recent-ripples-mobile {
+    display: none;
+}
+
+.recent-ripples-desktop {
+    display: block;
+}
+
 /* Dashboard responsive styles */
 @media (max-width: 1024px) {
     .dashboard {
@@ -32,6 +41,30 @@
     }
 
     .right-sidebar {
+        display: none;
+    }
+
+    .recent-ripples-mobile {
+        display: block;
+        background: var(--bg-primary);
+        /* border: 1px solid var(--border-primary); */
+        padding: 1.5rem 1.5rem 0;
+        border-radius: var(--container-radius);
+    }
+
+    .recent-ripples-mobile h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid var(--border-primary);
+        padding-bottom: 0.5rem;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .recent-ripples-desktop {
         display: none;
     }
 }
@@ -44,11 +77,6 @@
     }
 
     .left-sidebar {
-        order: -1;
-    }
-
-    .left-sidebar,
-    .right-sidebar {
         display: none;
     }
 
@@ -56,6 +84,12 @@
         width: 100%;
         max-width: 100%;
         overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .recent-ripples-mobile {
+        order: -1;
     }
 }
 

@@ -28,6 +28,28 @@
     </aside>
 
     <div class="main-content" id="main-content">
+        <!-- Mobile/Tablet Recent Ripples (compact horizontal) -->
+        <section class="recent-ripples-mobile">
+            <h3>
+                <svg width="1.5rem" height="1.5rem" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="14" cy="14" r="5" stroke="currentColor" stroke-opacity="0.6" stroke-width="2"/>
+                    <circle cx="14" cy="14" r="2" fill="currentColor"/>
+                    <circle cx="14" cy="14" r="9" stroke="currentColor" stroke-opacity="0.3" stroke-width="2"/>
+                    <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-opacity="0.08" stroke-width="2"/>
+                </svg>
+                Recent Ripples
+            </h3>
+            <div class="ripples-horizontal-scroll horitonzal-feed">
+                {{range .Ripples}}
+                <div class="ripple-card-compact">
+                    <div class="ripple-user-compact">{{.User}}</div>
+                    <div class="ripple-content-compact">{{.Content}}</div>
+                    <div class="ripple-expires-compact">{{.ExpiresIn}}</div>
+                </div>
+                {{end}}
+            </div>
+        </section>
+
         <section class="feed-section">
             <h2>Recent Activity</h2>
             <div class="activity-feed" id="activity-feed">
@@ -66,7 +88,7 @@
     </div>
 
     <div class="right-sidebar">        
-        <div class="sidebar-section">
+        <div class="sidebar-section recent-ripples-desktop">
             <h3>
                 <svg width="1.5rem" height="1.5rem" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="14" cy="14" r="5" stroke="currentColor" stroke-opacity="0.6" stroke-width="2"/>
