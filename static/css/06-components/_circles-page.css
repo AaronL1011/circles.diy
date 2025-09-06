@@ -178,4 +178,5 @@
 
 .circles-page .see-all-btn:hover {
     color: var(--text-primary);
+    background: none;
 }

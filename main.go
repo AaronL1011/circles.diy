@@ -51,6 +51,8 @@ func main() {
 	mux.HandleFunc("/chat/", handlers.ChatHandler)
 	mux.HandleFunc("/gather", handlers.GatherHandler)
 	mux.HandleFunc("/gather/", handlers.GatherHandler)
+	mux.HandleFunc("/marketplace", handlers.MarketplaceHandler)
+	mux.HandleFunc("/marketplace/", handlers.MarketplaceHandler)
 
 	// Static asset routes
 	mux.HandleFunc("/static/css/style.css", func(w http.ResponseWriter, r *http.Request) {

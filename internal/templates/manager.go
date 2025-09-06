@@ -15,6 +15,7 @@ type Templates struct {
 	Circles         *template.Template
 	Chat            *template.Template
 	Gather          *template.Template
+	Marketplace     *template.Template
 }
 
 var templates *Templates
@@ -155,6 +156,24 @@ func InitTemplates() error {
 		return fmt.Errorf("failed to parse gather template: %v", err)
 	}
 	templates.Gather = gatherTemplate
+
+	// Parse marketplace template
+	marketplaceTemplate := template.New("marketplace").Funcs(funcMap)
+	marketplaceTemplate, err = marketplaceTemplate.ParseGlob("templates/layouts/*.html")
+	if err != nil {
+		return fmt.Errorf("failed to parse layout templates for marketplace: %v", err)
+	}
+
+	marketplaceTemplate, err = marketplaceTemplate.ParseGlob("templates/components/*.html")
+	if err != nil {
+		return fmt.Errorf("failed to parse component templates for marketplace: %v", err)
+	}
+
+	marketplaceTemplate, err = marketplaceTemplate.ParseFiles("templates/pages/marketplace.html")
+	if err != nil {
+		return fmt.Errorf("failed to parse marketplace template: %v", err)
+	}
+	templates.Marketplace = marketplaceTemplate
 
 	log.Println("Templates initialized successfully")
 	return nil

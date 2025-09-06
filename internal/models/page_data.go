@@ -151,3 +151,17 @@ type EventAttendee struct {
 	RSVPStatus string `json:"rsvp_status"`
 	JoinedAt   string `json:"joined_at"`
 }
+
+type MarketplacePageData struct {
+	BaseData
+	Items          []MarketplaceItem      `json:"items"`
+	FeaturedItems  []MarketplaceItem      `json:"featured_items"`
+	Categories     []MarketplaceCategory  `json:"categories"`
+	PopularLocations []Location           `json:"popular_locations"`
+	TotalItems     int                    `json:"total_items"`
+	ItemsPerPage   int                    `json:"items_per_page"`
+	CurrentPage    int                    `json:"current_page"`
+	HasMore        bool                   `json:"has_more"`
+	Filters        MarketplaceFilter      `json:"filters"`
+	ActiveFilters  map[string]interface{} `json:"active_filters"`
+}

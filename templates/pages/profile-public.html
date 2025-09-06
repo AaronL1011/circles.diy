@@ -20,13 +20,13 @@
             </div>
             <div class="profile-actions">
                 {{if not .IsOwner}}
-                <button class="profile-action-btn" hx-post="/api/users/{{.Profile.ID}}/connect" hx-swap="outerHTML">
+                <button class="profile-action-btn"  >
                     {{if .Profile.IsConnected}}Disconnect{{else}}Connect{{end}}
                 </button>
-                <button class="profile-action-btn secondary" hx-get="/messages/new/{{.Profile.ID}}" hx-target="#modal">Message</button>
+                <button class="profile-action-btn secondary"  >Message</button>
                 {{else}}
                 <a href="/profile/edit" class="profile-action-btn">Edit Profile</a>
-                <button class="profile-action-btn secondary" hx-get="/profile/share" hx-target="#modal">Share Profile</button>
+                <button class="profile-action-btn secondary"  >Share Profile</button>
                 {{end}}
             </div>
         </div>
@@ -44,10 +44,10 @@
 
         <div class="profile-content">
             <div class="content-nav">
-                <button class="content-nav-item active" hx-get="/api/users/{{.Profile.ID}}/posts" hx-target="#profile-posts">Posts</button>
-                <button class="content-nav-item" hx-get="/api/users/{{.Profile.ID}}/workshop" hx-target="#profile-posts">Workshop</button>
-                <button class="content-nav-item" hx-get="/api/users/{{.Profile.ID}}/gallery" hx-target="#profile-posts">Gallery</button>
-                <button class="content-nav-item" hx-get="/api/users/{{.Profile.ID}}/about" hx-target="#profile-posts">About</button>
+                <button class="content-nav-item active"  >Posts</button>
+                <button class="content-nav-item"  >Workshop</button>
+                <button class="content-nav-item"  >Gallery</button>
+                <button class="content-nav-item"  >About</button>
             </div>
 
             <div class="posts-grid" id="profile-posts">
@@ -97,10 +97,10 @@
                         <p>{{.Content}}</p>
                     </div>
                     <div class="post-actions">
-                        <button class="post-action" hx-get="/posts/{{.ID}}/reply" hx-target="#modal">Reply</button>
-                        <button class="post-action" hx-post="/api/posts/{{.ID}}/share">Share</button>
+                        <button class="post-action"  >Reply</button>
+                        <button class="post-action" >Share</button>
                         {{if .CanBuy}}
-                        <button class="post-action" hx-post="/api/posts/{{.ID}}/buy">Buy Now</button>
+                        <button class="post-action" >Buy Now</button>
                         {{end}}
                     </div>
                 </article>
@@ -109,7 +109,7 @@
 
             {{if .HasMorePosts}}
             <div class="load-more-container" style="text-align: center; margin-top: 2rem;">
-                <button class="sidebar-action-btn" hx-get="/api/users/{{.Profile.ID}}/posts/more?offset={{.PostOffset}}" hx-target="#profile-posts" hx-swap="beforeend">
+                <button class="sidebar-action-btn"   >
                     Load More Posts
                 </button>
             </div>
@@ -119,7 +119,7 @@
 </div>
 
 <!-- Modal container -->
-<div id="modal" hx-swap-oob="true"></div>
+<div id="modal" ></div>
 {{end}}
 
 {{define "scripts"}}

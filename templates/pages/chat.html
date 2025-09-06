@@ -10,7 +10,7 @@
             <div class="chat-sidebar-header">
                 <h2>Conversations</h2>
                 <div class="chat-actions">
-                    <button class="new-chat-btn" hx-get="/chat/new" hx-target="#modal" aria-label="Start new conversation">
+                    <button class="new-chat-btn"   aria-label="Start new conversation">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
                             <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
                         </svg>
@@ -80,10 +80,10 @@
                     </div>
                 </div>
                 <div class="chat-actions">
-                    <button class="chat-action-btn" hx-post="/chat/{{.ActiveChat.ID}}/call/voice" hx-target="#modal" aria-label="Start voice call">
+                    <button class="chat-action-btn"   aria-label="Start voice call">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"></path></svg>
                     </button>
-                    <button class="chat-action-btn" hx-post="/chat/{{.ActiveChat.ID}}/call/video" hx-target="#modal" aria-label="Start video call">
+                    <button class="chat-action-btn"   aria-label="Start video call">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M251.77,73a8,8,0,0,0-8.21.39L208,97.05V72a16,16,0,0,0-16-16H32A16,16,0,0,0,16,72V184a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V159l35.56,23.71A8,8,0,0,0,248,184a8,8,0,0,0,8-8V80A8,8,0,0,0,251.77,73ZM192,184H32V72H192V184Zm48-22.95-32-21.33V116.28L240,95Z"></path></svg>
                     </button>
                     <button class="chat-action-btn menu-btn" aria-label="More options">
@@ -165,10 +165,10 @@
                     <textarea class="message-input" 
                               placeholder="Type a message..." 
                               rows="1" 
-                              hx-post="/chat/{{.ActiveChat.ID}}/message" 
-                              hx-trigger="keydown[ctrlKey&&keyCode==13]"
-                              hx-target="#messages-list" 
-                              hx-swap="beforeend"></textarea>
+                               
+                              
+                               
+                              ></textarea>
                 </div>
                 <div class="send-actions">
                     <button class="compose-btn emoji-btn" aria-label="Add emoji">
@@ -189,7 +189,7 @@
                     </svg>
                     <h3>Select a conversation</h3>
                     <p>Choose from your existing conversations or start a new one</p>
-                    <button class="btn-primary start-chat-btn" hx-get="/chat/new" hx-target="#modal">
+                    <button class="btn-primary start-chat-btn"  >
                         Start New Chat
                     </button>
                 </div>
@@ -200,7 +200,7 @@
 </div>
 
 <!-- Modal container for HTMX -->
-<div id="modal" hx-swap-oob="true"></div>
+<div id="modal" ></div>
 {{end}}
 
 {{define "scripts"}}

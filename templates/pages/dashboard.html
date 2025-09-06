@@ -6,9 +6,9 @@
 <div class="dashboard">
     <aside class="left-sidebar">
         <div class="quick-actions-vertical">
-            <button class="action-btn-vertical primary" hx-get="/posts/new" hx-target="#modal">New Post</button>
-            <button class="action-btn-vertical" hx-get="/messages/new" hx-target="#modal">Direct Message</button>
-            <button class="action-btn-vertical" hx-get="/gather/new" hx-target="#modal">Create Gathering</button>
+            <button class="action-btn-vertical primary"  >New Post</button>
+            <button class="action-btn-vertical"  >Direct Message</button>
+            <button class="action-btn-vertical"  >Create Gathering</button>
         </div>
         
         {{template "circles-sidebar" .}}
@@ -23,7 +23,7 @@
                 </div>
                 {{end}}
             </div>
-            <button class="sidebar-action-btn" hx-get="/stewardship/manage" hx-target="#modal">Manage Stewardship</button>
+            <button class="sidebar-action-btn"  >Manage Stewardship</button>
         </div>
     </aside>
 
@@ -36,7 +36,7 @@
                 {{end}}
             </div>
             <div class="feed-more-container">
-                <button class="feed-more-btn" hx-get="/api/feed/more?offset={{.FeedOffset}}" hx-target="#activity-feed" hx-swap="beforeend">
+                <button class="feed-more-btn"   >
                     Load More Posts
                 </button>
             </div>
@@ -46,7 +46,7 @@
             <h2>Active Discussions</h2>
             <div class="discussion-list">
                 {{range .Discussions}}
-                <div class="discussion-item" hx-get="/discussions/{{.ID}}" hx-target="#main-content">
+                <div class="discussion-item"  >
                     <div class="discussion-header">
                         <h3 class="discussion-title">{{.Title}}</h3>
                         <div class="discussion-meta">
@@ -56,12 +56,12 @@
                     </div>
                     <p class="discussion-preview">{{.Preview}}</p>
                     <div class="discussion-actions">
-                        <button class="discussion-action" hx-get="/discussions/{{.ID}}" hx-target="#main-content">Join Discussion</button>
+                        <button class="discussion-action"  >Join Discussion</button>
                     </div>
                 </div>
                 {{end}}
             </div>
-            <button class="see-all-btn" hx-get="/discussions" hx-target="#main-content">Browse All Discussions</button>
+            <button class="see-all-btn"  >Browse All Discussions</button>
         </section>
     </div>
 
@@ -78,14 +78,14 @@
             </h3>
             <div class="ripples-compact">
                 {{range .Ripples}}
-                <div class="ripple-compact" hx-get="/ripples/{{.ID}}" hx-target="#modal">
+                <div class="ripple-compact"  >
                     <div class="ripple-user-compact">{{.User}}</div>
                     <div class="ripple-content-compact">{{.Content}}</div>
                     <div class="ripple-expires-compact">{{.ExpiresIn}}</div>
                 </div>
                 {{end}}
             </div>
-            <button class="sidebar-action-btn" hx-get="/ripples/new" hx-target="#modal">New Ripple</button>
+            <button class="sidebar-action-btn"  >New Ripple</button>
         </div>
 
         {{template "events-sidebar" .}}
@@ -95,23 +95,9 @@
 </div>
 
 <!-- Modal container for HTMX -->
-<div id="modal" hx-swap-oob="true"></div>
+<!-- <div id="modal" ></div> -->
 {{end}}
 
 {{define "scripts"}}
-<script>
-// HTMX event listeners for dynamic content
-document.body.addEventListener('htmx:afterSwap', function(evt) {
-    // Re-initialize any JavaScript components in dynamically loaded content
-    if (evt.detail.target.id === 'main-content') {
-        // Reinitialize any components that might be in the new content
-        console.log('Content swapped in main area');
-    }
-});
 
-// Handle theme switching via HTMX
-document.body.addEventListener('htmx:responseError', function(evt) {
-    console.error('HTMX Error:', evt.detail.xhr.responseText);
-});
-</script>
 {{end}}

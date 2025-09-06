@@ -5,7 +5,7 @@
     </h3>
     <div class="circle-list">
         {{range .Circles}}
-        <div class="circle-item {{if .Active}}active{{end}}" hx-get="/api/circles/{{.ID}}/feed" hx-target="#main-content">
+        <div class="circle-item {{if .Active}}active{{end}}"  >
             <div class="circle-thumbnail">
                 <img src="{{.Thumbnail}}" alt="{{.Name}}" />
             </div>
@@ -27,7 +27,7 @@
     </h3>
     <div class="events-compact">
         {{range .Events}}
-        <div class="event-compact" hx-get="/api/events/{{.ID}}" hx-target="#modal">
+        <div class="event-compact"  >
             <div class="event-date-compact">
                 <div class="event-day-compact">{{.Day}}</div>
                 <div class="event-month-compact">{{.Month}}</div>
@@ -39,7 +39,7 @@
         </div>
         {{end}}
     </div>
-    <button class="sidebar-action-btn" hx-get="/events/calendar" hx-target="#main-content">View Calendar</button>
+    <button class="sidebar-action-btn"  >View Calendar</button>
 </aside>
 {{end}}
 
@@ -50,7 +50,7 @@
     </h3>
     <div class="marketplace-items">
         {{range .MarketplaceItems}}
-        <div class="marketplace-item" hx-get="/api/marketplace/{{.ID}}" hx-target="#modal">
+        <div class="marketplace-item"  >
             <div class="marketplace-image">
                 <img src="{{.Image}}" alt="{{.Title}}" />
             </div>
@@ -63,12 +63,12 @@
                 <span class="marketplace-time">{{.TimeAgo}}</span>
             </div>
             <div class="marketplace-actions">
-                <button class="marketplace-btn" hx-get="/marketplace/{{.ID}}" hx-target="#modal">View Item</button>
+                <button class="marketplace-btn"  >View Item</button>
             </div>
         </div>
         {{end}}
     </div>
-    <button class="sidebar-action-btn" hx-get="/marketplace/browse" hx-target="#main-content">Browse Marketplace</button>
+    <a class="sidebar-action-btn" href="/marketplace">Browse Marketplace</a>
 </aside>
 {{end}}
 
@@ -85,13 +85,13 @@
     </h3>
     <div class="ripples-compact">
         {{range .Ripples}}
-        <div class="ripple-compact" hx-get="/ripples/{{.ID}}" hx-target="#modal">
+        <div class="ripple-compact"  >
             <div class="ripple-user-compact">{{.User}}</div>
             <div class="ripple-content-compact">{{.Content}}</div>
             <div class="ripple-expires-compact">{{.ExpiresIn}}</div>
         </div>
         {{end}}
     </div>
-    <button class="sidebar-action-btn" hx-get="/ripples/new" hx-target="#modal">New Ripple</button>
+    <button class="sidebar-action-btn"  >New Ripple</button>
 </div>
 {{end}}
