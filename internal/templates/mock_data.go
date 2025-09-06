@@ -94,8 +94,69 @@ func GetMockDashboardData() models.DashboardData {
 			{ID: "2", Title: "Monthly Showcase", Time: "7:00 PM", Day: "02", Month: "Sep"},
 		},
 		Ripples: []models.Ripple{
-			{ID: "1", User: "@maia", Content: "Quick progress update on the oak table project...", ExpiresIn: "1h left"},
-			{ID: "2", User: "@craft_collective", Content: "Tip: pre-drill hardwood to avoid splitting", ExpiresIn: "18h left"},
+			{
+				ID: "1",
+				User: models.User{
+					ID:     "maia",
+					Handle: "@maia",
+					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
+				},
+				Content:     "Quick progress shot of the dovetail joints 🔧",
+				ContentType: "image",
+				Image: &models.MediaItem{
+					URL: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=300&h=200&fit=crop&crop=center",
+					Alt: "Dovetail joint detail on oak wood",
+				},
+				ExpiresIn: "2h left",
+				Circle:    "Woodworking",
+			},
+			{
+				ID: "2",
+				User: models.User{
+					ID:     "sara_pcb",
+					Handle: "@sara_pcb",
+					Avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=32&h=32&fit=crop&crop=face",
+				},
+				Content:     "30-second tip: soldering tiny SMD components",
+				ContentType: "video",
+				Video: &models.MediaItem{
+					URL: "https://sample-videos.com/zip/10/mp4/SampleVideo_360x240_1mb.mp4",
+					Alt: "SMD soldering technique demonstration",
+				},
+				ExpiresIn: "6h left",
+				Circle:    "DIY Electronics",
+			},
+			{
+				ID: "4",
+				User: models.User{
+					ID:     "green_thumb",
+					Handle: "@green_thumb",
+					Avatar: "https://images.unsplash.com/photo-1565980100090-3c8b3ec27c43?w=32&h=32&fit=crop&crop=face",
+				},
+				Content:     "Found this amazing article on companion planting",
+				ContentType: "link",
+				Link: &models.LinkPreview{
+					URL:         "https://example.com/companion-planting-guide",
+					Title:       "The Complete Guide to Companion Planting",
+					Description: "Learn which vegetables grow best together and create a thriving garden ecosystem.",
+					Image:       "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=200&h=120&fit=crop",
+					Domain:      "gardenguide.com",
+				},
+				ExpiresIn: "1d left",
+				Circle:    "Sustainable Living",
+			},
+			{
+				ID: "5",
+				User: models.User{
+					ID:     "craft_collective",
+					Handle: "@craft_collective",
+					Avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=32&h=32&fit=crop&crop=face",
+				},
+				Content:     "Pro tip: pre-drill hardwood to avoid splitting. Learned this the hard way! 🪵",
+				ContentType: "text",
+				ExpiresIn:   "18h left",
+				Circle:      "Woodworking",
+			},
 		},
 		MarketplaceItems: []models.MarketplaceItem{
 			{

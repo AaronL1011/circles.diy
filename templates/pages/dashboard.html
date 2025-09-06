@@ -41,10 +41,50 @@
             </h3>
             <div class="ripples-horizontal-scroll horitonzal-feed">
                 {{range .Ripples}}
-                <div class="ripple-card-compact">
-                    <div class="ripple-user-compact">{{.User}}</div>
+                <div class="ripple-card-compact ripple-{{.ContentType}}">
+                    <div class="ripple-user-compact">
+                        <img class="ripple-avatar" src="{{.User.Avatar}}" alt="{{.User.Handle}}">
+                        <span>{{.User.Handle}}</span>
+                    </div>
+                    
+                    {{if eq .ContentType "image"}}
+                        <div class="ripple-media-compact">
+                            <img src="{{.Image.URL}}" alt="{{.Image.Alt}}" loading="lazy" />
+                        </div>
+                    {{else if eq .ContentType "video"}}
+                        <div class="ripple-media-compact ripple-video">
+                            <video preload="none">
+                                <source src="{{.Video.URL}}" />
+                            </video>
+                            <div class="play-overlay">▶</div>
+                        </div>
+                    {{else if eq .ContentType "gallery"}}
+                        <div class="ripple-gallery-compact">
+                            {{$gallery := .Gallery}}
+                            {{range $index, $item := .Gallery}}
+                            <img src="{{.URL}}" alt="{{.Alt}}" loading="lazy" />
+                            {{if gt (len $gallery) 3}}{{if eq $index 2}}<div class="gallery-more">+{{sub (len $gallery) 3}}</div>{{end}}{{end}}
+                            {{end}}
+                        </div>
+                    {{else if eq .ContentType "link"}}
+                        <div class="ripple-link-compact">
+                            <div class="link-preview">
+                                {{if .Link.Image}}<img src="{{.Link.Image}}" alt="{{.Link.Title}}" />{{end}}
+                                <div class="link-info">
+                                    <div class="link-title">{{.Link.Title}}</div>
+                                    <div class="link-domain">{{.Link.Domain}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    {{end}}
+                    
+                    {{if .Content}}
                     <div class="ripple-content-compact">{{.Content}}</div>
-                    <div class="ripple-expires-compact">{{.ExpiresIn}}</div>
+                    {{end}}
+                    
+                    <div class="ripple-meta-compact">
+                        <span class="ripple-expires-compact">{{.ExpiresIn}}</span>
+                    </div>
                 </div>
                 {{end}}
             </div>
@@ -100,10 +140,51 @@
             </h3>
             <div class="ripples-compact">
                 {{range .Ripples}}
-                <div class="ripple-compact"  >
-                    <div class="ripple-user-compact">{{.User}}</div>
+                <div class="ripple-compact ripple-{{.ContentType}}"  >
+                    <div class="ripple-user-compact">
+                        <img class="ripple-avatar-small" src="{{.User.Avatar}}" alt="{{.User.Handle}}">
+                        <span>{{.User.Handle}}</span>
+                    </div>
+                    
+                    {{if eq .ContentType "image"}}
+                        <div class="ripple-media-sidebar">
+                            <img src="{{.Image.URL}}" alt="{{.Image.Alt}}" loading="lazy" />
+                        </div>
+                    {{else if eq .ContentType "video"}}
+                        <div class="ripple-media-sidebar ripple-video">
+                            <video preload="none">
+                                <source src="{{.Video.URL}}" />
+                            </video>
+                            <div class="play-overlay-small">▶</div>
+                        </div>
+                    {{else if eq .ContentType "gallery"}}
+                        <div class="ripple-gallery-sidebar">
+                            {{range $index, $item := .Gallery}}
+                            {{if lt $index 3}}
+                            <img src="{{.URL}}" alt="{{.Alt}}" loading="lazy" />
+                            {{end}}
+                            {{end}}
+                            {{if gt (len .Gallery) 3}}<div class="gallery-more-small">+{{sub (len .Gallery) 3}}</div>{{end}}
+                        </div>
+                    {{else if eq .ContentType "link"}}
+                        <div class="ripple-link-sidebar">
+                            <div class="link-preview-small">
+                                {{if .Link.Image}}<img src="{{.Link.Image}}" alt="{{.Link.Title}}" />{{end}}
+                                <div class="link-info-small">
+                                    <div class="link-title-small">{{.Link.Title}}</div>
+                                    <div class="link-domain-small">{{.Link.Domain}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    {{end}}
+                    
+                    {{if .Content}}
                     <div class="ripple-content-compact">{{.Content}}</div>
-                    <div class="ripple-expires-compact">{{.ExpiresIn}}</div>
+                    {{end}}
+                    
+                    <div class="ripple-meta-compact">
+                        <div class="ripple-expires-compact">{{.ExpiresIn}}</div>
+                    </div>
                 </div>
                 {{end}}
             </div>

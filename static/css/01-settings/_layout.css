@@ -3,3 +3,33 @@
     /* Border Radius System - Set to 0 for sharp corners, increase for rounded */
     --container-radius: 0px;  /* Main control for all container roundness (0px = sharp, 999px = fully rounded) */
 }
+
+/* Works on Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* or use a subtle rgba() */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
+
+/* Works on old IE / Edge */
+* {
+  -ms-overflow-style: none;
+}

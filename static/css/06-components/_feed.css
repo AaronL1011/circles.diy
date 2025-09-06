@@ -140,6 +140,10 @@
         overflow-x: hidden;
     }
 
+    .activity-feed {
+        max-height: fit-content;
+    }
+
     .feed-section h2,
     .discussions-section h2 {
         font-size: 1rem;

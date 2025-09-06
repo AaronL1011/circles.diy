@@ -31,10 +31,25 @@ type Event struct {
 }
 
 type Ripple struct {
-	ID        string `json:"id"`
-	User      string `json:"user"`
-	Content   string `json:"content"`
-	ExpiresIn string `json:"expires_in"`
+	ID          string      `json:"id"`
+	User        User        `json:"user"`
+	Content     string      `json:"content"`
+	ContentType string      `json:"content_type"`
+	Image       *MediaItem  `json:"image,omitempty"`
+	Video       *MediaItem  `json:"video,omitempty"`
+	Gallery     []MediaItem `json:"gallery,omitempty"`
+	Link        *LinkPreview `json:"link,omitempty"`
+	ExpiresIn   string      `json:"expires_in"`
+	Circle      string      `json:"circle"`
+	ViewCount   int         `json:"view_count"`
+}
+
+type LinkPreview struct {
+	URL         string `json:"url"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	Image       string `json:"image,omitempty"`
+	Domain      string `json:"domain"`
 }
 
 type CircleActivity struct {
