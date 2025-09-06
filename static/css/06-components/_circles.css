@@ -66,7 +66,7 @@
 }
 
 /* Responsive adjustments for circles */
-@media (max-width: 480px) {
+@media (max-width: var(--breakpoint-sm)) {
     .circle-thumbnail {
         width: 20px;
         height: 20px;

@@ -1,5 +1,103 @@
-/* Responsive Utilities */
-@media (max-width: 767px) {
+/* Responsive Utilities - Using CSS Custom Properties */
+
+/* Mobile (xs) - Below 576px */
+@media (max-width: var(--breakpoint-sm)) {
+    .u-hidden-xs {
+        display: none !important;
+    }
+    
+    .u-visible-xs {
+        display: block !important;
+    }
+    
+    .u-text-center-xs {
+        text-align: center !important;
+    }
+    
+    .u-text-left-xs {
+        text-align: left !important;
+    }
+}
+
+/* Small (sm) - 576px and up */
+@media (min-width: var(--breakpoint-sm)) {
+    .u-hidden-sm-up {
+        display: none !important;
+    }
+    
+    .u-visible-sm-up {
+        display: block !important;
+    }
+}
+
+/* Small only - 576px to 767px */
+@media (min-width: var(--breakpoint-sm)) and (max-width: var(--breakpoint-md)) {
+    .u-hidden-sm {
+        display: none !important;
+    }
+    
+    .u-visible-sm {
+        display: block !important;
+    }
+}
+
+/* Medium (md) - 768px and up */
+@media (min-width: var(--breakpoint-md)) {
+    .u-hidden-md-up {
+        display: none !important;
+    }
+    
+    .u-visible-md-up {
+        display: block !important;
+    }
+}
+
+/* Medium only - 768px to 991px */
+@media (min-width: var(--breakpoint-md)) and (max-width: var(--breakpoint-lg)) {
+    .u-hidden-md {
+        display: none !important;
+    }
+    
+    .u-visible-md {
+        display: block !important;
+    }
+}
+
+/* Large (lg) - 992px and up */
+@media (min-width: var(--breakpoint-lg)) {
+    .u-hidden-lg-up {
+        display: none !important;
+    }
+    
+    .u-visible-lg-up {
+        display: block !important;
+    }
+}
+
+/* Large only - 992px to 1199px */
+@media (min-width: var(--breakpoint-lg)) and (max-width: var(--breakpoint-xl)) {
+    .u-hidden-lg {
+        display: none !important;
+    }
+    
+    .u-visible-lg {
+        display: block !important;
+    }
+}
+
+/* Extra Large (xl) - 1200px and up */
+@media (min-width: var(--breakpoint-xl)) {
+    .u-hidden-xl-up {
+        display: none !important;
+    }
+    
+    .u-visible-xl-up {
+        display: block !important;
+    }
+}
+
+/* Legacy Support - Using CSS Custom Properties */
+@media (max-width: var(--breakpoint-tablet)) {
     .u-mobile-hidden {
         display: none !important;
     }
@@ -17,7 +115,7 @@
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: var(--breakpoint-md)) {
     .u-desktop-hidden {
         display: none !important;
     }
@@ -27,7 +125,7 @@
     }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: var(--breakpoint-tablet)) and (max-width: var(--breakpoint-desktop)) {
     .u-tablet-hidden {
         display: none !important;
     }
@@ -37,7 +135,7 @@
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: var(--breakpoint-desktop)) {
     .u-large-desktop-visible {
         display: block !important;
     }

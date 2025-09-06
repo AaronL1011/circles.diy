@@ -37,7 +37,7 @@
 }
 
 /* Responsive adjustments for search */
-@media (max-width: 768px) {
+@media (max-width: var(--breakpoint-md)) {
     .global-search {
         width: 200px;
         min-width: 150px;
@@ -45,7 +45,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: var(--breakpoint-sm)) {
     .global-search {
         width: 150px;
         min-width: 120px;

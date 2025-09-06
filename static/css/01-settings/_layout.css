@@ -2,6 +2,27 @@
 :root {
     /* Border Radius System - Set to 0 for sharp corners, increase for rounded */
     --container-radius: 0px;  /* Main control for all container roundness (0px = sharp, 999px = fully rounded) */
+    
+    /* Responsive Breakpoint System (Mobile First) */
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px; 
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --breakpoint-xxl: 1400px;
+    
+    /* Container Max Widths */
+    --container-sm: 540px;
+    --container-md: 720px;
+    --container-lg: 960px;
+    --container-xl: 1140px;
+    --container-xxl: 1320px;
+    
+    /* Legacy Breakpoints (for gradual migration) */
+    --breakpoint-mobile: 480px;
+    --breakpoint-tablet: 768px;
+    --breakpoint-small-desktop: 900px;
+    --breakpoint-desktop: 1024px;
 }
 
 /* Works on Chrome, Edge, Safari */

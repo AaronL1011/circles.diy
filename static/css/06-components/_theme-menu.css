@@ -127,7 +127,7 @@
 }
 
 /* Responsive adjustments for theme menu */
-@media (max-width: 768px) {
+@media (max-width: var(--breakpoint-md)) {
     .theme-dropdown {
         right: -0.5rem;
         left: auto;
@@ -155,7 +155,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: var(--breakpoint-sm)) {
     .theme-dropdown {
         position: fixed;
         top: 60px;

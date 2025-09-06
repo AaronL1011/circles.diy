@@ -1,7 +1,7 @@
 /* Responsive Layout Objects - structural breakpoints only */
 
-/* Responsive Dashboard Layout */
-@media (max-width: 1024px) {
+/* Large Desktop (xl) - Below 1200px */
+@media (max-width: var(--breakpoint-xl)) {
     .o-dashboard {
         grid-template-columns: 200px 1fr;
     }
@@ -11,7 +11,8 @@
     }
 }
 
-@media (max-width: 900px) {
+/* Large (lg) - Below 992px */
+@media (max-width: var(--breakpoint-lg)) {
     .o-dashboard {
         grid-template-columns: 1fr;
         padding: 1rem;
@@ -25,7 +26,8 @@
     }
 }
 
-@media (max-width: 768px) {
+/* Medium (md) - Below 768px */
+@media (max-width: var(--breakpoint-md)) {
     .o-container {
         padding: 0 0.75rem;
     }
@@ -40,7 +42,8 @@
     }
 }
 
-@media (max-width: 480px) {
+/* Small (sm) - Below 576px */
+@media (max-width: var(--breakpoint-sm)) {
     .o-container {
         padding: 0 0.5rem;
     }
@@ -50,6 +53,45 @@
     }
     
     .o-sidebar {
+        gap: 1rem;
+    }
+}
+
+/* Legacy Breakpoint Support - for gradual migration */
+@media (max-width: var(--breakpoint-desktop)) {
+    .o-dashboard--legacy {
+        grid-template-columns: 200px 1fr;
+    }
+    
+    .o-three-column--legacy {
+        grid-template-columns: 200px 1fr;
+    }
+}
+
+@media (max-width: var(--breakpoint-small-desktop)) {
+    .o-dashboard--legacy {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .o-two-column--legacy,
+    .o-three-column--legacy {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: var(--breakpoint-mobile)) {
+    .o-container--legacy {
+        padding: 0 0.5rem;
+    }
+    
+    .o-dashboard--legacy {
+        padding: 0.75rem;
+    }
+    
+    .o-sidebar--legacy {
         gap: 1rem;
     }
 }

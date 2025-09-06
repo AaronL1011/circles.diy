@@ -233,7 +233,7 @@
 }
 
 /* Profile layout responsive styles */
-@media (max-width: 1024px) {
+@media (max-width: var(--breakpoint-xl)) {
     .profile-layout {
         grid-template-columns: 1fr;
         padding: 1rem;
@@ -252,7 +252,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: var(--breakpoint-md)) {
     .profile-container {
         padding: 0 1rem 2rem;
     }
@@ -283,7 +283,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: var(--breakpoint-sm)) {
     .profile-header {
         gap: 1rem;
     }

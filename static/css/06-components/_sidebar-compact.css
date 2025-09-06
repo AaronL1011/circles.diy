@@ -424,7 +424,7 @@
 }
 
 /* Responsive Adjustments */
-@media (max-width: 480px) {
+@media (max-width: var(--breakpoint-sm)) {
     .ripple-card-compact {
         width: 200px;
     }

@@ -16,6 +16,7 @@
     align-items: center;
     justify-content: space-between;
     height: 60px;
+    gap: 1rem;
 }
 
 .brand {
@@ -37,22 +38,22 @@
 }
 
 /* Header responsive styles */
-@media (max-width: 768px) {
+@media (max-width: var(--breakpoint-md)) {
     .header-content {
         flex-wrap: wrap;
         height: auto;
         padding: 1rem;
         gap: 1rem;
         max-width: 100%;
-        overflow-x: hidden;
+        overflow-x: scroll;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: var(--breakpoint-sm)) {
     .header-content {
         padding: 0.75rem;
         max-width: 100%;
-        overflow-x: hidden;
+        overflow-x: scroll;
     }
 
     .brand h1 {

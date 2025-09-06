@@ -35,7 +35,7 @@
 }
 
 /* Dashboard responsive styles */
-@media (max-width: 1024px) {
+@media (max-width: var(--breakpoint-xl)) {
     .dashboard {
         grid-template-columns: 200px 1fr;
     }
@@ -69,7 +69,7 @@
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: var(--breakpoint-lg)) {
     .dashboard {
         grid-template-columns: 1fr;
         padding: 1rem;
@@ -93,7 +93,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: var(--breakpoint-md)) {
     html {
         font-size: 14px;
     }
@@ -106,7 +106,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: var(--breakpoint-sm)) {
     .dashboard {
         padding: 0.75rem;
         max-width: 100%;

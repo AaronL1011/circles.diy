@@ -27,7 +27,7 @@
 }
 
 /* Navigation responsive styles */
-@media (max-width: 768px) {
+@media (max-width: var(--breakpoint-md)) {
     .main-nav {
         order: 3;
         width: 100%;

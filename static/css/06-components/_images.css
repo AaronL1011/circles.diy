@@ -34,7 +34,7 @@
 }
 
 /* Responsive adjustments for images */
-@media (max-width: 480px) {
+@media (max-width: var(--breakpoint-sm)) {
     .feed-image img {
         height: auto;
         max-height: 200px;

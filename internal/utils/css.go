@@ -6,8 +6,36 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"regexp"
 	"time"
+
+	"circles.diy/internal/config"
 )
+
+// substituteCSSVariables replaces CSS variables with their actual values 
+// in media query contexts only, leaving other CSS custom properties intact
+func substituteCSSVariables(cssContent string) (string, error) {
+	// Get the breakpoint variable mappings
+	variables := config.GetVariableMap()
+	
+	// Regex to match @media rules that contain CSS variables
+	// This matches: @media (...var(--breakpoint-name)...)
+	mediaQueryRegex := regexp.MustCompile(`(@media[^{]*var\(--breakpoint-[^}]*\)[^{]*\{)`)
+	
+	// Find all media query blocks that contain CSS variables
+	result := mediaQueryRegex.ReplaceAllStringFunc(cssContent, func(mediaQuery string) string {
+		// Replace each CSS variable in this media query
+		processedQuery := mediaQuery
+		for varName, value := range variables {
+			// Create a regex for this specific variable: var(--breakpoint-name)
+			varRegex := regexp.MustCompile(`var\(` + regexp.QuoteMeta(varName) + `\)`)
+			processedQuery = varRegex.ReplaceAllString(processedQuery, value)
+		}
+		return processedQuery
+	})
+	
+	return result, nil
+}
 
 func BuildCSS() error {
 	// ITCSS Layer directories in correct specificity order
@@ -72,10 +100,24 @@ func BuildCSS() error {
 				return fmt.Errorf("failed to write file marker: %v", err)
 			}
 
-			// Copy file content
-			if _, err := io.Copy(output, file); err != nil {
+			// Read file content
+			content, err := io.ReadAll(file)
+			if err != nil {
 				file.Close()
-				return fmt.Errorf("failed to copy CSS file %s: %v", cssFile, err)
+				return fmt.Errorf("failed to read CSS file %s: %v", cssFile, err)
+			}
+
+			// Process CSS variables in media queries
+			processedContent, err := substituteCSSVariables(string(content))
+			if err != nil {
+				file.Close()
+				return fmt.Errorf("failed to process CSS variables in %s: %v", cssFile, err)
+			}
+
+			// Write processed content
+			if _, err := output.WriteString(processedContent); err != nil {
+				file.Close()
+				return fmt.Errorf("failed to write processed CSS file %s: %v", cssFile, err)
 			}
 
 			// Add separator

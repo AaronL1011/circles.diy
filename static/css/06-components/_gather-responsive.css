@@ -1,5 +1,5 @@
 /* Responsive Design for Gather Page */
-@media (max-width: 1024px) {
+@media (max-width: var(--breakpoint-xl)) {
     .gather-main {
         grid-template-columns: 1fr;
     }
@@ -13,7 +13,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: var(--breakpoint-md)) {
     .gather-header {
         padding: 1rem;
     }
@@ -84,7 +84,7 @@
     }
 }
 
-@media (max-width: 480px) {    
+@media (max-width: var(--breakpoint-sm)) {    
     .gather-title p {
         font-size: 1rem;
     }

@@ -1,0 +1,44 @@
+/* Icon Components */
+
+/* Ripple pulse animation for circles icon */
+@keyframes ripple-pulse {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    75%{
+        opacity: 0.2
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Ripple icon with pulse animation */
+.ripple-icon-animated {
+    /* Apply animation to the entire SVG as container */
+    animation: none;
+}
+
+/* Individual circle animations with progressive delays */
+.ripple-icon-animated .ripple-center {
+    animation: ripple-pulse 3s ease 0s 1 both;
+    transform-origin: center;
+}
+
+.ripple-icon-animated .ripple-inner {
+    animation: ripple-pulse 3s ease 0.1s 1 both;
+    transform-origin: center;
+}
+
+.ripple-icon-animated .ripple-middle {
+    animation: ripple-pulse 3s ease 0.2s 1 both;
+    transform-origin: center;
+}
+
+.ripple-icon-animated .ripple-outer {
+    animation: ripple-pulse 3s ease 0.3s 1 both;
+    transform-origin: center;
+}

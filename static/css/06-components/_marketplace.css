@@ -828,7 +828,7 @@
 
 /* ===== RESPONSIVE STYLES ===== */
 
-@media (max-width: 1024px) {
+@media (max-width: var(--breakpoint-xl)) {
     .marketplace {
         padding: 1.5rem 1rem;
         gap: 1.5rem;
@@ -844,7 +844,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: var(--breakpoint-md)) {
     .marketplace-header {
         flex-direction: column;
         gap: 1rem;
@@ -902,7 +902,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: var(--breakpoint-sm)) {
     .marketplace {
         padding: 1rem 0.75rem;
         gap: 1rem;
@@ -941,14 +941,14 @@
 }
 
 /* Responsive adjustments for marketplace sidebar (legacy) */
-@media (max-width: 768px) {
+@media (max-width: var(--breakpoint-md)) {
     .marketplace-image {
         width: 100px;
         height: 66px;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: var(--breakpoint-sm)) {
     .marketplace-image {
         width: 80px;
         height: 54px;
