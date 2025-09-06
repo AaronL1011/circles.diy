@@ -5,7 +5,25 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+/* Scroll-based header states */
+.main-header.header-scroll-hidden {
+    transform: translateY(-100%);
+}
+
+/* Accessibility: Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .main-header {
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    
+    .main-header.header-scroll-hidden {
+        transform: none;
+        opacity: 0.7;
+    }
 }
 
 .header-content {

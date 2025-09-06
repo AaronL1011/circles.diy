@@ -34,11 +34,13 @@
     {{block "head" .}}{{end}}
 </head>
 <body>
-    {{template "header" .}}
-    
-    <main>
-        {{block "main" .}}{{end}}
-    </main>
+    <div class="page-container">
+        {{template "header" .}}
+        
+        <main>
+            {{block "main" .}}{{end}}
+        </main>
+    </div>
 
     <script src="/static/js/htmx.min.js"></script>
     <script>
@@ -212,9 +214,120 @@ class ThemeManager {
     }
 }
 
-// Initialize theme manager when DOM is loaded
+/**
+ * Header Scroll Controller - Lightweight scroll-based hide/reveal behavior
+ * Professional implementation with RAF throttling and accessibility support
+ */
+class HeaderScrollController {
+    constructor() {
+        this.header = document.querySelector('.main-header');
+        this.lastScrollY = document.body.scrollTop || document.documentElement.scrollTop;
+        this.scrollThreshold = 100; // Hide threshold (px)
+        this.revealThreshold = 20;  // Reveal threshold (px)
+        this.isHidden = false;
+        this.rafId = null;
+        this.isScrolling = false;
+        
+        // Respect reduced motion preference
+        this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;    
+        if (this.header && !this.prefersReducedMotion) {
+            this.init();
+        }
+    }
+    
+    /**
+     * Initialize scroll controller with event listeners
+     */
+    init() {
+        document.body.addEventListener('scroll', this.handleScroll.bind(this), { passive: true });
+        window.addEventListener('resize', this.handleResize.bind(this), { passive: true });
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', this.cleanup.bind(this));
+    }
+    
+    /**
+     * Handle scroll events with RAF throttling
+     */
+    handleScroll() {
+        console.log('handleScroll called, rafId exists:', !!this.rafId);
+        
+        if (this.rafId) return;
+        
+        this.rafId = requestAnimationFrame(() => {
+            this.updateHeaderState();
+            this.rafId = null;
+        });
+    }
+    
+    /**
+     * Update header visibility based on scroll direction and position
+     */
+    updateHeaderState() {
+        const currentScrollY = document.body.scrollTop || document.documentElement.scrollTop;
+        const scrollDiff = currentScrollY - this.lastScrollY;
+
+        // Hide header: scrolling down past threshold
+        if (scrollDiff > 0 && currentScrollY > this.scrollThreshold && !this.isHidden) {
+            this.hideHeader();
+        }
+        // Reveal header: any upward scroll movement past reveal threshold
+        else if (scrollDiff < 0 && Math.abs(scrollDiff) > this.revealThreshold && this.isHidden) {
+            this.showHeader();
+        }
+        // Always show header at top of page
+        else if (currentScrollY <= this.scrollThreshold && this.isHidden) {
+            this.showHeader();
+        }
+        
+        this.lastScrollY = currentScrollY;
+    }
+    
+    /**
+     * Hide header with smooth animation
+     */
+    hideHeader() {
+        if (this.isHidden) return;
+        
+        this.header.classList.add('header-scroll-hidden');
+        this.isHidden = true;
+    }
+    
+    /**
+     * Show header with smooth animation  
+     */
+    showHeader() {
+        if (!this.isHidden) return;
+        
+        this.header.classList.remove('header-scroll-hidden');
+        this.isHidden = false;
+    }
+    
+    /**
+     * Handle resize events (debounced)
+     */
+    handleResize() {
+        // Reset scroll position tracking on resize
+        this.lastScrollY = window.pageYOffset;
+    }
+    
+    /**
+     * Cleanup resources and event listeners
+     */
+    cleanup() {
+        if (this.rafId) {
+            cancelAnimationFrame(this.rafId);
+        }
+        document.body.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+        window.removeEventListener('beforeunload', this.cleanup);
+    }
+}
+
+// Initialize controllers when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new ThemeManager();
+    const scrollController = new HeaderScrollController();
 });
     </script>
     {{block "scripts" .}}{{end}}
