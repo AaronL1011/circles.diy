@@ -222,7 +222,7 @@ class HeaderScrollController {
     constructor() {
         this.header = document.querySelector('.main-header');
         this.lastScrollY = document.body.scrollTop || document.documentElement.scrollTop;
-        this.scrollThreshold = 100; // Hide threshold (px)
+        this.scrollThreshold = 200; // Hide threshold (px)
         this.revealThreshold = 20;  // Reveal threshold (px)
         this.isHidden = false;
         this.rafId = null;
