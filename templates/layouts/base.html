@@ -29,6 +29,15 @@
         content="A social platform for communities, creators and collaborators. Built on principles of community stewardship, not capital extraction.">
     <meta property="twitter:image" content="https://circles.diy/static/img/circles-og-image.jpeg">
 
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="circles.diy">
+    <link rel="apple-touch-icon" href="/static/img/icon-192.png">
+
     <title>{{.Title}} - circles.diy</title>
     <link rel="stylesheet" href="/static/css/style.css">
     {{block "head" .}}{{end}}
@@ -328,6 +337,17 @@ class HeaderScrollController {
 document.addEventListener('DOMContentLoaded', () => {
     new ThemeManager();
     const scrollController = new HeaderScrollController();
+    
+    // Register service worker for PWA functionality
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('Service Worker registered successfully:', registration);
+            })
+            .catch(error => {
+                console.log('Service Worker registration failed:', error);
+            });
+    }
 });
     </script>
     {{block "scripts" .}}{{end}}

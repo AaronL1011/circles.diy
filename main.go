@@ -62,6 +62,14 @@ func main() {
 		handlers.ServeStaticFile(w, r, "static/js/htmx.min.js", "application/javascript; charset=utf-8")
 	})
 	mux.HandleFunc("/static/img/", handlers.ServeStaticImage)
+	
+	// PWA routes
+	mux.HandleFunc("/manifest.json", func(w http.ResponseWriter, r *http.Request) {
+		handlers.ServeStaticFile(w, r, "static/manifest.json", "application/manifest+json")
+	})
+	mux.HandleFunc("/sw.js", func(w http.ResponseWriter, r *http.Request) {
+		handlers.ServeStaticFile(w, r, "static/js/sw.js", "application/javascript; charset=utf-8")
+	})
 
 	// Apply middleware chain
 	handler := middleware.Chain(mux, middleware.SecurityMiddleware, middleware.RateLimitMiddleware)
