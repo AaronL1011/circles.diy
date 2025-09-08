@@ -108,7 +108,16 @@
         width: 40px;
         height: 40px;
     }
-    
+
+    .chat-name {
+    font-size: 0.85rem;
+}
+
+    .chat-participants,
+    .chat-status {
+        font-size: 0.75rem;
+    }
+
     .chat-avatar img {
         width: 36px;
         height: 36px;

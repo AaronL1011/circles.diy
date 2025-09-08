@@ -112,4 +112,8 @@
         max-width: 100%;
         overflow-x: hidden;
     }
+
+    .recent-ripples-mobile {
+        padding: 0.5rem 0 0;
+    }
 }
