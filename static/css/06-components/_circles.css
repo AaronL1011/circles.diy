@@ -56,15 +56,10 @@
     font-size: 0.7rem;
 }
 
-.circle-count {
-    font-size: 0.8rem;
+.circle-last-activity {
+    font-size: 0.65rem;
     color: var(--text-secondary);
 }
-
-.circle-item.active .circle-count {
-    color: var(--text-secondary);
-}
-
 /* Responsive adjustments for circles */
 @media (max-width: var(--breakpoint-sm)) {
     .circle-thumbnail {

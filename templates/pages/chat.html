@@ -4,7 +4,7 @@
 
 {{define "main"}}
 <div class="chat-page">
-    <div class="chat-container">
+    <div class="chat-container" data-mobile-view="conversations">
         <!-- Chat Sidebar -->
         <aside class="chat-sidebar">
             <div class="chat-sidebar-header">
@@ -24,7 +24,12 @@
 
             <div class="conversation-list">
                 {{range .Conversations}}
-                <div class="conversation-item {{if eq .ID $.ActiveChat.ID}}active{{end}}" data-conversation-id="{{.ID}}">
+                <div class="conversation-item {{if eq .ID $.ActiveChat.ID}}active{{end}}" 
+                     data-conversation-id="{{.ID}}" 
+                     data-conversation-name="{{.Name}}"
+                     data-conversation-avatar="{{.Avatar}}"
+                     data-conversation-online="{{.IsOnline}}"
+                     onclick="selectConversation(this)">
                     <div class="conversation-avatar">
                         <img src="{{.Avatar}}" alt="{{.Name}}" />
                         {{if .IsOnline}}
@@ -59,6 +64,11 @@
         <main class="chat-main" id="chat-main">
             {{if .ActiveChat}}
             <div class="chat-header">
+                <button class="mobile-back-btn" onclick="returnToConversations()" aria-label="Back to conversations">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+                        <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
+                    </svg>
+                </button>
                 <div class="chat-user-info">
                     <div class="chat-avatar">
                         <img src="{{.ActiveChat.Avatar}}" alt="{{.ActiveChat.Name}}" />
@@ -209,6 +219,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     const messageInput = document.querySelector('.message-input');
     const conversationItems = document.querySelectorAll('.conversation-item');
+    const chatContainer = document.querySelector('.chat-container');
+    
+    // Mobile responsive helper
+    function isMobileView() {
+        return window.innerWidth <= 768; // --breakpoint-md
+    }
     
     // Auto-resize textarea
     if (messageInput) {
@@ -232,6 +248,11 @@ document.addEventListener('DOMContentLoaded', function() {
         item.addEventListener('click', function() {
             conversationItems.forEach(i => i.classList.remove('active'));
             this.classList.add('active');
+            
+            // On mobile, switch to chat view when conversation is selected
+            if (isMobileView()) {
+                selectConversation(this);
+            }
         });
     });
     
@@ -240,6 +261,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (messagesList) {
         messagesList.scrollTop = messagesList.scrollHeight;
     }
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (!isMobileView() && chatContainer) {
+            // Reset mobile view state on desktop
+            chatContainer.dataset.mobileView = 'conversations';
+        }
+    });
     
     // Mock typing indicator (for demo purposes)
     setTimeout(() => {
@@ -252,6 +281,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 2000);
 });
+
+// Mobile navigation functions
+function selectConversation(conversationElement) {
+    const chatContainer = document.querySelector('.chat-container');
+    if (!chatContainer) return;
+    
+    // Only handle mobile view switching on mobile screens
+    if (window.innerWidth <= 768) {
+        chatContainer.dataset.mobileView = 'chat';
+        
+        // Update chat header with conversation data if available
+        const chatName = conversationElement.dataset.conversationName;
+        const chatAvatar = conversationElement.dataset.conversationAvatar;
+        const isOnline = conversationElement.dataset.conversationOnline === 'true';
+        
+        // This would typically trigger an HTMX request to load the conversation
+        // For now, we just switch the view
+    }
+}
+
+function returnToConversations() {
+    const chatContainer = document.querySelector('.chat-container');
+    if (!chatContainer) return;
+    
+    // Switch back to conversations view on mobile
+    if (window.innerWidth <= 768) {
+        chatContainer.dataset.mobileView = 'conversations';
+    }
+}
 
 // HTMX event listeners
 document.body.addEventListener('htmx:afterSwap', function(evt) {

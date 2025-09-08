@@ -81,9 +81,9 @@ func GetMockDashboardData() models.DashboardData {
 		},
 		FeedOffset: 4,
 		Circles: []models.Circle{
-			{ID: "1", Name: "Woodworking", Thumbnail: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=48&h=48&fit=crop&crop=center", MemberCount: "8 online"},
-			{ID: "2", Name: "The Crop Circle", Thumbnail: "https://images.unsplash.com/photo-1611402858501-d3de70f3c67e?q=80&w=48&auto=format&fit=crop", MemberCount: "12 members"},
-			{ID: "3", Name: "DIY Electronics", Thumbnail: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=48&h=48&fit=crop&crop=center", MemberCount: "24 members"},
+			{ID: "1", Name: "Woodworking", Thumbnail: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=48&h=48&fit=crop&crop=center", LastActivity: "2m ago"},
+			{ID: "2", Name: "The Crop Circle", Thumbnail: "https://images.unsplash.com/photo-1611402858501-d3de70f3c67e?q=80&w=48&auto=format&fit=crop", LastActivity: "15m ago"},
+			{ID: "3", Name: "DIY Electronics", Thumbnail: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=48&h=48&fit=crop&crop=center", LastActivity: "1h ago"},
 		},
 		Discussions: []models.Discussion{
 			{ID: "1", Title: "Sustainable Materials: Where to Source?", Preview: "Looking for suppliers of ethically sourced hardwoods. What are your go-to sources for...", Circle: "Woodworking", TimeAgo: "23 replies • 45m ago"},
