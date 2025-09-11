@@ -7,6 +7,7 @@
     --text-primary: #000000;
     --text-secondary: #666666;
     --text-tertiary: #999999;
+    --text-contrast: #ffffff;
     --border-primary: #000000;
     --border-secondary: #cccccc;
     --border-light: #eeeeee;
@@ -74,6 +75,7 @@
         --text-primary: #ffffff;
         --text-secondary: #a3a3a3;
         --text-tertiary: #666666;
+        --text-contrast: #000000;
         --border-primary: #dddddd;
         --border-secondary: #333333;
         --border-light: #222222;

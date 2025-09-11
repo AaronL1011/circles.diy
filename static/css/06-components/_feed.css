@@ -122,6 +122,11 @@
     border-color: var(--border-primary);
 }
 
+.user-handle-link {
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
 /* Responsive adjustments for feed */
 @media (max-width: var(--breakpoint-md)) {
     .feed-actions {

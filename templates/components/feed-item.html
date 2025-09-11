@@ -5,7 +5,7 @@
             <div class="user-avatar">
                 <img src="{{.User.Avatar}}" alt="{{.User.Handle}}" />
             </div>
-            <strong>{{.User.Handle}}</strong>
+            <a class="user-handle-link" href="/profile/{{.User.Handle}}"><strong>{{.User.Handle}}</strong></a>
             <span class="feed-time">{{.TimeAgo}}</span>
         </div>
         <div class="feed-circle">in {{.Circle}}</div>

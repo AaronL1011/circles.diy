@@ -258,9 +258,7 @@ class HeaderScrollController {
     /**
      * Handle scroll events with RAF throttling
      */
-    handleScroll() {
-        console.log('handleScroll called, rafId exists:', !!this.rafId);
-        
+    handleScroll() {        
         if (this.rafId) return;
         
         this.rafId = requestAnimationFrame(() => {

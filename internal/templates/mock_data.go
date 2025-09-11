@@ -193,92 +193,336 @@ func GetMockDashboardData() models.DashboardData {
 }
 
 func GetMockProfileData(handle string, isOwner bool) models.ProfileData {
-	return models.ProfileData{
-		BaseData: models.BaseData{
-			Title:     fmt.Sprintf("%s - Profile", handle),
-			ActiveNav: "profile",
-			Theme: models.ThemeSettings{
-				Mode:   "system",
-				Radius: "0",
-			},
-			CSRFToken: utils.GenerateCSRFToken(),
+	baseData := models.BaseData{
+		Title:     fmt.Sprintf("%s - Profile", handle),
+		ActiveNav: "profile",
+		Theme: models.ThemeSettings{
+			Mode:   "system",
+			Radius: "0",
 		},
-		Profile: models.Profile{
-			ID:     "maia",
-			Handle: "@maia",
-			Name:   "Maia Makes",
-			Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=128&h=128&fit=crop&crop=face",
-			Banner: "https://images.unsplash.com/photo-1597960194599-22929afc25b1?w=1200&h=300&fit=crop&crop=center",
-			Bio:    "Woodworker & furniture maker crafting heirloom pieces from sustainably sourced timber. Teaching traditional joinery techniques and sharing the journey from tree to table.",
-			Stats: models.ProfileStats{
-				Posts:       3,
-				Connections: 342,
-				Circles:     5,
+		CSRFToken: utils.GenerateCSRFToken(),
+	}
+
+	switch handle {
+	case "@maia":
+		return models.ProfileData{
+			BaseData: baseData,
+			Profile: models.Profile{
+				ID:     "maia",
+				Handle: "@maia",
+				Name:   "Maia Makes",
+				Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=128&h=128&fit=crop&crop=face",
+				Banner: "https://images.unsplash.com/photo-1597960194599-22929afc25b1?w=1200&h=300&fit=crop&crop=center",
+				Bio:    "Woodworker & furniture maker crafting heirloom pieces from sustainably sourced timber. Teaching traditional joinery techniques and sharing the journey from tree to table.",
+				Stats: models.ProfileStats{
+					Posts:       3,
+					Connections: 342,
+					Circles:     5,
+				},
+				IsConnected: false,
 			},
-			IsConnected: false,
-		},
-		Posts: []models.Post{
-			{
-				ID: "1",
-				User: models.User{
-					ID:     "maia",
-					Handle: "@maia",
-					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
+			Posts: []models.Post{
+				{
+					ID: "1",
+					User: models.User{
+						ID:     "maia",
+						Handle: "@maia",
+						Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
+					},
+					Content: "Just finished this oak coffee table! Happy to step out of my comfort-zone and share some joinery! This piece is available 💜💸",
+					TimeAgo: "2h ago",
+					Circle:  "Woodworking",
+					Image: &models.MediaItem{
+						URL: "https://images.unsplash.com/photo-1707749522150-e3b1b5f3e079?w=600&h=400&fit=crop&crop=center",
+						Alt: "Oak coffee table project",
+					},
+					CanBuy: true,
 				},
-				Content: "Just finished this oak coffee table! Happy to step out of my comfort-zone and share some joinery! This piece is available 💜💸",
-				TimeAgo: "2h ago",
-				Circle:  "Woodworking",
-				Image: &models.MediaItem{
-					URL: "https://images.unsplash.com/photo-1707749522150-e3b1b5f3e079?w=600&h=400&fit=crop&crop=center",
-					Alt: "Oak coffee table project",
+				{
+					ID: "2",
+					User: models.User{
+						ID:     "maia",
+						Handle: "@maia",
+						Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
+					},
+					Content: "Spending today selecting timber for the next commission. There's something meditative about running your hands along the grain, feeling for the perfect piece that wants to become a dining table. The wood tells its own story - weather marks, growth patterns, all the years it spent reaching toward light.",
+					TimeAgo: "1d ago",
+					Circle:  "Woodworking",
 				},
-				CanBuy: true,
+				{
+					ID: "3",
+					User: models.User{
+						ID:     "maia",
+						Handle: "@maia",
+						Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
+					},
+					Content: "Traditional style - the backbone of solid furniture. Here's the technique I learned from my mentor, passed down through generations of craftspeople. No shortcuts, just sharp tools and patient hands.",
+					TimeAgo: "3d ago",
+					Circle:  "Woodworking",
+					Video: &models.MediaItem{
+						URL: "https://www.pexels.com/download/video/5972633/",
+						Alt: "Video showing old school planing of an uneven timber edge",
+					},
+					Stats: &models.PostStats{
+						Replies: 34,
+						Shares:  67,
+					},
+				},
 			},
-			{
-				ID: "2",
-				User: models.User{
-					ID:     "maia",
-					Handle: "@maia",
-					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
+			PostOffset:   1,
+			HasMorePosts: true,
+			IsOwner:      isOwner,
+		}
+
+	case "@heathtyler":
+		return models.ProfileData{
+			BaseData: baseData,
+			Profile: models.Profile{
+				ID:     "heathtyler",
+				Handle: "@heathtyler",
+				Name:   "Heath Tyler",
+				Avatar: "https://images.unsplash.com/photo-1581391528803-54be77ce23e3?w=128&h=128&fit=crop&crop=face",
+				Banner: "https://images.unsplash.com/photo-1594623930572-300a3011d9ae?w=1200&h=300&fit=crop&crop=center",
+				Bio:    "Event organizer and BBQ enthusiast bringing the community together through good food and great times. Always ready to fire up the grill and share stories over a cold one.",
+				Stats: models.ProfileStats{
+					Posts:       3,
+					Connections: 158,
+					Circles:     3,
 				},
-				Content: "Spending today selecting timber for the next commission. There's something meditative about running your hands along the grain, feeling for the perfect piece that wants to become a dining table. The wood tells its own story - weather marks, growth patterns, all the years it spent reaching toward light.",
-				TimeAgo: "1d ago",
-				Circle:  "Woodworking",
+				IsConnected: false,
 			},
-			{
-				ID: "2",
-				User: models.User{
-					ID:     "maia",
-					Handle: "@maia",
-					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
+			Posts: []models.Post{
+				{
+					ID: "1",
+					User: models.User{
+						ID:     "heathtyler",
+						Handle: "@heathtyler",
+						Avatar: "https://images.unsplash.com/photo-1581391528803-54be77ce23e3?w=32&h=32&fit=crop&crop=face",
+					},
+					Content: "Warming up the barbeque and just got couple cases of the finest bread-water. Keen to see you all... remember 7PM dont be late!",
+					TimeAgo: "15m ago",
+					Circle:  "The Crop Circle",
+					Image: &models.MediaItem{
+						URL: "https://images.unsplash.com/photo-1664463758574-e640a7a998d4?q=80&w=600&auto=format&fit=crop",
+						Alt: "BBQ gathering setup",
+					},
 				},
-				Content: "Traditional style - the backbone of solid furniture. Here's the technique I learned from my mentor, passed down through generations of craftspeople. No shortcuts, just sharp tools and patient hands.",
-				TimeAgo: "3d ago",
-				Circle:  "Woodworking",
-				Video: &models.MediaItem{
-					URL: "https://www.pexels.com/download/video/5972633/",
-					Alt: "Video showing old school planing of an uneven timber edge",
+				{
+					ID: "2",
+					User: models.User{
+						ID:     "heathtyler",
+						Handle: "@heathtyler",
+						Avatar: "https://images.unsplash.com/photo-1581391528803-54be77ce23e3?w=32&h=32&fit=crop&crop=face",
+					},
+					Content: "Nothing beats the smell of smoky charcoal and good company on a Saturday arvo. Thanks to everyone who came out last weekend - already planning the next one!",
+					TimeAgo: "2d ago",
+					Circle:  "The Crop Circle",
 				},
-				Stats: &models.PostStats{
-					Replies: 34,
-					Shares:  67,
+				{
+					ID: "3",
+					User: models.User{
+						ID:     "heathtyler",
+						Handle: "@heathtyler",
+						Avatar: "https://images.unsplash.com/photo-1581391528803-54be77ce23e3?w=32&h=32&fit=crop&crop=face",
+					},
+					Content: "Pro tip: let your falafel rest at room temp for 30 mins before hitting the grill. Game changer for even cooking. Trust me on this one 🔥",
+					TimeAgo: "5d ago",
+					Circle:  "The Crop Circle",
 				},
 			},
-			{
-				ID: "3",
-				User: models.User{
-					ID:     "maia",
-					Handle: "@maia",
-					Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
+			PostOffset:   1,
+			HasMorePosts: false,
+			IsOwner:      isOwner,
+		}
+
+	case "@sara_pcb":
+		return models.ProfileData{
+			BaseData: baseData,
+			Profile: models.Profile{
+				ID:     "sara_pcb",
+				Handle: "@sara_pcb",
+				Name:   "Sara Electronics",
+				Avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&h=128&fit=crop&crop=face",
+				Banner: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=300&fit=crop&crop=center",
+				Bio:    "Electronics engineer and educator passionate about making technology accessible. Teaching Arduino, circuit design, and PCB layout to makers of all skill levels.",
+				Stats: models.ProfileStats{
+					Posts:       3,
+					Connections: 287,
+					Circles:     4,
 				},
-				Content: "With over a decade in the business, it's nice to still have all my fingers.",
-				TimeAgo: "3d ago",
-				Circle:  "Woodworking",
+				IsConnected: false,
 			},
-		},
-		PostOffset:   1,
-		HasMorePosts: true,
-		IsOwner:      isOwner,
+			Posts: []models.Post{
+				{
+					ID: "1",
+					User: models.User{
+						ID:     "sara_pcb",
+						Handle: "@sara_pcb",
+						Avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=32&h=32&fit=crop&crop=face",
+					},
+					Content: "New tutorial series starting: \"Arduino for Beginners\". First session covers basic circuits and programming fundamentals.",
+					TimeAgo: "1h ago",
+					Circle:  "DIY Electronics",
+					Image: &models.MediaItem{
+						URL: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&fit=crop&crop=center",
+						Alt: "Arduino tutorial setup",
+					},
+				},
+				{
+					ID: "2",
+					User: models.User{
+						ID:     "sara_pcb",
+						Handle: "@sara_pcb",
+						Avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=32&h=32&fit=crop&crop=face",
+					},
+					Content: "Just finished designing a custom PCB for automated plant watering. Love how electronics can solve real-world problems! The soil moisture sensors trigger the pump perfectly.",
+					TimeAgo: "3d ago",
+					Circle:  "DIY Electronics",
+				},
+				{
+					ID: "3",
+					User: models.User{
+						ID:     "sara_pcb",
+						Handle: "@sara_pcb",
+						Avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=32&h=32&fit=crop&crop=face",
+					},
+					Content: "Remember: always double-check your power supply connections before first boot. Saved myself from frying another microcontroller today 😅",
+					TimeAgo: "1w ago",
+					Circle:  "DIY Electronics",
+				},
+			},
+			PostOffset:   1,
+			HasMorePosts: false,
+			IsOwner:      isOwner,
+		}
+
+	case "@zucc":
+		return models.ProfileData{
+			BaseData: baseData,
+			Profile: models.Profile{
+				ID:     "zucc",
+				Handle: "@zucc",
+				Name:   "Mark Zuckerberg",
+				Avatar: "https://media.tenor.com/y1mYLo66EuoAAAAM/zucky.gif",
+				Banner: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=300&fit=crop&crop=center",
+				Bio:    "Washed-out reptilian overlord larping as a human tech-bro. Earth will be mine! *hiss*",
+				Stats: models.ProfileStats{
+					Posts:       3,
+					Connections: 2847,
+					Circles:     2,
+				},
+				IsConnected: false,
+			},
+			Posts: []models.Post{
+				{
+					ID: "1",
+					User: models.User{
+						ID:     "zucc",
+						Handle: "@zucc",
+						Avatar: "https://media.tenor.com/y1mYLo66EuoAAAAM/zucky.gif",
+					},
+					Content: "circles.diy has changed the game forever. \n\nFuck, I wish I'd thought of that.",
+					TimeAgo: "1h ago",
+					Circle:  "Communication Software",
+				},
+				{
+					ID: "2",
+					User: models.User{
+						ID:     "zucc",
+						Handle: "@zucc",
+						Avatar: "https://media.tenor.com/y1mYLo66EuoAAAAM/zucky.gif",
+					},
+					Content: "The future of social platforms isn't about scale - it's about authentic community. Watching this space with great interest. The decentralized approach here is fascinating.",
+					TimeAgo: "2d ago",
+					Circle:  "Communication Software",
+				},
+				{
+					ID: "3",
+					User: models.User{
+						ID:     "zucc",
+						Handle: "@zucc",
+						Avatar: "https://media.tenor.com/y1mYLo66EuoAAAAM/zucky.gif",
+					},
+					Content: "Sometimes the best ideas are the simplest ones. Building tools that actually serve communities instead of extracting from them. Revolutionary concept.",
+					TimeAgo: "3d ago",
+					Circle:  "Communication Software",
+				},
+			},
+			PostOffset:   1,
+			HasMorePosts: false,
+			IsOwner:      isOwner,
+		}
+
+	default:
+		// Return maia as default fallback
+		return models.ProfileData{
+			BaseData: baseData,
+			Profile: models.Profile{
+				ID:     "maia",
+				Handle: "@maia",
+				Name:   "Maia Makes",
+				Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=128&h=128&fit=crop&crop=face",
+				Banner: "https://images.unsplash.com/photo-1597960194599-22929afc25b1?w=1200&h=300&fit=crop&crop=center",
+				Bio:    "Woodworker & furniture maker crafting heirloom pieces from sustainably sourced timber. Teaching traditional joinery techniques and sharing the journey from tree to table.",
+				Stats: models.ProfileStats{
+					Posts:       3,
+					Connections: 342,
+					Circles:     5,
+				},
+				IsConnected: false,
+			},
+			Posts: []models.Post{
+				{
+					ID: "1",
+					User: models.User{
+						ID:     "maia",
+						Handle: "@maia",
+						Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
+					},
+					Content: "Just finished this oak coffee table! Happy to step out of my comfort-zone and share some joinery! This piece is available 💜💸",
+					TimeAgo: "2h ago",
+					Circle:  "Woodworking",
+					Image: &models.MediaItem{
+						URL: "https://images.unsplash.com/photo-1707749522150-e3b1b5f3e079?w=600&h=400&fit=crop&crop=center",
+						Alt: "Oak coffee table project",
+					},
+					CanBuy: true,
+				},
+				{
+					ID: "2",
+					User: models.User{
+						ID:     "maia",
+						Handle: "@maia",
+						Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
+					},
+					Content: "Spending today selecting timber for the next commission. There's something meditative about running your hands along the grain, feeling for the perfect piece that wants to become a dining table. The wood tells its own story - weather marks, growth patterns, all the years it spent reaching toward light.",
+					TimeAgo: "1d ago",
+					Circle:  "Woodworking",
+				},
+				{
+					ID: "3",
+					User: models.User{
+						ID:     "maia",
+						Handle: "@maia",
+						Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
+					},
+					Content: "Traditional style - the backbone of solid furniture. Here's the technique I learned from my mentor, passed down through generations of craftspeople. No shortcuts, just sharp tools and patient hands.",
+					TimeAgo: "3d ago",
+					Circle:  "Woodworking",
+					Video: &models.MediaItem{
+						URL: "https://www.pexels.com/download/video/5972633/",
+						Alt: "Video showing old school planing of an uneven timber edge",
+					},
+					Stats: &models.PostStats{
+						Replies: 34,
+						Shares:  67,
+					},
+				},
+			},
+			PostOffset:   1,
+			HasMorePosts: true,
+			IsOwner:      isOwner,
+		}
 	}
 }
 

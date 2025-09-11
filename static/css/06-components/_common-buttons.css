@@ -15,5 +15,5 @@
 .see-all-btn:hover,
 .manage-plugins-btn:hover {
     background: var(--active-bg);
-    color: var(--active-text);
+    color: var(--text-contrast);
 }

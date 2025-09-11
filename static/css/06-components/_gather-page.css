@@ -157,7 +157,7 @@
     width: fit-content;
 }
 
-.see-all-btn:hover {
+.gather-content .see-all-btn:hover {
     color: var(--text-primary);
 }
 
