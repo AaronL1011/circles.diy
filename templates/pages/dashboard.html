@@ -30,10 +30,13 @@
     <div class="main-content" id="main-content">
         <!-- Mobile/Tablet Recent Ripples (compact horizontal) -->
         <section class="recent-ripples-mobile">
-            <h3>
-                {{template "ripples-icon" .}}
-                Recent Ripples
-            </h3>
+            <div class="recent-ripples-header">
+                <h3>
+                    {{template "ripples-icon" .}}
+                    Recent Ripples
+                </h3>
+                <button class="see-all-btn new-ripple-btn">New Ripple</button>
+            </div>
             <div class="ripples-horizontal-scroll horitonzal-feed">
                 {{range .Ripples}}
                 <div class="ripple-card-compact">

@@ -20,7 +20,6 @@
     font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    border-bottom: 1px solid var(--border-primary);
     padding-bottom: 0.5rem;
     color: var(--text-primary);
 }

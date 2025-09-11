@@ -47,17 +47,24 @@
     .recent-ripples-mobile {
         display: block;
         background: var(--bg-primary);
-        /* border: 1px solid var(--border-primary); */
         padding: 1.5rem 0 0;
         border-radius: var(--container-radius);
     }
 
+    .recent-ripples-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 1rem;
+    }
+
+    .new-ripple-btn {
+        width: fit-content
+    }
+
     .recent-ripples-mobile h3 {
-        font-size: 1rem;
+        font-size: 1.1rem;
         font-weight: 600;
-        margin-bottom: 1rem;
-        border-bottom: 1px solid var(--border-primary);
-        padding-bottom: 0.5rem;
         color: var(--text-primary);
         display: flex;
         align-items: center;
