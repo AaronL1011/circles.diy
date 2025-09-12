@@ -34,6 +34,19 @@ func GetMockDashboardData() models.DashboardData {
 					Alt: "Oak coffee table project",
 				},
 				CanBuy: true,
+				Replies: []models.Reply{
+					{
+						ID: "f1_r1",
+						User: models.User{
+							ID:     "wood_enthusiast",
+							Handle: "@wood_enthusiast",
+							Avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face",
+						},
+						Content:   "Absolutely gorgeous! The vintage vibe is delightful!",
+						TimeAgo:   "1m ago",
+						Timestamp: "2025-09-12T13:29:00Z",
+					},
+				},
 			},
 			{
 				ID: "2",
@@ -43,13 +56,104 @@ func GetMockDashboardData() models.DashboardData {
 					Avatar: "https://images.unsplash.com/photo-1581391528803-54be77ce23e3?w=48&h=48&fit=crop&crop=face",
 				},
 				Content: "Warming up the barbeque and just got couple cases of the finest bread-water. Keen to see you all... remember 7PM dont be late!",
-				TimeAgo: "15m ago",
+				TimeAgo: "30m ago",
 				Circle:  "The Crop Circle",
 				Image: &models.MediaItem{
 					URL: "https://images.unsplash.com/photo-1664463758574-e640a7a998d4?q=80&w=600&auto=format&fit=crop",
 					Alt: "BBQ gathering setup",
 				},
 				CanBuy: false,
+				Replies: []models.Reply{
+					{
+						ID: "f1_r1",
+						User: models.User{
+							ID:     "bookworm",
+							Handle: "@bookworm",
+							Avatar: "https://images.unsplash.com/photo-1635830609300-ad974ad25d6a?w=32&h=32&fit=crop&crop=face",
+						},
+						Content:   "Keen as a number of beans 🫘!!",
+						TimeAgo:   "15m ago",
+						Timestamp: "2025-09-12T13:15:00Z",
+						Replies: []models.Reply{
+							{
+								ID: "f1_r1_r1",
+								User: models.User{
+									ID:     "heathtyler",
+									Handle: "@heathtyler",
+									Avatar: "https://images.unsplash.com/photo-1581391528803-54be77ce23e3?w=48&h=48&fit=crop&crop=face",
+								},
+								Content:   "The magical fruit ✨",
+								TimeAgo:   "15m ago",
+								Timestamp: "2025-09-12T13:15:00Z",
+								Replies: []models.Reply{
+									{
+										ID: "f1_r1_r1_r1",
+										User: models.User{
+											ID:     "bookworm",
+											Handle: "@bookworm",
+											Avatar: "https://images.unsplash.com/photo-1635830609300-ad974ad25d6a?w=32&h=32&fit=crop&crop=face",
+										},
+										Content:   "Thats deep!",
+										TimeAgo:   "15m ago",
+										Timestamp: "2025-09-12T13:15:00Z",
+										Replies: []models.Reply{
+											{
+												ID: "f1_r1_r1_r1_r1",
+												User: models.User{
+													ID:     "heathtyler",
+													Handle: "@heathtyler",
+													Avatar: "https://images.unsplash.com/photo-1581391528803-54be77ce23e3?w=48&h=48&fit=crop&crop=face",
+												},
+												Content: "So deep imma need a shovel!",
+												TimeAgo: "15m ago",
+												Replies: []models.Reply{
+													{
+														ID: "f1_r1_r1_r1_r1_r1",
+														User: models.User{
+															ID:     "bookworm",
+															Handle: "@bookworm",
+															Avatar: "https://images.unsplash.com/photo-1635830609300-ad974ad25d6a?w=32&h=32&fit=crop&crop=face",
+														},
+														Content: `▒▒▒▄▄▄▄▄▄▄▄▄
+░▄███████▀▀▀▀▀▀███████▄
+░▐████▀▒▒▒▒▒▒▒▒▒▀██████▄
+░███▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀█████
+░▐██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████▌
+░▐█▌▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████▌
+░░█▒▄▀▀▀▀▀▄▒▒▄▀▀▀▀▀▄▒▐███▌
+░░░▐░░░▄▄░░▌▐░░░▄▄░░▌▐███▌
+░▄▀▌░░░▀▀░░▌▐░░░▀▀░░▌▒▀▒█▌
+░▌▒▀▄░░░░▄▀▒▒▀▄░░░▄▀▒▒▄▀▒▌
+░▀▄▐▒▀▀▀▀▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒█
+░░░▀▌▒▄██▄▄▄▄████▄▒▒▒▒█▀
+░░░░▄██████████████▒▒▐▌
+░░░▀███▀▀████▀█████▀▒▌
+░░░░░▌▒▒▒▄▒▒▒▄▒▒▒▒▒▒▐
+░░░░░▌▒▒▒▒▀▀▀▒▒▒▒▒▒▒▐`,
+														TimeAgo:   "15m ago",
+														Timestamp: "2025-09-12T13:15:00Z",
+														Replies: []models.Reply{
+															{
+																ID: "f1_r1_r1_r1_r1_r1_r1",
+																User: models.User{
+																	ID:     "heathtyler",
+																	Handle: "@heathtyler",
+																	Avatar: "https://images.unsplash.com/photo-1581391528803-54be77ce23e3?w=48&h=48&fit=crop&crop=face",
+																},
+																Content: "LOL",
+																TimeAgo: "15m ago",
+															},
+														},
+													},
+												},
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+				},
 			},
 			{
 				ID: "3",
@@ -161,18 +265,18 @@ func GetMockDashboardData() models.DashboardData {
 		MarketplaceItems: []models.MarketplaceItem{
 			{
 				ID:       "1",
-				Title:    "Cordless Drill",
-				Price:    "$85",
-				Image:    &models.MediaItem{URL: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=128&fit=crop&crop=center", Alt: "Cordless drill"},
-				Location: "Sydney, NSW",
+				Title:    "Handcrafted Oak Coffee Table",
+				Price:    "$850",
+				Image:    &models.MediaItem{URL: "https://images.unsplash.com/photo-1707749522150-e3b1b5f3e079?w=128&fit=crop&crop=center", Alt: "Cordless drill"},
+				Location: "Alexandria, NSW",
 				TimeAgo:  "3h ago",
 			},
 			{
 				ID:       "2",
-				Title:    "Ceramic Wheel & Tools",
-				Price:    "Trade",
-				Image:    &models.MediaItem{URL: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=128&fit=crop", Alt: "Ceramic wheel"},
-				Location: "Stanwell Park, NSW",
+				Title:    "Professional DJ Decks & Mixer",
+				Price:    "1200",
+				Image:    &models.MediaItem{URL: "https://images.unsplash.com/photo-1619723525755-8eb7fd5b96f6?w=128&fit=crop", Alt: "Ceramic wheel"},
+				Location: "Marickville, NSW",
 				TimeAgo:  "1d ago",
 			},
 			{
@@ -600,6 +704,53 @@ func GetMockProfileInternalData() models.ProfileData {
 					Views:   156,
 				},
 				CanBuy: true,
+				Replies: []models.Reply{
+					{
+						ID: "r1",
+						User: models.User{
+							ID:     "craftsman_joe",
+							Handle: "@craftsman_joe",
+							Avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face",
+						},
+						Content:   "Beautiful work! The grain pattern on that oak is stunning. What finish did you use?",
+						TimeAgo:   "1h ago",
+						Timestamp: "2025-09-12T13:15:00Z",
+					},
+					{
+						ID: "r2",
+						User: models.User{
+							ID:     "sara_builds",
+							Handle: "@sara_builds",
+							Avatar: "https://images.unsplash.com/photo-1616776005756-4dca36124bf9?w=32&h=32&fit=crop&crop=face",
+						},
+						Content:   "Those dovetails are perfect! I'm still practicing mine. Any tips for a beginner?",
+						TimeAgo:   "45m ago",
+						Timestamp: "2025-09-12T13:15:00Z",
+						Replies: []models.Reply{
+							{
+								ID: "r2_1",
+								User: models.User{
+									ID:     "maia",
+									Handle: "@maia",
+									Avatar: "https://images.unsplash.com/photo-1653508242641-09fdb7339942?w=32&h=32&fit=crop&crop=face",
+								},
+								Content: "Practice with softer woods first - pine is forgiving! And don't rush the marking out.",
+								TimeAgo: "30m ago",
+							},
+						},
+					},
+					{
+						ID: "r3",
+						User: models.User{
+							ID:     "wood_lover",
+							Handle: "@wood_lover",
+							Avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face",
+						},
+						Content:   "Is this piece still available? Would love to see more photos if possible.",
+						TimeAgo:   "20m ago",
+						Timestamp: "2025-09-12T13:15:00Z",
+					},
+				},
 			},
 			{
 				ID: "2",
@@ -615,6 +766,19 @@ func GetMockProfileInternalData() models.ProfileData {
 					Replies: 12,
 					Shares:  28,
 					Views:   89,
+				},
+				Replies: []models.Reply{
+					{
+						ID: "r4",
+						User: models.User{
+							ID:     "timber_source",
+							Handle: "@timber_source",
+							Avatar: "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=32&h=32&fit=crop&crop=face",
+						},
+						Content:   "This resonates so much. I always tell my customers that we're not just buying lumber, we're selecting the soul of the piece.",
+						TimeAgo:   "18h ago",
+						Timestamp: "2025-09-12T13:15:00Z",
+					},
 				},
 			},
 			{
@@ -1079,8 +1243,8 @@ func GetMockMarketplaceData() models.MarketplacePageData {
 			{
 				ID:          "featured-2",
 				Title:       "Professional DJ Decks & Mixer",
-				Description: "Pioneer DDJ-SX3 controller with built-in mixer. Perfect for aspiring DJs or professionals. Includes original box, cables, and Serato DJ software license.",
-				Price:       "$750",
+				Description: "Two Technics SL1210 Vinyl Turntables and a standalone mixer. Perfect for aspiring DJs or professionals. Includes original box and cables.",
+				Price:       "$1200",
 				PriceType:   "sale",
 				Image: &models.MediaItem{
 					URL: "https://images.unsplash.com/photo-1619723525755-8eb7fd5b96f6?w=600&h=400&fit=crop",
@@ -1097,7 +1261,7 @@ func GetMockMarketplaceData() models.MarketplacePageData {
 				},
 				Circle:      "Music Production",
 				Category:    "electronics",
-				Tags:        []string{"music", "dj", "pioneer", "professional"},
+				Tags:        []string{"music", "dj", "vinyl", "professional", "technics"},
 				Condition:   "like-new",
 				IsAvailable: true,
 				ViewCount:   89,

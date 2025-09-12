@@ -21,6 +21,7 @@ type FeedItem struct {
 	Video   *MediaItem  `json:"video,omitempty"`
 	Gallery []MediaItem `json:"gallery,omitempty"`
 	CanBuy  bool        `json:"can_buy"`
+	Replies []Reply     `json:"replies,omitempty"`
 }
 
 type Post struct {
@@ -34,6 +35,16 @@ type Post struct {
 	Gallery []MediaItem `json:"gallery,omitempty"`
 	CanBuy  bool        `json:"can_buy"`
 	Stats   *PostStats  `json:"stats,omitempty"`
+	Replies []Reply     `json:"replies,omitempty"`
+}
+
+type Reply struct {
+	ID        string  `json:"id"`
+	User      User    `json:"user"`
+	Content   string  `json:"content"`
+	TimeAgo   string  `json:"time_ago"`
+	Timestamp string  `json:"timestamp"`
+	Replies   []Reply `json:"replies,omitempty"`
 }
 
 type DraftPost struct {

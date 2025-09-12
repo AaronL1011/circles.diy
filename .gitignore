@@ -12,6 +12,7 @@ config.json
 nginx.conf
 docs/
 CLAUDE.md
+.claude/
 
 # OS generated files
 .DS_Store

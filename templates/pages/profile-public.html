@@ -52,58 +52,7 @@
 
             <div class="posts-grid" id="profile-posts">
                 {{range .Posts}}
-                <article class="post-item">
-                    <div class="post-header">
-                        <div class="post-user">
-                            <div class="user-avatar">
-                                <img src="{{.User.Avatar}}" alt="{{.User.Handle}}" />
-                            </div>
-                            <strong>{{.User.Handle}}</strong>
-                            <span class="post-time">{{.TimeAgo}}</span>
-                        </div>
-                        <div class="post-circle">in {{.Circle}}</div>
-                    </div>
-                    <div class="post-content">
-                        {{if .Image}}
-                        <div class="post-image">
-                            <img src="{{.Image.URL}}" alt="{{.Image.Alt}}" />
-                        </div>
-                        {{end}}
-                        {{if .Video}}
-                        <div class="post-video">
-                            <video controls>
-                                <source src="{{.Video.URL}}" type="video/mp4">
-                                {{.Video.Alt}}
-                            </video>
-                        </div>
-                        {{end}}
-                        {{if .Gallery}}
-                        <div class="post-gallery">
-                            <div class="gallery-main">
-                                <img src="{{(index .Gallery 0).URL}}" alt="{{(index .Gallery 0).Alt}}" />
-                            </div>
-                            {{if gt (len .Gallery) 1}}
-                            <div class="gallery-thumbnails">
-                                {{range slice .Gallery 1 4}}
-                                <img src="{{.URL}}" alt="{{.Alt}}" />
-                                {{end}}
-                                {{if gt (len .Gallery) 4}}
-                                <div class="gallery-more">+{{sub (len .Gallery) 4}}</div>
-                                {{end}}
-                            </div>
-                            {{end}}
-                        </div>
-                        {{end}}
-                        <p>{{.Content}}</p>
-                    </div>
-                    <div class="post-actions">
-                        <button class="post-action"  >Reply</button>
-                        <button class="post-action" >Share</button>
-                        {{if .CanBuy}}
-                        <button class="post-action" >Buy Now</button>
-                        {{end}}
-                    </div>
-                </article>
+                {{template "post" .}}
                 {{end}}
             </div>
 
